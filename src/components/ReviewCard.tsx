@@ -85,7 +85,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
             {initial}
           </div>
           <div>
-            <h4 style={{ margin: 0, fontWeight: 650, fontSize: '0.95rem', color: '#111827', lineHeight: '1.2' }}>
+            <h4 style={{ margin: 0, fontWeight: 700, fontSize: '0.95rem', color: '#111827', lineHeight: '1.2' }}>
               {name}
             </h4>
             <p style={{ margin: '3px 0 0 0', fontSize: '0.75rem', color: '#6b7280', fontWeight: 500 }}>

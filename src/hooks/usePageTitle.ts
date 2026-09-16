@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const LOGO_ABSOLUTE_URL = 'https://raw.githubusercontent.com/filipmrbg/J-M-leri-hus/main/public/og-image.png';
+const LOGO_ABSOLUTE_URL = 'https://raw.githubusercontent.com/filipmrbg/TMT-V-gmarkeringar-AB/main/public/og-image.png';
 
 export function usePageTitle(title: string, description?: string) {
   const { pathname } = useLocation();
@@ -11,7 +11,7 @@ export function usePageTitle(title: string, description?: string) {
     document.title = title;
 
     // 2. Update Description
-    const defaultDesc = "J Måleri Åhus utför allt inom invändigt och utvändigt måleri, tapetsering, spackling och fasadmålning i Åhus/Kristianstad med omnejd för privatpersoner och företag. Kontakta oss för fri offert!";
+    const defaultDesc = "TMT Vägmarkeringar AB utför professionell vägmarkering, linjemålning, parkeringsrutor och industrimålning för företag, kommuner och BRF:er i hela Sverige. Kontakta oss för fri offert!";
     const activeDesc = description || defaultDesc;
     
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -41,7 +41,7 @@ export function usePageTitle(title: string, description?: string) {
     // 5. Update Canonical Link & Absolute URL
     const origin = typeof window !== 'undefined' && window.location.origin.startsWith('http')
       ? window.location.origin
-      : 'https://jmaleri.se';
+      : 'https://tmtvagmarkeringar.se';
     const absoluteUrl = `${origin}${pathname === '/' ? '' : pathname}`;
     const absoluteOgImage = LOGO_ABSOLUTE_URL;
 

@@ -70,7 +70,7 @@ export default function ProjectsGallery() {
     <section
       id="projekt"
       style={{
-        background: 'radial-gradient(ellipse at 50% 40%, rgba(194, 132, 71, 0.05) 0%, transparent 65%), #f8fafc',
+        background: 'radial-gradient(ellipse at 50% 40%, rgba(15, 23, 42, 0.04) 0%, transparent 65%), #f8fafc',
         padding: 'clamp(64px, 8vw, 100px) 0',
         position: 'relative',
         borderTop: '1px solid #e2e8f0',
@@ -97,17 +97,31 @@ export default function ProjectsGallery() {
         >
           <div>
             <ScrollReveal animation="fade-right">
+              <span style={{
+                color: '#0f172a',
+                fontWeight: 700,
+                fontSize: '0.8rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                display: 'inline-block',
+                marginBottom: '10px',
+                background: '#e2e8f0',
+                padding: '4px 14px',
+                borderRadius: '999px',
+              }}>
+                Referenser
+              </span>
               <h2
                 style={{
                   color: 'var(--color-text-dark)',
-                  fontWeight: 800,
+                  fontWeight: 700,
                   fontSize: 'clamp(2rem, 3.6vw, 2.7rem)',
-                  letterSpacing: '-0.03em',
                   margin: 0,
                   lineHeight: 1.18,
+                  textTransform: 'uppercase',
                 }}
               >
-                Ett urval av våra referenser
+                Projekt i hela Sverige
               </h2>
             </ScrollReveal>
           </div>
@@ -122,7 +136,7 @@ export default function ProjectsGallery() {
                   margin: 0,
                 }}
               >
-                Här kan du se exempel på våra färdigställda måleriprojekt i Åhus/Kristianstad med omnejd. Hovra över bandet för att pausa eller klicka på en bild för att förstora.
+                Här kan du se exempel på våra utförda vägmarkerings- och linjemålningsprojekt över hela Sverige. Hovra över bandet för att pausa eller klicka på en bild för att förstora.
               </p>
             </ScrollReveal>
           </div>
@@ -386,8 +400,8 @@ export default function ProjectsGallery() {
 
         .marquee-card:hover {
           transform: translateY(-8px) scale(1.02);
-          border-color: rgba(194, 132, 71, 0.6);
-          box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16), 0 0 0 2px rgba(194, 132, 71, 0.25);
+          border-color: #0F172A;
+          box-shadow: 0 20px 45px rgba(15, 23, 42, 0.2), 0 0 0 2px rgba(15, 23, 42, 0.12);
         }
 
         .marquee-img-wrapper {

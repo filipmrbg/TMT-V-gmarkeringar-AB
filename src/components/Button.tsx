@@ -1,7 +1,7 @@
 import { ReactNode, MouseEventHandler, CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 
-type Variant = 'primary' | 'outline' | 'dark' | 'secondary';
+type Variant = 'primary' | 'white' | 'outline' | 'dark' | 'secondary';
 type Size = 'sm' | 'md' | 'lg';
 
 interface Props {
@@ -20,34 +20,42 @@ const sizeStyles: Record<Size, CSSProperties> = {
 
 const variantStyles: Record<Variant, CSSProperties> = {
   primary: {
-    background: 'var(--color-primary)',
+    background: '#0F172A',
     color: '#ffffff',
     fontWeight: 700,
-    border: '2px solid transparent',
+    border: '2px solid #0F172A',
+  },
+  white: {
+    background: '#ffffff',
+    color: '#0F172A',
+    fontWeight: 700,
+    border: '2px solid #ffffff',
   },
   outline: {
     background: 'transparent',
-    color: 'var(--color-white)',
-    border: '2px solid var(--color-white)',
+    color: '#ffffff',
+    border: '2px solid rgba(255, 255, 255, 0.85)',
   },
   dark: {
-    background: 'var(--color-dark)',
-    color: 'var(--color-white)',
-    border: '2px solid transparent',
+    background: '#0F172A',
+    color: '#ffffff',
+    border: '2px solid #0F172A',
   },
   secondary: {
     background: '#ffffff',
-    color: 'var(--color-text-dark, #0f172a)',
+    color: '#0F172A',
     border: '1.5px solid #cbd5e1',
     fontWeight: 600,
   },
 };
 
 const base: CSSProperties = {
-  borderRadius: '12px',
+  borderRadius: '9999px',
   cursor: 'pointer',
   fontFamily: 'var(--font-family)',
-  fontWeight: 600,
+  fontWeight: 700,
+  letterSpacing: '0.06em',
+  textTransform: 'uppercase',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -60,16 +68,22 @@ const base: CSSProperties = {
 function handleMouseEnter(e: React.MouseEvent<HTMLElement>, variant: Variant) {
   const el = e.currentTarget as HTMLElement;
   el.style.transform = 'translateY(-2px)';
-  if (variant === 'primary') {
-    el.style.background = 'var(--color-primary-hover)';
-    el.style.boxShadow = '0 8px 25px rgba(194, 132, 71, 0.45)';
+  if (variant === 'white') {
+    el.style.background = '#f1f5f9';
+    el.style.borderColor = '#f1f5f9';
+    el.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.25)';
+  } else if (variant === 'primary' || variant === 'dark') {
+    el.style.background = '#1E293B';
+    el.style.borderColor = '#1E293B';
+    el.style.boxShadow = '0 8px 25px rgba(15, 23, 42, 0.25)';
   } else if (variant === 'secondary') {
     el.style.background = '#f8fafc';
-    el.style.borderColor = 'var(--color-primary)';
-    el.style.color = 'var(--color-primary)';
+    el.style.borderColor = '#0F172A';
+    el.style.color = '#0F172A';
     el.style.boxShadow = '0 8px 25px rgba(15, 23, 42, 0.08)';
   } else {
-    el.style.boxShadow = '0 8px 25px rgba(194, 132, 71, 0.2)';
+    el.style.background = 'rgba(255, 255, 255, 0.1)';
+    el.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.12)';
   }
 }
 
@@ -77,12 +91,18 @@ function handleMouseLeave(e: React.MouseEvent<HTMLElement>, variant: Variant) {
   const el = e.currentTarget as HTMLElement;
   el.style.transform = 'translateY(0)';
   el.style.boxShadow = 'none';
-  if (variant === 'primary') {
-    el.style.background = 'var(--color-primary)';
+  if (variant === 'white') {
+    el.style.background = '#ffffff';
+    el.style.borderColor = '#ffffff';
+  } else if (variant === 'primary' || variant === 'dark') {
+    el.style.background = '#0F172A';
+    el.style.borderColor = '#0F172A';
   } else if (variant === 'secondary') {
     el.style.background = '#ffffff';
     el.style.borderColor = '#cbd5e1';
-    el.style.color = 'var(--color-text-dark, #0f172a)';
+    el.style.color = '#0F172A';
+  } else {
+    el.style.background = 'transparent';
   }
 }
 
@@ -99,35 +119,35 @@ export default function Button({ variant = 'primary', size = 'md', children, hre
       <Link
         to={href}
         style={style}
-        onClick={onClick}
-        onMouseEnter={e => handleMouseEnter(e, variant)}
-        onMouseLeave={e => handleMouseLeave(e, variant)}
+        onMouseEnter={(e) => handleMouseEnter(e, variant)}
+        onMouseLeave={(e) => handleMouseLeave(e, variant)}
       >
         {children}
       </Link>
     );
   }
 
+  // Anchor
   if (href) {
     return (
       <a
         href={href}
         style={style}
-        onClick={onClick}
-        onMouseEnter={e => handleMouseEnter(e, variant)}
-        onMouseLeave={e => handleMouseLeave(e, variant)}
+        onMouseEnter={(e) => handleMouseEnter(e, variant)}
+        onMouseLeave={(e) => handleMouseLeave(e, variant)}
       >
         {children}
       </a>
     );
   }
 
+  // Regular button
   return (
     <button
-      style={{ ...style, outline: 'none', border: variantStyles[variant].border }}
+      style={style}
       onClick={onClick}
-      onMouseEnter={e => handleMouseEnter(e, variant)}
-      onMouseLeave={e => handleMouseLeave(e, variant)}
+      onMouseEnter={(e) => handleMouseEnter(e, variant)}
+      onMouseLeave={(e) => handleMouseLeave(e, variant)}
     >
       {children}
     </button>

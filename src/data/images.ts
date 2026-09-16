@@ -1,7 +1,7 @@
 /**
- * CENTRALIZED IMAGE CONFIGURATION
+ * CENTRALIZED IMAGE CONFIGURATION - TMT VÄGMARKERINGAR AB
  *
- * All images used across the template are defined here.
+ * All images used across the site are defined here.
  */
 
 export interface ImageSlot {
@@ -15,6 +15,7 @@ export interface SiteImages {
   ogImage?: ImageSlot;
   hero: {
     background: ImageSlot;
+    videoUrl?: string;
   };
   services: {
     [key: string]: ImageSlot | undefined;
@@ -26,7 +27,7 @@ export interface SiteImages {
   };
   about: {
     hero: ImageSlot;
-    teamMember: ImageSlot;
+    teamMember?: ImageSlot;
   };
   whyChooseUs: ImageSlot;
   ideaToResult: ImageSlot;
@@ -40,210 +41,147 @@ export interface SiteImages {
 const images: SiteImages = {
   logo: {
     url: '/logo.png',
-    alt: 'J Måleri Åhus - Måleri i Åhus/Kristianstad med omnejd',
+    alt: 'TMT Vägmarkeringar - Professionell vägmarkering och linjemålning i hela Sverige',
   },
   logoDark: {
     url: '/logo-dark.png',
-    alt: 'J Måleri Åhus - Måleri i Åhus/Kristianstad med omnejd',
+    alt: 'TMT Vägmarkeringar AB',
   },
   ogImage: {
     url: '/og-image.png',
-    alt: 'J Måleri Åhus Logotyp',
+    alt: 'TMT Vägmarkeringar Logotyp',
   },
 
   hero: {
     background: {
       url: '/hero-main.webp',
-      alt: 'J Måleri Åhus måleriarbeten i Åhus/Kristianstad med omnejd',
+      alt: 'TMT Vägmarkeringar professionell vägmarkering och linjemålning',
     },
+    videoUrl: 'https://d8j0ntlcm91z4.cloudfront.net/user_3G5LlmMYORSdAk8SxzXrK2S0Is5/hf_20260916_120304_b6e22521-4e42-4364-9c14-ebed64144e92.mp4',
   },
 
   services: {
-    'invandigt-maleri': {
+    'vagmarkering': {
       url: '/gallery/gallery-2.jpg',
-      alt: 'Invändigt måleri och tapetsering i Åhus/Kristianstad med omnejd',
+      alt: 'Vägmarkering och linjemålning i hela Sverige',
     },
-    'fasadmalning': {
-      url: '/fasadmalning.png',
-      alt: 'Utvändigt måleri och fasadrenovering i Åhus/Kristianstad med omnejd',
+    'parkeringsmarkering': {
+      url: '/gallery/gallery-1.jpg',
+      alt: 'Parkeringsmarkering och laddplatser',
     },
-    'tapetsering': {
-      url: 'https://i.imgur.com/omZyW82.png',
-      alt: 'Tapetsering och mönsterpassning i Åhus/Kristianstad med omnejd',
+    'industrimalning': {
+      url: '/gallery/gallery-4.jpg',
+      alt: 'Industrimålning och truckgångar i lagerlokaler',
+    },
+    'symbolmalning': {
+      url: '/gallery/gallery-3.jpg',
+      alt: 'Symbolmålning, pilar och övergångsställen',
     },
   },
 
   gallery: [
     {
-      url: 'https://i.imgur.com/omZyW82.png',
-      alt: 'J Måleri Åhus mönstertapetsering i Åhus/Kristianstad med omnejd',
-    },
-    {
-      url: 'https://i.imgur.com/w7Imch0.png',
-      alt: 'J Måleri Åhus invändigt måleriarbete i Åhus/Kristianstad med omnejd',
-    },
-    {
-      url: 'https://i.imgur.com/TCqPMOb.png',
-      alt: 'J Måleri Åhus vägg- och takmålning i Åhus/Kristianstad med omnejd',
-    },
-    {
-      url: 'https://i.imgur.com/tsR8qm7.png',
-      alt: 'J Måleri Åhus måleriprojekt i Åhus/Kristianstad med omnejd',
-    },
-    {
-      url: 'https://i.imgur.com/jsb4nja.png',
-      alt: 'J Måleri Åhus rumsförnyelse och kulörbyte i Åhus/Kristianstad med omnejd',
-    },
-    {
-      url: 'https://i.imgur.com/ZssWOfc.png',
-      alt: 'J Måleri Åhus precisionsmåleri i Åhus/Kristianstad med omnejd',
-    },
-    {
-      url: 'https://i.imgur.com/UnQ03uU.png',
-      alt: 'J Måleri Åhus noggrant underarbete och finish i Åhus/Kristianstad med omnejd',
-    },
-    {
-      url: '/fasadmalning.png',
-      alt: 'J Måleri Åhus fasadmålning och utvändigt måleriarbete i Åhus/Kristianstad med omnejd',
+      url: '/gallery/gallery-1.jpg',
+      alt: 'TMT Vägmarkeringar parkeringsmarkering och linjemålning',
     },
     {
       url: '/gallery/gallery-2.jpg',
-      alt: 'J Måleri Åhus invändig målning och väggfinish i Åhus/Kristianstad med omnejd',
+      alt: 'TMT Vägmarkeringar vägmarkering och övergångsställe',
     },
     {
       url: '/gallery/gallery-3.jpg',
-      alt: 'J Måleri Åhus tak och snickerimålning i Åhus/Kristianstad med omnejd',
+      alt: 'TMT Vägmarkeringar laddplats och symbolmarkering',
+    },
+    {
+      url: '/gallery/gallery-4.jpg',
+      alt: 'TMT Vägmarkeringar industrimålning och truckgångar',
     },
     {
       url: '/gallery/gallery-5.jpg',
-      alt: 'J Måleri Åhus detaljarbete och snickerifinish i Åhus/Kristianstad med omnejd',
+      alt: 'TMT Vägmarkeringar linjemålning och trafiksäkerhet',
     },
     {
       url: '/gallery/gallery-6.jpg',
-      alt: 'J Måleri Åhus färdigställt måleriprojekt i Åhus/Kristianstad med omnejd',
+      alt: 'TMT Vägmarkeringar symboler och stopplinjer',
     },
   ],
 
   cta: {
     banner: {
-      url: '/hero-main.webp',
-      alt: 'J Måleri Åhus måleriprojekt i Åhus/Kristianstad med omnejd',
+      url: '/cta-banner-bg.jpg',
+      alt: 'TMT Vägmarkeringar lastbil och vägmarkeringsutrustning',
     },
     midSection: {
-      url: '/hero-main.webp',
-      alt: 'J Måleri arbetsplats i Åhus/Kristianstad med omnejd',
+      url: '/cta-mid-section.webp',
+      alt: 'TMT Vägmarkeringar linjemålning',
     },
   },
 
   about: {
     hero: {
-      url: '/about-us.jpg',
-      alt: 'J Måleri Åhus verksamhet och måleriarbete i Åhus/Kristianstad med omnejd',
-    },
-    teamMember: {
-      url: '/logo.png',
-      alt: 'Teammedlem J Måleri Åhus',
+      url: '/about.jpg',
+      alt: 'TMT Vägmarkeringar AB verksamhet och expertis i hela Sverige',
     },
   },
 
   whyChooseUs: {
     url: '/why-choose-us.webp',
-    alt: 'Noggrant måleriarbete i detalj - J Måleri Åhus',
+    alt: 'Professionell vägmarkering med högsta precision - TMT Vägmarkeringar AB',
   },
 
   ideaToResult: {
     url: '/idea-to-result.webp',
-    alt: 'Från planering till perfekt målat resultat i Åhus/Kristianstad med omnejd',
+    alt: 'Från planering till färdig vägmarkering i hela Sverige',
   },
 
   portfolio: [
     {
       image: {
-        url: 'https://i.imgur.com/omZyW82.png',
-        alt: 'Mönstertapetsering fondvägg i Åhus/Kristianstad med omnejd',
+        url: '/gallery/gallery-1.jpg',
+        alt: 'Parkeringsmarkering och linjemålning för företag och BRF',
       },
-      title: 'Mönstertapetsering & Fondvägg',
-      category: 'Tapetsering',
-    },
-    {
-      image: {
-        url: 'https://i.imgur.com/w7Imch0.png',
-        alt: 'Invändigt måleri och finish i Åhus/Kristianstad med omnejd',
-      },
-      title: 'Invändig Målning & Detaljarbete',
-      category: 'Inomhusmåleri',
-    },
-    {
-      image: {
-        url: 'https://i.imgur.com/TCqPMOb.png',
-        alt: 'Tak- och väggmålning i Åhus/Kristianstad med omnejd',
-      },
-      title: 'Tak- & Väggmålning',
-      category: 'Inomhusmåleri',
-    },
-    {
-      image: {
-        url: 'https://i.imgur.com/tsR8qm7.png',
-        alt: 'Måleriarbete och rumsförnyelse i Åhus/Kristianstad med omnejd',
-      },
-      title: 'Rumsförnyelse & Kulörbyte',
-      category: 'Inomhusmåleri',
-    },
-    {
-      image: {
-        url: 'https://i.imgur.com/jsb4nja.png',
-        alt: 'Ytbehandling och måleri i Åhus/Kristianstad med omnejd',
-      },
-      title: 'Ytbehandling & Finish',
-      category: 'Inomhusmåleri',
-    },
-    {
-      image: {
-        url: 'https://i.imgur.com/ZssWOfc.png',
-        alt: 'Precisionsmåleri snickerier i Åhus/Kristianstad med omnejd',
-      },
-      title: 'Snickeri- & Detaljmålning',
-      category: 'Snickerimåleri',
-    },
-    {
-      image: {
-        url: 'https://i.imgur.com/UnQ03uU.png',
-        alt: 'Slutfinish och måleri i Åhus/Kristianstad med omnejd',
-      },
-      title: 'Slutfinish & Ytfinish',
-      category: 'Måleri',
-    },
-    {
-      image: {
-        url: '/fasadmalning.png',
-        alt: 'Fasadmålning villa i Åhus/Kristianstad med omnejd',
-      },
-      title: 'Fasadmålning & Träskydd Villa',
-      category: 'Fasadmålning',
+      title: 'Parkeringsmarkering & Linjer',
+      category: 'Parkeringsplatser',
     },
     {
       image: {
         url: '/gallery/gallery-2.jpg',
-        alt: 'Invändigt måleri och rumsförnyelse i Åhus/Kristianstad med omnejd',
+        alt: 'Vägmarkering och övergångsställe för kommun och samfällighet',
       },
-      title: 'Invändig Målning & Kulörval',
-      category: 'Inomhusmåleri',
+      title: 'Vägmarkering & Övergångsställe',
+      category: 'Vägmarkering',
+    },
+    {
+      image: {
+        url: '/gallery/gallery-3.jpg',
+        alt: 'Laddplatsmarkering och elbilssymboler',
+      },
+      title: 'Laddplatser & Symboler',
+      category: 'Laddplatsmarkering',
+    },
+    {
+      image: {
+        url: '/gallery/gallery-4.jpg',
+        alt: 'Industrimarkering av truckgångar och skyddszoner i lager',
+      },
+      title: 'Industrilinjer & Truckgångar',
+      category: 'Industrimarkering',
     },
     {
       image: {
         url: '/gallery/gallery-5.jpg',
-        alt: 'Snickerimålning och detaljarbete i Åhus/Kristianstad med omnejd',
+        alt: 'Linjemålning för ökad trafiksäkerhet',
       },
-      title: 'Dörr- & Fönstermålning',
-      category: 'Snickerimåleri',
+      title: 'Linjemålning & Trafiksäkerhet',
+      category: 'Vägmarkering',
     },
     {
       image: {
         url: '/gallery/gallery-6.jpg',
-        alt: 'Invändig målning och renovering i Åhus/Kristianstad med omnejd',
+        alt: 'Symboler, pilar och stopplinjer med termoplast',
       },
-      title: 'Villamålning & Renovering',
-      category: 'Inomhusmåleri',
+      title: 'Symboler, Pilar & Stopplinjer',
+      category: 'Specialmarkering',
     },
   ],
 };

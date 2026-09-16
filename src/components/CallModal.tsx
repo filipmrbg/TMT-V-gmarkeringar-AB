@@ -10,10 +10,10 @@ export default function CallModal({ isOpen, onClose }: CallModalProps) {
 
   const contacts = [
     {
-      name: 'Joakim',
-      role: 'Målarmästare & Ägare',
-      phone: '076-889 97 16',
-      tel: 'tel:0768899716',
+      name: 'Dan Wååg',
+      role: 'Ägare & VD',
+      phone: '073-771 86 17',
+      tel: 'tel:0737718617',
     },
   ];
 
@@ -84,32 +84,32 @@ export default function CallModal({ isOpen, onClose }: CallModalProps) {
             style={{
               width: '56px',
               height: '56px',
-              background: 'rgba(194, 132, 71, 0.12)',
+              background: '#0F172A',
               borderRadius: '16px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               margin: '0 auto 16px auto',
+              boxShadow: '0 8px 24px rgba(15, 23, 42, 0.2)',
             }}
           >
-            <Phone size={26} color="var(--color-primary)" />
+            <Phone size={26} color="#ffffff" />
           </div>
           <h2
             style={{
               fontSize: '1.4rem',
-              fontWeight: 800,
+              fontWeight: 700,
               color: '#0f172a',
               margin: '0 0 8px 0',
-              fontFamily: 'var(--font-family)',
+              fontFamily: 'var(--font-heading)',
             }}
           >
-            Ring J Måleri Åhus
+            Ring TMT Vägmarkeringar
           </h2>
           <p style={{ fontSize: '0.9rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
             Kontakta oss direkt för rådgivning, frågor och kostnadsfri offert.
           </p>
         </div>
-
 
         {/* Contacts List */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -130,9 +130,9 @@ export default function CallModal({ isOpen, onClose }: CallModalProps) {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#ffffff';
-                e.currentTarget.style.borderColor = 'var(--color-primary)';
+                e.currentTarget.style.borderColor = '#0F172A';
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 10px 25px rgba(194, 132, 71, 0.2)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(15, 23, 42, 0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#f8fafc';
@@ -154,7 +154,7 @@ export default function CallModal({ isOpen, onClose }: CallModalProps) {
                     justifyContent: 'center',
                   }}
                 >
-                  <UserCheck size={20} color="var(--color-primary)" />
+                  <UserCheck size={20} color="#0F172A" />
                 </div>
                 <div>
                   <h3
@@ -168,7 +168,7 @@ export default function CallModal({ isOpen, onClose }: CallModalProps) {
                     {c.name}
                   </h3>
                   <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 500 }}>
-                    {c.phone}
+                    {c.role} • {c.phone}
                   </span>
                 </div>
               </div>
@@ -179,7 +179,7 @@ export default function CallModal({ isOpen, onClose }: CallModalProps) {
                   alignItems: 'center',
                   gap: '6px',
                   padding: '8px 14px',
-                  background: 'var(--color-primary)',
+                  background: '#0F172A',
                   color: '#ffffff',
                   borderRadius: '10px',
                   fontWeight: 700,

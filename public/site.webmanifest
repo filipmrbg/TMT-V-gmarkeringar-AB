@@ -1,11 +1,11 @@
 {
-  "name": "J Måleri Åhus",
-  "short_name": "J Måleri",
-  "description": "Måleriarbeten, tapetsering och fasadmålning i Åhus/Kristianstad med omnejd.",
+  "name": "TMT Vägmarkeringar AB",
+  "short_name": "TMT",
+  "description": "Professionell vägmarkering, linjemålning och parkeringsmarkering i hela Sverige.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#c28447",
+  "background_color": "#0f172a",
+  "theme_color": "#d97706",
   "icons": [
     {
       "src": "/favicon.png",

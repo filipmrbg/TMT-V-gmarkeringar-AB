@@ -1,3 +1,4 @@
+import { ShieldCheck, Award, Users } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import Button from '../components/Button';
 import CTABanner from '../components/CTABanner';
@@ -12,40 +13,40 @@ const container: React.CSSProperties = {
 
 export default function About() {
   usePageTitle(
-    'Om J Måleri Åhus | Måleri och tapetsering i Åhus',
-    'Läs om J Måleri Åhus. Vi utför allt inom invändigt och utvändigt måleri, tapetsering, spackling och fasadrenovering i Åhus/Kristianstad med omnejd.'
+    'Om TMT Vägmarkeringar | Professionell linjemålning i hela Sverige',
+    'Läs om TMT Vägmarkeringar AB. Sedan starten 2019 hjälper vi företag, kommuner och BRF:er med hållbara vägmarkeringar över hela Sverige.'
   );
+
   return (
     <main style={{ fontFamily: 'var(--font-family)' }}>
 
       {/* ── SECTION A: HERO HEADER ────────────────────────────── */}
       <section style={{
         position: 'relative',
-        backgroundImage: 'url("https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_3G5LlmMYORSdAk8SxzXrK2S0Is5%2Fhf_20260828_123821_ab6a265b-5fd9-4a34-b213-ad7f9c40fe66.png&w=1920&q=85")',
+        backgroundImage: 'url("/about.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center 40%',
         paddingTop: '150px',
         paddingBottom: '70px',
         textAlign: 'center',
       }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.72) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.76) 100%)' }} />
         <div style={{ ...container, position: 'relative', zIndex: 1 }}>
           <div>
             <ScrollReveal animation="blur-in">
               <h1 style={{
                 color: 'var(--color-white)',
-                fontWeight: 800,
+                fontWeight: 700,
                 fontSize: 'clamp(2rem, 4vw, 3.2rem)',
                 margin: '0 0 16px 0',
                 lineHeight: 1.15,
-                letterSpacing: '-0.02em',
               }}>
-                Om J Måleri Åhus
+                Om TMT Vägmarkeringar AB
               </h1>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={150}>
-              <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.08rem', margin: '0 auto', maxWidth: '640px', lineHeight: 1.6 }}>
-                Utför allt inom invändigt och utvändigt måleri, tapetsering och renovering med yrkesstolthet i Åhus/Kristianstad med omnejd.
+              <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '1.08rem', margin: '0 auto', maxWidth: '660px', lineHeight: 1.6 }}>
+                Specialister på vägmarkering, linjemålning och parkeringsmarkeringar med över 30 års samlad erfarenhet över hela Sverige.
               </p>
             </ScrollReveal>
           </div>
@@ -53,12 +54,12 @@ export default function About() {
       </section>
 
       {/* ── SECTION B: ABOUT STORY & HISTORY ─────────────────────────── */}
-      <section style={{ background: 'var(--color-light)', padding: '100px 0' }}>
-        <div style={{ ...container, maxWidth: '960px' }}>
+      <section style={{ background: 'var(--color-light)', padding: '90px 0' }}>
+        <div style={{ ...container, maxWidth: '1060px' }}>
           <div className="about-content-grid" style={{
             display: 'grid',
-            gridTemplateColumns: '260px 1fr',
-            gap: '48px',
+            gridTemplateColumns: '320px 1fr',
+            gap: '50px',
             alignItems: 'start',
           }}>
 
@@ -71,17 +72,16 @@ export default function About() {
                 justifyContent: 'center',
               }}>
                 <img
-                  src={images.about.hero.url || '/about-us.jpg'}
-                  alt="J Måleri Åhus"
+                  src={images.about.hero.url || '/about.jpg'}
+                  alt="TMT Vägmarkeringar AB verksamhet"
                   loading="eager"
                   decoding="async"
                   style={{
                     width: '100%',
-                    maxWidth: '260px',
+                    maxWidth: '320px',
                     height: 'auto',
                     objectFit: 'cover',
                     borderRadius: '20px',
-                    padding: '0',
                     display: 'block',
                     boxShadow: '0 12px 32px rgba(0,0,0,0.12)',
                     border: '1px solid #e2e8f0',
@@ -93,75 +93,98 @@ export default function About() {
             {/* Right: Text content */}
             <div>
               <ScrollReveal animation="blur-in">
+                <span style={{
+                  color: '#0f172a',
+                  fontWeight: 700,
+                  fontSize: '0.8rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  display: 'inline-block',
+                  marginBottom: '10px',
+                  background: '#e2e8f0',
+                  padding: '4px 14px',
+                  borderRadius: '999px',
+                }}>
+                  Vår Bakgrund & Erfarenhet
+                </span>
                 <h2 style={{
                   color: 'var(--color-text-dark)',
-                  fontWeight: 800,
-                  fontSize: 'clamp(2rem, 3.4vw, 2.7rem)',
-                  lineHeight: 1.18,
-                  letterSpacing: '-0.03em',
+                  fontWeight: 700,
+                  fontSize: 'clamp(1.9rem, 3.2vw, 2.5rem)',
+                  lineHeight: 1.2,
                   margin: '0 0 20px 0',
                 }}>
-                  Måleri där detaljerna gör hela skillnaden
+                  Tydliga linjer och hållbara trafikmiljöer sedan 2019
                 </h2>
               </ScrollReveal>
               <ScrollReveal animation="fade-up" delay={100}>
                 <div>
                   <p style={{
                     color: 'var(--color-gray-600)',
-                    fontSize: '1.08rem',
+                    fontSize: '1.05rem',
                     lineHeight: 1.8,
                     margin: '0 0 20px 0',
                     fontWeight: 500,
                   }}>
-                    Jag heter Joakim och driver J Måleri Åhus – ett företag med över 15 års erfarenhet inom måleribranschen.
+                    TMT Vägmarkeringar AB grundades 2019 med ambitionen att erbjuda marknadens mest pålitliga och kvalitativa lösningar inom vägmarkering och linjemålning.
                   </p>
                   
                   <p style={{
                     color: 'var(--color-gray-600)',
                     fontSize: '1rem',
                     lineHeight: 1.8,
+                    margin: '0 0 20px 0',
+                  }}>
+                    Med över 30 års samlad erfarenhet inom vägmarkering, linjemålning och trafiksäkerhet har vi etablerat oss som en trygg partner för företag, kommuner, bostadsrättsföreningar och fastighetsägare i hela Sverige. Vi förstår vikten av tydliga trafikmiljöer och utför allt från nymålning av parkeringsrutor och övergångsställen till kompletta vägmarkeringssystem och industrimålning.
+                  </p>
+
+                  <p style={{
+                    color: 'var(--color-gray-600)',
+                    fontSize: '1rem',
+                    lineHeight: 1.8,
                     margin: '0 0 24px 0',
                   }}>
-                    Det jag uppskattar mest med måleriet är detaljerna. Det är ofta där den stora skillnaden sitter. Därför lägger jag alltid ner det lilla extra för att skapa ett resultat som håller högsta kvalitet – både i utförandet och i helhetsintrycket.
+                    Vårt fokus ligger på högsta kvalitet, noggrannhet och kundnöjdhet. Genom moderna arbetsmetoder och beprövade, godkända material säkerställer vi markeringar som håller över tid och uppfyller gällande krav och standarder.
                   </p>
 
                   {/* Vision Card */}
                   <div style={{
-                    background: 'rgba(194, 132, 71, 0.08)',
-                    borderLeft: '4px solid var(--color-primary)',
+                    background: '#f8fafc',
+                    border: '1px solid #e2e8f0',
+                    borderLeft: '4px solid #0f172a',
                     padding: '24px 28px',
                     borderRadius: '0 16px 16px 0',
                     margin: '28px 0 36px 0',
                   }}>
                     <p style={{
                       color: 'var(--color-text-dark)',
-                      fontSize: '1.15rem',
+                      fontSize: '1.1rem',
                       fontWeight: 700,
                       lineHeight: 1.5,
                       margin: '0 0 10px 0',
                     }}>
-                      Min vision är enkel: ingen kund ska känna sig missnöjd.
+                      Vår vision: Säkra, tydliga och hållbara trafikmiljöer för alla.
                     </p>
                     <p style={{
                       color: 'var(--color-gray-600)',
-                      fontSize: '1rem',
-                      lineHeight: 1.7,
-                      margin: '0 0 14px 0',
+                      fontSize: '0.96rem',
+                      lineHeight: 1.65,
+                      margin: '0 0 12px 0',
                     }}>
-                      Med noggrannhet, personligt engagemang och ett stort fokus på kvalitet vill jag erbjuda ett måleri där du som kund kan känna dig trygg från första kontakt till färdigt resultat.
+                      Oavsett om du representerar en kommunal förvaltning, en bostadsrättsförening eller en industriverksamhet är vi en tillgänglig och engagerad partner från första rådgivning till färdig linjemålning.
                     </p>
                     <span style={{
-                      color: 'var(--color-primary)',
+                      color: '#0f172a',
                       fontWeight: 700,
                       fontSize: '0.9rem',
                       display: 'block',
                     }}>
-                      Joakim, J Måleri Åhus
+                      Dan Wååg, VD & Grundare TMT Vägmarkeringar AB
                     </span>
                   </div>
 
                   <Button variant="primary" size="lg" href="/kontakt">
-                    Kontakta oss för rådgivning
+                    Kontakta oss för offert & rådgivning
                   </Button>
                 </div>
               </ScrollReveal>
@@ -171,18 +194,93 @@ export default function About() {
         </div>
       </section>
 
+
+      {/* ── SECTION D: KÄRNVÄRDEN / TRYGGHET ─────────────────────────── */}
+      <section style={{ background: '#f8fafc', padding: '80px 0', borderTop: '1px solid #e2e8f0' }}>
+        <div style={container}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '30px',
+          }} className="values-grid">
+            {[
+              {
+                icon: ShieldCheck,
+                title: 'Kvalitet & Standard',
+                desc: 'Alla våra vägmarkeringar och material uppfyller Trafikverkets standarder och krav på friktion och reflexförmåga.',
+              },
+              {
+                icon: Award,
+                title: 'Över 30 års erfarenhet',
+                desc: 'Gedigen kompetens från allt från motorvägar till bostadsrättsföreningars parkeringsrutor och truckgångar.',
+              },
+              {
+                icon: Users,
+                title: 'Rikstäckande service',
+                desc: 'Vi är verksamma i hela Sverige och anpassar etablering och arbetstider för minsta möjliga trafikpåverkan.',
+              },
+            ].map(({ icon: Icon, title, desc }, i) => (
+              <ScrollReveal key={i} animation="fade-up" delay={i * 100}>
+                <div style={{
+                  background: '#ffffff',
+                  border: '1px solid #e2e8f0',
+                  borderRadius: '16px',
+                  padding: '28px 24px',
+                  height: '100%',
+                  boxSizing: 'border-box',
+                }}>
+                  <div style={{
+                    width: '46px',
+                    height: '46px',
+                    borderRadius: '12px',
+                    background: '#0F172A',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '16px',
+                    boxShadow: '0 4px 12px rgba(15, 23, 42, 0.12)',
+                  }}>
+                    <Icon size={24} color="#ffffff" />
+                  </div>
+                  <h3 style={{
+                    fontSize: '1.1rem',
+                    fontWeight: 700,
+                    color: 'var(--color-text-dark)',
+                    margin: '0 0 10px 0',
+                  }}>
+                    {title}
+                  </h3>
+                  <p style={{
+                    margin: 0,
+                    color: 'var(--color-gray-600)',
+                    fontSize: '0.92rem',
+                    lineHeight: 1.6,
+                  }}>
+                    {desc}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── SECTION E: CTA ────────────────────────────────────────── */}
       <CTABanner />
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .about-content-grid {
             grid-template-columns: 1fr !important;
             gap: 32px !important;
           }
           .about-content-grid img {
-            max-width: 220px !important;
+            max-width: 260px !important;
             margin: 0 auto;
+          }
+          .values-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
           }
         }
       `}</style>

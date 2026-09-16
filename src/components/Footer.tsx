@@ -4,8 +4,8 @@ import images from '../data/images';
 import services from '../data/services';
 
 const socialIcons = [
-  { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/j.maleri' },
-  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61584749818333&ref=PROFILE_EDIT_xav_ig_profile_page_web#' },
+  { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/tmt.vagmarkeringar/' },
+  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/p/TMT-AB-100045809239067/?locale=sv_SE' },
 ];
 
 export default function Footer() {
@@ -40,18 +40,18 @@ export default function Footer() {
                     src={images.logoDark?.url || '/logo-dark.png'}
                     alt={images.logoDark?.alt || images.logo.alt}
                     style={{
-                      height: '75px',
+                      height: '70px',
                       width: 'auto',
                       display: 'block',
                       objectFit: 'contain',
-                      borderRadius: '8px',
+                      borderRadius: '6px',
                     }}
                   />
                 </div>
               </Link>
             </div>
             <p style={{ color: 'var(--color-gray-600)', fontSize: '0.9rem', lineHeight: 1.7, margin: '0 0 20px 0' }}>
-              J Måleri Åhus utför allt inom invändigt och utvändigt måleri, tapetsering, spackling och fasadmålning med högsta kvalitet och yrkesstolthet i Åhus/Kristianstad med omnejd.
+              TMT Vägmarkeringar AB är specialister på vägmarkering, linjemålning, parkeringsmarkering och industrimålning för företag, kommuner och bostadsrättsföreningar i hela Sverige.
             </p>
             <div style={{ display: 'flex', gap: '12px' }}>
               {socialIcons.map(({ Icon, label, href }) => (
@@ -88,7 +88,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Navigera */}
+          {/* Column 2: Tjänster */}
           <div>
             <h3 style={{ fontWeight: 700, color: 'var(--color-text-dark)', fontSize: '1rem', margin: '0 0 20px 0' }}>
               Tjänster
@@ -124,23 +124,23 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.95rem' }}>
 
               <a
-                href="mailto:Info@jmaleri.se"
+                href="mailto:info@tmtab.com"
                 className="footer-contact-item"
               >
                 <div className="footer-contact-icon">
                   <Mail size={16} strokeWidth={2} />
                 </div>
-                <span>Info@jmaleri.se</span>
+                <span>info@tmtab.com</span>
               </a>
 
               <a
-                href="tel:0768899716"
+                href="tel:0737718617"
                 className="footer-contact-item"
               >
                 <div className="footer-contact-icon">
                   <Phone size={16} strokeWidth={2} />
                 </div>
-                <span>076-889 97 16</span>
+                <span>073-771 86 17</span>
               </a>
 
               <div
@@ -149,7 +149,7 @@ export default function Footer() {
                 <div className="footer-contact-icon">
                   <MapPin size={16} strokeWidth={2} />
                 </div>
-                <span>Åhus • Kristianstad med omnejd</span>
+                <span>Hela Sverige</span>
               </div>
             </div>
           </div>
@@ -171,8 +171,8 @@ export default function Footer() {
           }}
         >
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', color: 'var(--color-gray-600)', fontSize: '0.875rem', flexWrap: 'wrap' }}>
-            <span>© 2026 - J Måleri Åhus</span>
-            <span>Org.nr: 559546-9049</span>
+            <span>© 2026 - TMT Vägmarkeringar AB</span>
+            <span>Org.nr: 559221-0099</span>
             <span>Godkänd för F-skatt</span>
           </div>
         </div>

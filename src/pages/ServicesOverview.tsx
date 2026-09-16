@@ -14,8 +14,8 @@ const container: React.CSSProperties = {
 
 export default function ServicesOverview() {
   usePageTitle(
-    'Våra Tjänster | J Måleri Åhus',
-    'Utforska våra måleritjänster: Invändigt måleri, utvändigt måleri & fasad samt tapetsering i Åhus/Kristianstad med omnejd.'
+    'Våra Tjänster | TMT Vägmarkeringar',
+    'Utforska våra tjänster inom vägmarkering, linjemålning, parkeringsmarkering och industrimålning i hela Sverige.'
   );
 
   const { hash } = useLocation();
@@ -77,11 +77,10 @@ export default function ServicesOverview() {
           <ScrollReveal animation="blur-in">
             <h1 style={{
               color: 'var(--color-white)',
-              fontWeight: 800,
+              fontWeight: 700,
               fontSize: 'clamp(2.2rem, 4.5vw, 3.4rem)',
               margin: '0 0 16px 0',
               lineHeight: 1.15,
-              letterSpacing: '-0.03em',
             }}>
               Våra Tjänster
             </h1>
@@ -94,7 +93,7 @@ export default function ServicesOverview() {
               margin: '0 auto',
               lineHeight: 1.65,
             }}>
-              J Måleri Åhus erbjuder professionella måleritjänster, tapetsering och fasadunderhåll i Åhus/Kristianstad med omnejd.
+              TMT Vägmarkeringar AB erbjuder professionella lösningar inom vägmarkering, linjemålning och parkeringsmarkering i hela Sverige.
             </p>
           </ScrollReveal>
         </div>
@@ -208,22 +207,24 @@ export default function ServicesOverview() {
                     <ScrollReveal animation={isEven ? 'fade-left' : 'fade-right'}>
                       {svc.tag && (
                         <span style={{
-                          color: 'var(--color-primary)',
+                          color: '#0f172a',
                           fontWeight: 700,
-                          fontSize: '0.85rem',
+                          fontSize: '0.8rem',
                           textTransform: 'uppercase',
                           letterSpacing: '0.08em',
-                          display: 'block',
-                          marginBottom: '8px',
+                          display: 'inline-block',
+                          marginBottom: '12px',
+                          background: '#e2e8f0',
+                          padding: '4px 12px',
+                          borderRadius: '999px',
                         }}>
                           {svc.tag}
                         </span>
                       )}
                       <h2 style={{
                         color: 'var(--color-text-dark)',
-                        fontWeight: 800,
+                        fontWeight: 700,
                         fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
-                        letterSpacing: '-0.03em',
                         margin: '0 0 16px 0',
                         lineHeight: 1.2,
                       }}>
@@ -249,7 +250,7 @@ export default function ServicesOverview() {
                         }}>
                           {svc.highlights.map((h, i) => (
                             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                              <CheckCircle2 size={18} color="var(--color-primary)" style={{ flexShrink: 0 }} />
+                              <CheckCircle2 size={18} color="#0F172A" style={{ flexShrink: 0 }} />
                               <span style={{ fontSize: '0.92rem', color: '#334155', fontWeight: 600 }}>
                                 {h}
                               </span>
@@ -265,22 +266,22 @@ export default function ServicesOverview() {
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '10px',
-                          background: 'var(--color-primary)',
+                          background: '#0F172A',
                           color: '#ffffff',
                           fontWeight: 700,
                           fontSize: '0.95rem',
                           padding: '14px 28px',
                           borderRadius: 'var(--border-radius-pill)',
                           textDecoration: 'none',
-                          boxShadow: '0 4px 14px rgba(194, 132, 71, 0.35)',
+                          boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
                           transition: 'all 0.25s ease',
                         }}
                         onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'var(--color-primary-hover)';
+                          e.currentTarget.style.background = '#1E293B';
                           e.currentTarget.style.transform = 'translateY(-2px)';
                         }}
                         onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'var(--color-primary)';
+                          e.currentTarget.style.background = '#0F172A';
                           e.currentTarget.style.transform = 'translateY(0)';
                         }}
                       >

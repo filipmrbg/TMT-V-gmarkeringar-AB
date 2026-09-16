@@ -38,7 +38,7 @@ function AccordionItem({
         marginBottom: '12px',
         cursor: 'pointer',
         border: dark ? '1px solid rgba(255,255,255,0.1)' : '1px solid #e2e8f0',
-        borderLeft: open ? '4px solid var(--color-primary)' : (dark ? '1px solid rgba(255,255,255,0.1)' : '4px solid transparent'),
+        borderLeft: open ? (dark ? '4px solid #ffffff' : '4px solid #0F172A') : (dark ? '1px solid rgba(255,255,255,0.1)' : '4px solid transparent'),
         transform: open ? 'scale(1.01)' : 'scale(1)',
         transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
         boxShadow: dark ? (open ? '0 8px 24px rgba(0,0,0,0.3)' : 'none') : '0 2px 8px rgba(0,0,0,0.04)',
@@ -63,7 +63,7 @@ function AccordionItem({
         <ArrowRight
           size={18}
           style={{
-            color: 'var(--color-primary)',
+            color: dark ? '#ffffff' : '#0F172A',
             flexShrink: 0,
             transform: open ? 'rotate(90deg)' : 'rotate(0deg)',
             transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -131,16 +131,15 @@ export default function FAQAccordion({ items, title, subtitle, buttonText, butto
         {title && (
           <h2 style={{
             color: dark ? '#ffffff' : 'var(--color-text-dark)',
-            fontWeight: 800,
+            fontWeight: 700,
             fontSize: 'clamp(1.8rem, 3vw, 2.4rem)',
-            letterSpacing: '-0.02em',
             lineHeight: 1.2,
             margin: '0 0 12px 0',
           }}>
             {title}
           </h2>
         )}
-        <span style={{ display: 'block', width: '50px', height: '3px', background: 'var(--color-primary)', borderRadius: '2px', margin: '0 0 20px' }} />
+        <span style={{ display: 'block', width: '50px', height: '2px', background: dark ? 'rgba(255, 255, 255, 0.6)' : '#0F172A', borderRadius: '2px', margin: '0 0 20px' }} />
         {subtitle && (
           <p style={{
             color: dark ? 'rgba(255, 255, 255, 0.75)' : 'var(--color-gray-600)',
@@ -152,7 +151,7 @@ export default function FAQAccordion({ items, title, subtitle, buttonText, butto
           </p>
         )}
         {buttonText && (
-          <Button variant={dark ? 'primary' : 'dark'} href={buttonLink}>
+          <Button variant={dark ? 'white' : 'dark'} href={buttonLink}>
             {buttonText}
           </Button>
         )}

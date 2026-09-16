@@ -1,17 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Star,
   Phone,
-  MapPin,
-  Paintbrush,
   CheckCircle2,
   ArrowRight,
 } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import Button from '../components/Button';
 import CTABanner from '../components/CTABanner';
-import ReviewCard from '../components/ReviewCard';
 import SocialBanner from '../components/SocialBanner';
 import ProjectsGallery from '../components/ProjectsGallery';
 import FAQAccordion from '../components/FAQAccordion';
@@ -30,50 +26,34 @@ const container: React.CSSProperties = {
 const homeFaqItems = [
   {
     question: 'Kostar det något att få en offert?',
-    answer: 'Nej, vi erbjuder alltid kostnadsfria offerter och rådgivning helt utan förbindelser.',
+    answer: 'Nej, vi erbjuder alltid kostnadsfria offerter och teknisk rådgivning helt utan förbindelser för alla typer av väg- och linjemålningsprojekt.',
   },
   {
-    question: 'Hur fungerar ROT avdraget vid måleri?',
-    answer: 'Som privatperson har du rätt till ROT avdrag som reducerar arbetskostnaden med 30 %. Vi sköter all administration direkt med Skatteverket och drar av beloppet direkt på din faktura.',
+    question: 'Utför ni vägmarkeringar över hela Sverige?',
+    answer: 'Ja, TMT Vägmarkeringar AB utför uppdrag åt företag, kommuner, bostadsrättsföreningar, samfälligheter och fastighetsägare över hela landet.',
   },
   {
-    question: 'Lämnar ni garanti på utfört måleriarbete?',
-    answer: 'Ja, vi arbetar alltid enligt gällande branschstandard och lämnar fullständiga garantier på både utfört arbete och material.',
+    question: 'Vilka typer av material använder ni vid linjemålning?',
+    answer: 'Vi arbetar med godkänd termoplast, slitstark 2K-vägfärg och reflexpärlor som uppfyller alla krav och standarder för nordiskt klimat och hög trafikbelastning.',
   },
   {
-    question: 'Hjälper ni till med både små och stora måleriprojekt?',
-    answer: 'Ja, vi åtar oss allt från målning av ett enskilt rum eller tapetsering till fullständig fasadmålning och rumsrenovering.',
+    question: 'Hur snabbt kan ytan öppnas för trafik efter markering?',
+    answer: 'Termoplast och moderna markeringsfärger torkar och härdar mycket snabbt, oftast inom 15–30 minuter, vilket minimerar avstängningar och driftstörningar.',
   },
   {
-    question: 'Hur går processen till från start till mål?',
-    answer: 'Vi inleder med en dialog kring dina färgval och önskemål, tar fram en tydlig offert och sätter en överenskommen tidsplan innan arbetet påbörjas.',
+    question: 'Kan ni utföra arbetet under kvällar, nätter eller helger?',
+    answer: 'Ja, vi anpassar våra arbetstider efter trafikflöde och er verksamhet och utför regelbundet uppdrag nattetid eller under helger när trafiken är som lägst.',
   },
-];
-
-const heroSlides = [
-  { url: '/hero-slides/slide-1.webp', alt: 'J Måleri Åhus professionellt måleri' },
-  { url: '/hero-slides/slide-2.webp', alt: 'Invändigt måleri och tapetsering' },
-  { url: '/hero-slides/slide-3.webp', alt: 'Högklassigt måleriarbete med perfekt finish' },
-  { url: '/hero-slides/slide-4.webp', alt: 'Fasadmålning och träskydd i Åhus' },
 ];
 
 export default function Home() {
   usePageTitle(
-    'J Måleri Åhus | Måleri och tapetsering i Åhus & Kristianstad',
-    'J Måleri Åhus utför allt inom invändigt och utvändigt måleri, tapetsering, spackling och fasadmålning i Åhus/Kristianstad med omnejd för privatpersoner och företag. Kontakta oss för fri offert!'
+    'TMT Vägmarkeringar | Professionell vägmarkering & linjemålning i hela Sverige',
+    'TMT Vägmarkeringar AB utför professionell vägmarkering, linjemålning, parkeringsrutor och industrimålning för företag, kommuner och BRF:er i hela Sverige. Kontakta oss för fri offert!'
   );
 
   const heroBgRef = useRef<HTMLDivElement>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
-
-  // Auto-advance slideshow every 4s
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -92,8 +72,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  
-
   return (
     <main style={{ fontFamily: 'var(--font-family)' }}>
 
@@ -102,13 +80,15 @@ export default function Home() {
         position: 'relative',
         minHeight: '100vh',
         display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
-        paddingTop: 'clamp(70px, 10vh, 110px)',
-        paddingBottom: '60px',
+        paddingTop: 'clamp(85px, 10vh, 110px)',
+        paddingBottom: 'clamp(40px, 6vh, 60px)',
         boxSizing: 'border-box',
       }}>
-        {/* Hero Background Slideshow (Nelhages-inspired) */}
+        {/* Hero Background Video */}
         <div
           ref={heroBgRef}
           style={{
@@ -118,47 +98,34 @@ export default function Home() {
             overflow: 'hidden',
           }}
         >
-          {heroSlides.map((slide, index) => {
-            const isActive = index === currentSlide;
-            return (
-              <div
-                key={slide.url}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  opacity: isActive ? 1 : 0,
-                  transition: 'opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                  pointerEvents: 'none',
-                }}
-              >
-                <img
-                  src={slide.url}
-                  alt={slide.alt}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  decoding={index === 0 ? 'sync' : 'async'}
-                  // @ts-expect-error fetchPriority is supported in modern browsers
-                  fetchpriority={index === 0 ? 'high' : 'auto'}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                    transform: isActive ? 'scale(1.04)' : 'scale(1.0)',
-                    transition: 'transform 6s ease-out',
-                    filter: 'brightness(0.92) contrast(1.04)',
-                  }}
-                />
-              </div>
-            );
-          })}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          >
+            <source
+              src={images.hero.videoUrl || 'https://d8j0ntlcm91z4.cloudfront.net/user_3G5LlmMYORSdAk8SxzXrK2S0Is5/hf_20260916_120304_b6e22521-4e42-4364-9c14-ebed64144e92.mp4'}
+              type="video/mp4"
+            />
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
         </div>
 
-        {/* Sophisticated gradient overlay for readability & punch */}
+        {/* Balanced subtle gradient overlay */}
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(90deg, rgba(15, 23, 42, 0.76) 0%, rgba(15, 23, 42, 0.48) 55%, rgba(15, 23, 42, 0.22) 100%)',
+          background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.48) 0%, rgba(15, 23, 42, 0.26) 45%, rgba(15, 23, 42, 0.52) 100%)',
           zIndex: 1,
+          pointerEvents: 'none',
         }} />
 
         <div style={{ ...container, position: 'relative', zIndex: 2, width: '100%', display: 'flex', justifyContent: 'center' }}>
@@ -167,97 +134,114 @@ export default function Home() {
             flexDirection: 'column',
             alignItems: 'center',
             textAlign: 'center',
-            maxWidth: '760px',
+            maxWidth: '860px',
             margin: '0 auto',
-            paddingTop: '0px',
-            paddingBottom: '30px',
+            paddingTop: '0',
+            paddingBottom: '10px',
           }}>
-            {/* Prominent Center Brand Logo (Reference Layout) */}
-            <ScrollReveal animation="fade-down" delay={0} duration={0.7}>
+            {/* ── HERO LOGO: The dominant visual centrepiece ── */}
+            <ScrollReveal animation="fade-down" delay={0} duration={0.9}>
               <div style={{
                 marginBottom: '18px',
                 display: 'flex',
                 justifyContent: 'center',
+                position: 'relative',
               }}>
+                {/* Ambient glow behind logo */}
+                <div style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: 'clamp(200px, 28vw, 300px)',
+                  height: 'clamp(200px, 28vw, 300px)',
+                  background: 'radial-gradient(circle, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 45%, transparent 70%)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none',
+                  filter: 'blur(30px)',
+                }} />
                 <img
                   src={images.logo.url}
                   alt={images.logo.alt}
                   style={{
-                    width: 'clamp(175px, 45vw, 255px)',
+                    width: 'clamp(160px, 18vw, 220px)',
                     height: 'auto',
                     display: 'block',
-                    filter: 'drop-shadow(0 8px 30px rgba(0, 0, 0, 0.95))',
+                    filter: 'drop-shadow(0 10px 36px rgba(0, 0, 0, 0.9)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7))',
+                    position: 'relative',
+                    zIndex: 1,
                   }}
                 />
               </div>
             </ScrollReveal>
 
-            {/* Top Location Line */}
-            <ScrollReveal animation="fade-down" delay={100} duration={0.6}>
-              <span style={{
-                fontFamily: "'Outfit', sans-serif",
-                letterSpacing: '0.24em',
-                textTransform: 'uppercase',
-                fontSize: 'clamp(0.7rem, 1.2vw, 0.82rem)',
-                fontWeight: 700,
-                color: 'rgba(255, 255, 255, 0.92)',
-                display: 'block',
-                marginBottom: '14px',
-              }}>
-                ÅHUS • KRISTIANSTAD
-              </span>
+            {/* ── Thin silver accent divider ── */}
+            <ScrollReveal animation="fade-up" delay={120} duration={0.6}>
+              <div style={{
+                width: 'clamp(50px, 6vw, 80px)',
+                height: '1px',
+                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
+                marginBottom: '16px',
+                borderRadius: '1px',
+              }} />
             </ScrollReveal>
 
-            {/* Headline (H1) based on Insta bio */}
+            {/* ── Headline ── */}
             <ScrollReveal animation="fade-up" delay={200} duration={0.8}>
               <h1 style={{
-                fontFamily: "'Outfit', sans-serif",
+                fontFamily: "var(--font-heading)",
                 color: '#ffffff',
-                fontSize: 'clamp(1.75rem, 3.6vw, 2.9rem)',
+                fontSize: 'clamp(1.5rem, 2.7vw, 2.35rem)',
                 fontWeight: 700,
-                lineHeight: 1.2,
-                letterSpacing: '-0.01em',
-                margin: '0 0 14px 0',
-                textShadow: '0 3px 20px rgba(0, 0, 0, 0.75), 0 1px 4px rgba(0, 0, 0, 0.9)',
+                lineHeight: 1.22,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                margin: '0 0 12px 0',
+                textShadow: '0 4px 24px rgba(0, 0, 0, 0.85)',
               }}>
-                Professionellt måleri för privatpersoner & företag
+                Professionell vägmarkering & linjemålning
               </h1>
             </ScrollReveal>
 
-            {/* Subtitle / Description - Clean, grounded & high quality */}
-            <ScrollReveal animation="fade-up" delay={300} duration={0.8}>
+            {/* ── Subtitle ── */}
+            <ScrollReveal animation="fade-up" delay={280} duration={0.8}>
               <p style={{
-                fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif",
-                color: 'rgba(255, 255, 255, 0.92)',
-                fontSize: 'clamp(0.95rem, 1.4vw, 1.1rem)',
-                lineHeight: 1.55,
-                maxWidth: '560px',
-                margin: '0 auto 28px auto',
-                textShadow: '0 2px 12px rgba(0, 0, 0, 0.85)',
+                fontFamily: "var(--font-body)",
+                color: 'rgba(255, 255, 255, 0.85)',
+                fontSize: 'clamp(0.92rem, 1.1vw, 1.05rem)',
+                lineHeight: 1.6,
+                maxWidth: '580px',
+                margin: '0 auto 24px auto',
+                textShadow: '0 2px 12px rgba(0, 0, 0, 0.7)',
                 fontWeight: 400,
+                letterSpacing: '0.01em',
               }}>
-                Allt inom invändig och utvändig målning samt tapetsering i Åhus/Kristianstad med omnejd. Noggrant utfört med högsta kvalitet och personlig service.
+                Vi hjälper företag, kommuner och BRF:er med hållbara vägmarkeringar, parkeringslinjer och industrimålning i hela Sverige.
               </p>
             </ScrollReveal>
 
-            {/* Action Buttons */}
-            <ScrollReveal animation="fade-up" delay={400} duration={0.8}>
+            {/* ── Action Buttons ── */}
+            <ScrollReveal animation="fade-up" delay={450} duration={0.8}>
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '16px',
+                gap: '14px',
                 flexWrap: 'wrap',
                 width: '100%',
               }}>
-                <Button variant="primary" size="lg" href="/offert">
-                  Begär kostnadsfri offert
+                <Button variant="white" size="lg" href="/offert">
+                  Begär offert
+                </Button>
+
+                <Button variant="outline" size="lg" href="/#tjanster">
+                  Våra tjänster
                 </Button>
 
                 <Button
                   variant="outline"
                   size="lg"
-                  href="tel:0768899716"
+                  href="tel:0737718617"
                   onClick={(e) => {
                     if (window.innerWidth > 768) {
                       e.preventDefault();
@@ -266,8 +250,8 @@ export default function Home() {
                   }}
                 >
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                    <Phone size={18} />
-                    Ring 076-889 97 16
+                    <Phone size={16} />
+                    073-771 86 17
                   </span>
                 </Button>
               </div>
@@ -282,7 +266,7 @@ export default function Home() {
         onClose={() => setIsCallModalOpen(false)}
       />
 
-      {/* ── SECTION 2: VÅRA TJÄNSTER (CLEAN 4 CARDS ON A ROW - NO PHOTOS) ───── */}
+      {/* ── SECTION 2: VÅRA TJÄNSTER (CLEAN 4 CARDS ON A ROW) ───── */}
       <section
         id="tjanster"
         style={{
@@ -304,25 +288,27 @@ export default function Home() {
             <div style={{ maxWidth: '580px' }}>
               <ScrollReveal animation="fade-right">
                 <span style={{
-                  color: 'var(--color-primary)',
+                  color: '#0f172a',
                   fontWeight: 700,
-                  fontSize: '0.82rem',
+                  fontSize: '0.8rem',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
-                  display: 'block',
-                  marginBottom: '8px',
+                  display: 'inline-block',
+                  marginBottom: '10px',
+                  background: '#e2e8f0',
+                  padding: '4px 14px',
+                  borderRadius: '999px',
                 }}>
                   Vad vi erbjuder
                 </span>
                 <h2 style={{
                   color: 'var(--color-text-dark)',
-                  fontWeight: 800,
+                  fontWeight: 700,
                   fontSize: 'clamp(1.9rem, 3.6vw, 2.7rem)',
-                  letterSpacing: '-0.025em',
                   margin: 0,
                   lineHeight: 1.18,
                 }}>
-                  Måleritjänster med fokus på kvalitet
+                  Väg- och linjemålning med fokus på kvalitet
                 </h2>
               </ScrollReveal>
             </div>
@@ -335,7 +321,7 @@ export default function Home() {
                   lineHeight: 1.65,
                   margin: '0 0 12px 0',
                 }}>
-                  Från invändig målning och tapetsering till komplett fasadmålning i Åhus/Kristianstad med omnejd.
+                  Från kompletta vägmarkeringar och parkeringsrutor till industrigolv och specialsymboler över hela Sverige.
                 </p>
                 <Link
                   to="/tjanster"
@@ -343,10 +329,12 @@ export default function Home() {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px',
-                    color: 'var(--color-primary)',
+                    color: '#0f172a',
                     fontWeight: 700,
                     fontSize: '0.92rem',
                     textDecoration: 'none',
+                    borderBottom: '2px solid #0f172a',
+                    paddingBottom: '2px',
                   }}
                 >
                   Utforska alla tjänster <ArrowRight size={16} />
@@ -368,8 +356,8 @@ export default function Home() {
                   <div className="service-feature-icon">
                     <ServiceIcon
                       type={svc.slug}
-                      color="var(--color-primary, #c28447)"
-                      size={42}
+                      color="currentColor"
+                      size={34}
                     />
                   </div>
 
@@ -395,7 +383,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 3: DIN LOKALA MÅLERIFIRMA / OM OSS ─────────────── */}
+      {/* ── SECTION 3: DIN PARTNER INOM VÄGMARKERING / OM OSS ─────── */}
       <section style={{ background: '#ffffff', padding: 'clamp(60px, 8vw, 100px) 0', borderTop: '1px solid #e2e8f0' }}>
         <div style={container}>
           <div className="two-col" style={{
@@ -424,7 +412,7 @@ export default function Home() {
               }}>
                 <img
                   src={images.about.hero.url}
-                  alt="J Måleri Åhus"
+                  alt="TMT Vägmarkeringar AB"
                   style={{
                     width: '100%',
                     height: '100%',
@@ -441,16 +429,16 @@ export default function Home() {
               <ScrollReveal animation="fade-right" duration={0.8}>
                 <h2 style={{
                   color: 'var(--color-text-dark)',
-                  fontWeight: 800,
+                  fontWeight: 700,
                   fontSize: 'clamp(1.8rem, 3vw, 2.5rem)',
                   lineHeight: 1.2,
                   margin: '0 0 14px 0',
                 }}>
-                  Din lokala målerifirma i Åhus med omnejd
+                  Trygg partner för vägmarkering i hela Sverige
                 </h2>
               </ScrollReveal>
               <ScrollReveal animation="scale-x-left" delay={200} duration={0.6}>
-                <span style={{ display: 'block', width: '60px', height: '3px', background: 'var(--color-primary)', borderRadius: '2px', margin: '0 0 24px' }} />
+                <span style={{ display: 'block', width: '60px', height: '3px', background: '#0F172A', borderRadius: '2px', margin: '0 0 24px' }} />
               </ScrollReveal>
               <ScrollReveal animation="fade-right" duration={0.8} delay={100}>
                 <p style={{
@@ -459,19 +447,19 @@ export default function Home() {
                   lineHeight: 1.75,
                   margin: '0 0 32px 0',
                 }}>
-                  J Måleri Åhus har sin bas i Åhus och utför allt inom invändigt och utvändigt måleri, tapetsering, spackling och fasadrenovering för både privatpersoner och företag. Vi kombinerar gediget hantverkskunnande med moderna kvalitetsfärger och noggrannhet i varje penseldrag – så att du får ett perfekt och hållbart resultat från start till mål.
+                  TMT Vägmarkeringar AB är specialister på vägmarkering, linjemålning och parkeringsmarkeringar. Sedan starten 2019 har vi hjälpt företag, kommuner, bostadsrättsföreningar och fastighetsägare över hela Sverige att skapa säkra, tydliga och hållbara trafikmiljöer. Med över 30 års samlad erfarenhet erbjuder vi professionella lösningar anpassade efter varje kunds behov.
                 </p>
               </ScrollReveal>
               <ScrollReveal animation="fade-right" duration={0.8} delay={200}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {[
-                    'En och samma kontaktperson genom hela projektet',
-                    'Tydliga offerter, fasta priser och direkt ROT avdrag (30%)',
-                    'Noggrant underarbete och kvalitetsfärg för maximal livslängd',
-                    'Lokal närvaro och personlig service i Åhus/Kristianstad med omnejd',
+                    'Över 30 års samlad branscherfarenhet inom linjemålning',
+                    'Slitstarka och godkända material anpassade för nordiskt klimat',
+                    'Snabb etablering och flexibla arbetstider med minimal trafikstörning',
+                    'Kompletta helhetslösningar för företag, kommuner och BRF:er',
                   ].map((item, i) => (
                     <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <CheckCircle2 size={24} color="var(--color-primary)" style={{ flexShrink: 0 }} />
+                      <CheckCircle2 size={22} color="#0F172A" style={{ flexShrink: 0 }} />
                       <span style={{ color: 'var(--color-text-dark)', fontWeight: 600, fontSize: '0.95rem' }}>
                         {item}
                       </span>
@@ -494,136 +482,7 @@ export default function Home() {
       {/* ── SECTION 4: REFERENSER / PROJEKT ──────────────────────── */}
       <ProjectsGallery />
 
-      {/* ── SECTION 5: HUR DET FUNGERAR (3-STEGS PROCESS MED PILAR) ── */}
-      <section style={{
-        background: '#ffffff',
-        padding: 'clamp(60px, 8vw, 100px) 0',
-        borderTop: '1px solid #e2e8f0',
-      }}>
-        <div style={container}>
-          {/* Clean Authentic Split-Header */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            flexWrap: 'wrap',
-            gap: '24px',
-            marginBottom: '44px',
-          }}>
-            <div style={{ maxWidth: '540px' }}>
-              <ScrollReveal animation="fade-right">
-                <span style={{
-                  color: 'var(--color-primary)',
-                  fontWeight: 700,
-                  fontSize: '0.82rem',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  display: 'block',
-                  marginBottom: '8px',
-                }}>
-                  Enkelt och tryggt
-                </span>
-                <h2 style={{
-                  color: 'var(--color-text-dark)',
-                  fontWeight: 800,
-                  fontSize: 'clamp(1.9rem, 3.4vw, 2.6rem)',
-                  letterSpacing: '-0.025em',
-                  margin: 0,
-                  lineHeight: 1.2,
-                }}>
-                  Så går det till från idé till färdigt resultat
-                </h2>
-              </ScrollReveal>
-            </div>
-
-            <div style={{ maxWidth: '420px' }}>
-              <ScrollReveal animation="fade-left" delay={150}>
-                <p style={{
-                  color: 'var(--color-gray-600)',
-                  fontSize: '1rem',
-                  lineHeight: 1.65,
-                  margin: 0,
-                }}>
-                  Från första kontakt till färdigmålat resultat i tre enkla steg med full transparens och trygghet.
-                </p>
-              </ScrollReveal>
-            </div>
-          </div>
-
-          <div className="steps-grid-wrapper" style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            gap: '0',
-            textAlign: 'center',
-          }}>
-            {[
-              {
-                icon: Phone,
-                title: '1. Kontakta oss',
-                desc: 'Berätta om dina måleriplaner och idéer. Vi ger kostnadsfri rådgivning och bollar färg- och materialval.',
-              },
-              {
-                icon: MapPin,
-                title: '2. Platsbesök och offert',
-                desc: 'Vi går igenom underlag och ytor på plats och tar fram en tydlig offert med fast pris och tidsplan.',
-              },
-              {
-                icon: Paintbrush,
-                title: '3. Vi målar',
-                desc: 'Vi utför måleriarbetet enligt överenskommelse med hög kvalitet, täcker rent och lämnar ett perfekt resultat.',
-              },
-            ].map(({ icon: Icon, title, desc }, i) => (
-              <div key={i} style={{ display: 'contents' }}>
-                <ScrollReveal animation="blur-in" delay={i * 150} duration={0.8}>
-                  <div className="step-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: '1', maxWidth: '280px' }}>
-                    <div style={{
-                      width: '70px',
-                      height: '70px',
-                      background: 'var(--color-primary)',
-                      borderRadius: 'var(--border-radius-md)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '20px',
-                    }}>
-                      <Icon size={28} color="#ffffff" />
-                    </div>
-                    <h3 style={{
-                      color: 'var(--color-text-dark)',
-                      fontWeight: 700,
-                      fontSize: '1.15rem',
-                      margin: '0 0 12px 0',
-                    }}>
-                      {title}
-                    </h3>
-                    <p style={{
-                      color: 'var(--color-gray-600)',
-                      fontSize: '0.95rem',
-                      lineHeight: 1.65,
-                      margin: 0,
-                      maxWidth: '260px',
-                    }}>
-                      {desc}
-                    </p>
-                  </div>
-                </ScrollReveal>
-                {i < 2 && (
-                  <div className="step-arrow">
-                    <svg width="65" height="24" viewBox="0 0 65 24" fill="none" stroke="#C4C4C4" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.75 }}>
-                      <path d="M 5 12 C 20 10, 40 10, 58 11" />
-                      <path d="M 49 5 C 52 8, 56 10, 58 11" />
-                      <path d="M 48 18 C 51 15, 56 12, 58 11" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 6: MID CTA ──────────────────────────────────── */}
+      {/* ── SECTION 5: MID CTA ──────────────────────────────────── */}
       <section style={{
         position: 'relative',
         padding: 'clamp(50px, 7vw, 80px) 0',
@@ -637,16 +496,16 @@ export default function Home() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,31,46,0.88)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(15, 23, 42, 0.88)' }} />
         <div style={{ ...container, position: 'relative', zIndex: 1 }}>
           <ScrollReveal animation="scale-in">
             <h2 style={{
               color: 'var(--color-white)',
-              fontWeight: 800,
+              fontWeight: 700,
               fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
               margin: '0 0 12px 0',
             }}>
-              Nyfiken på vad ditt måleriprojekt kostar?
+              Behöver ni professionell vägmarkering eller linjemålning?
             </h2>
             <p style={{
               color: 'rgba(255,255,255,0.7)',
@@ -654,128 +513,142 @@ export default function Home() {
               margin: '0 0 32px 0',
               lineHeight: 1.7,
             }}>
-              Vi återkopplar med en kostnadsfri offert inom 24 timmar.
+              Vi återkopplar med en kostnadsfri offert och rådgivning inom 24 timmar.
             </p>
-            <Button variant="primary" size="lg" href="/offert">
+            <Button variant="white" size="lg" href="/offert">
               Begär offert
             </Button>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ── SECTION 7: KUNDRECENSIONER ──────────────────────────── */}
-      <section style={{ background: 'var(--color-light)', padding: 'clamp(60px, 8vw, 100px) 0' }}>
+      {/* ── SECTION 7: CERTIFIERINGAR & BEHÖRIGHETER (NATURAL SHOWCASE — ZERO CARDS) ── */}
+      <section
+        id="certifieringar"
+        style={{
+          background: '#ffffff',
+          padding: 'clamp(80px, 9vw, 120px) 0',
+          position: 'relative',
+          borderTop: '1px solid #e2e8f0',
+          borderBottom: '1px solid #e2e8f0',
+        }}
+      >
         <div style={container}>
-          {/* Clean Authentic Split-Header */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            flexWrap: 'wrap',
-            gap: '24px',
-            marginBottom: '44px',
-          }}>
-            <div>
-              <ScrollReveal animation="fade-right">
-                <span style={{
-                  color: 'var(--color-primary)',
-                  fontWeight: 700,
-                  fontSize: '0.82rem',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  display: 'block',
-                  marginBottom: '8px',
-                }}>
-                  Kundomdömen
-                </span>
-                <h2 style={{
-                  color: 'var(--color-text-dark)',
-                  fontWeight: 800,
-                  fontSize: 'clamp(1.9rem, 3.4vw, 2.6rem)',
-                  letterSpacing: '-0.025em',
-                  margin: 0,
-                  lineHeight: 1.2,
-                }}>
-                  Vad säger våra kunder?
-                </h2>
-              </ScrollReveal>
+          {/* Section Header - Clean & Natural */}
+          <ScrollReveal animation="fade-up">
+            <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 6vw, 70px)' }}>
+              <span style={{
+                color: '#0f172a',
+                fontWeight: 700,
+                fontSize: '0.8rem',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                display: 'inline-block',
+                marginBottom: '12px',
+                background: '#e2e8f0',
+                padding: '5px 16px',
+                borderRadius: '999px',
+              }}>
+                Auktoriserad & Certifierad
+              </span>
+              <h2 style={{
+                fontFamily: 'var(--font-heading)',
+                color: 'var(--color-text-dark)',
+                fontSize: 'clamp(2rem, 3.4vw, 2.75rem)',
+                fontWeight: 700,
+                margin: '0 0 12px 0',
+                textTransform: 'uppercase',
+              }}>
+                Certifieringar & behörigheter
+              </h2>
+              <p style={{
+                color: 'var(--color-gray-600)',
+                fontSize: '1.05rem',
+                maxWidth: '600px',
+                margin: '0 auto',
+                lineHeight: 1.6,
+              }}>
+                Vår personal innehar alla nödvändiga certifieringar och behörigheter för säkra och godkända entreprenader.
+              </p>
             </div>
+          </ScrollReveal>
 
-            <div>
-              <ScrollReveal animation="fade-left" delay={100}>
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  fontSize: '0.92rem',
-                  color: '#4b5563',
-                  fontWeight: 500,
-                  background: '#ffffff',
-                  padding: '10px 18px',
-                  borderRadius: '50px',
-                  border: '1px solid #e2e8f0',
-                  boxShadow: '0 2px 8px rgba(15, 23, 42, 0.04)',
-                }}>
-                  <svg viewBox="0 0 24 24" width="18" height="18" style={{ flexShrink: 0 }}>
-                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69a5.74 5.74 0 0 1-2.49 3.77v3.13h4.01c2.34-2.16 3.69-5.32 3.69-8.75z" />
-                    <path fill="#34A853" d="M12 24c3.24 0 5.97-1.08 7.96-2.91l-4.01-3.13c-1.11.75-2.53 1.19-3.95 1.19-3.04 0-5.61-2.05-6.53-4.82H1.31v3.23A12 12 0 0 0 12 24z" />
-                    <path fill="#FBBC05" d="M5.47 14.33A7.16 7.16 0 0 1 5 12c0-.8.14-1.58.39-2.33V6.44H1.31A11.96 11.96 0 0 0 0 12c0 2.05.52 4 1.31 5.67l4.16-3.34z" />
-                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.22 0 12 0A12 12 0 0 0 1.31 6.44l4.16 3.23a7.18 7.18 0 0 1 6.53-4.92z" />
-                  </svg>
-                  <span style={{ fontWeight: 700, color: '#111827' }}>5.0 / 5</span>
-                  <div style={{ display: 'flex', gap: '2px' }}>
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} size={15} fill="#FBBC05" color="#FBBC05" />
-                    ))}
-                  </div>
-                  <span style={{ color: 'var(--color-gray-600)', fontSize: '0.85rem' }}>(Omdömen i Åhus och Kristianstad)</span>
-                </div>
-              </ScrollReveal>
-            </div>
-          </div>
-
-          <div className="reviews-grid">
+          {/* Natural, Large Logo Showcase — Pure Emblems, Zero Cards */}
+          <div className="cert-logos-showcase">
             {[
               {
-                name: 'Johan E.',
-                location: 'Åhus',
-                text: 'Vi anlitade J Måleri Åhus för ommålning av hela nedervåningen inklusive spackling och målning i vardagsrummet. Otroligt proffsigt bemötande av Joakim, raka besked och fantastiskt resultat med knivskarpa linjer. Rekommenderas varmt!',
-                stars: 5,
-                date: 'för 2 veckor sedan',
-                authorSub: 'Lokal guide • 14 omdömen',
-                avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120&h=120'
+                logo: '/id06.png',
+                alt: 'ID06 - Auktoriserad och certifierad personalliggare',
+                title: 'ID06',
+                maxH: '145px',
+                maxW: '160px',
               },
               {
-                name: 'Karin M.',
-                location: 'Kristianstad',
-                text: 'J Måleri Åhus hjälpte oss med utvändig fasadmålning av villan och garaget. Från grundlig tvätt och skrapning till två strykningar flöt allt på helt enligt tidsplanen. Mycket noggranna hantverkare som lämnade tomten skinande ren.',
-                stars: 5,
-                date: 'för en månad sedan',
-                authorSub: '8 omdömen',
-                avatarUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120'
+                logo: '/heta-arbeten.png',
+                alt: 'Heta Arbeten - Brandskyddsföreningen certifierad',
+                title: 'Heta Arbeten - Brandskyddsföreningen',
+                maxH: '135px',
+                maxW: '280px',
               },
               {
-                name: 'Markus L.',
-                location: 'Yngsjö',
-                text: 'Toppklassigt måleriarbete vid vår renovering. J Måleri Åhus levererade perfekt finish på både väggar, tak och snickerier. Tryggt, prisvärt och med full koll på ROT avdraget!',
-                stars: 5,
-                date: 'för 2 månader sedan',
-                authorSub: 'Lokal guide • 19 omdömen',
-                avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120'
+                logo: '/trafikverket-clean.png',
+                alt: 'Trafikverket Arbete på väg 1+2 certifierad',
+                title: 'Trafikverket - Arbete på väg 1+2',
+                maxH: '125px',
+                maxW: '280px',
               },
-            ].map((review, i) => {
-              const delay = i * 150;
-              return (
-                <ScrollReveal key={i} animation="fade-up" delay={delay}>
-                  <ReviewCard review={review} />
-                </ScrollReveal>
-              );
-            })}
+              {
+                logo: '/ssg.png',
+                alt: 'SSG Entre - Industrisäkerhet certifierad',
+                title: 'SSG - Standard Solutions Group',
+                maxH: '105px',
+                maxW: '310px',
+              },
+            ].map((cert, i) => (
+              <ScrollReveal key={cert.title} animation="fade-up" delay={i * 90}>
+                <div
+                  className="cert-logo-item"
+                  title={cert.title}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    height: 'clamp(110px, 13vw, 155px)',
+                    padding: '10px 16px',
+                    transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+                    cursor: 'default',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-6px) scale(1.06)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  }}
+                >
+                  <img
+                    src={cert.logo}
+                    alt={cert.alt}
+                    loading="lazy"
+                    style={{
+                      maxHeight: cert.maxH,
+                      maxWidth: cert.maxW,
+                      width: 'auto',
+                      height: 'auto',
+                      objectFit: 'contain',
+                      display: 'block',
+                      filter: 'drop-shadow(0 4px 12px rgba(15, 23, 42, 0.05))',
+                      transition: 'filter 0.35s ease',
+                    }}
+                  />
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 8: VANLIGA FRÅGOR (FAQ - DARK CONTRAST BREAK) ── */}
+      {/* ── SECTION 8: VANLIGA FRÅGOR (FAQ) ── */}
       <section style={{
         background: '#0f172a',
         padding: 'clamp(70px, 9vw, 110px) 0',
@@ -786,14 +659,14 @@ export default function Home() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse at 85% 25%, rgba(194, 132, 71, 0.12) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at 85% 25%, rgba(255, 255, 255, 0.12) 0%, transparent 60%)',
           pointerEvents: 'none',
         }} />
         <div style={{ ...container, position: 'relative', zIndex: 1 }}>
           <FAQAccordion
             items={homeFaqItems}
             title="Vanliga frågor"
-            subtitle="Här hittar du svar på vanliga funderingar kring offerter, ROT avdrag och hur vi arbetar."
+            subtitle="Här hittar du svar på vanliga funderingar kring offerter, material och hur vi arbetar över hela Sverige."
             buttonText="Kontakta oss direkt"
             buttonLink="/kontakt"
             dark={true}
@@ -828,12 +701,26 @@ export default function Home() {
           transform: translateY(-5px) rotate(-0.5deg);
           box-shadow: 0 16px 40px rgba(28,21,16,0.10);
         }
-        .step-arrow {
-          display: flex;
+        .cert-logos-showcase {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
           align-items: center;
-          justify-content: center;
-          width: 80px;
-          height: 70px;
+          justify-items: center;
+          gap: clamp(32px, 5vw, 64px);
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        @media (max-width: 960px) {
+          .cert-logos-showcase {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px 24px;
+          }
+        }
+        @media (max-width: 520px) {
+          .cert-logos-showcase {
+            grid-template-columns: 1fr;
+            gap: 36px;
+          }
         }
         @media (max-width: 1024px) {
           .reviews-grid { grid-template-columns: repeat(2, 1fr) !important; }
@@ -841,10 +728,6 @@ export default function Home() {
         @media (max-width: 768px) {
           .two-col { grid-template-columns: 1fr !important; gap: 32px !important; }
           .reviews-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .steps-grid-wrapper { flex-direction: column !important; align-items: center !important; gap: 24px !important; }
-          .step-arrow {
-            transform: rotate(90deg);
-          }
         }
       `}</style>
     </main>

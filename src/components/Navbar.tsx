@@ -135,17 +135,20 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 1000,
+          minHeight: scrolled ? '62px' : '72px',
           padding: scrolled
-            ? '12px clamp(20px, 4vw, 40px)'
-            : '24px clamp(20px, 4vw, 40px)',
+            ? '10px clamp(16px, 3.5vw, 36px)'
+            : '14px clamp(16px, 3.5vw, 36px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          background: scrolled ? 'rgba(26,31,46,0.97)' : 'rgba(26,31,46,0)',
+          background: scrolled
+            ? 'rgba(15, 23, 42, 0.95)'
+            : 'linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.12) 70%, transparent 100%)',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
           boxShadow: scrolled ? '0 2px 24px rgba(0,0,0,0.3)' : 'none',
-          transition: 'background 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), -webkit-backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'background 0.35s ease, padding 0.35s ease, min-height 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease',
         }}
       >
         {/* Logo — hidden at the very top of startsidan, smoothly fades in on scroll */}
@@ -162,7 +165,7 @@ export default function Navbar() {
             pointerEvents: showNavbarLogo ? 'auto' : 'none',
             transform: showNavbarLogo ? 'scale(1) translateY(0)' : 'scale(0.85) translateY(-4px)',
             transformOrigin: 'left center',
-            transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            transition: 'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
           <img
@@ -176,11 +179,12 @@ export default function Navbar() {
         <div className="nav-pill" style={{
           position: 'absolute',
           left: '50%',
-          transform: 'translateX(-50%)',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
           borderRadius: 'var(--border-radius-pill)',
           background: 'rgba(255,255,255,0.06)',
           border: '1px solid rgba(255,255,255,0.08)',
-          padding: '6px',
+          padding: '5px 6px',
           display: 'flex',
           alignItems: 'center',
           gap: '2px',
@@ -203,10 +207,12 @@ export default function Navbar() {
                       background: active || isServicesOpen ? 'rgba(255,255,255,0.1)' : 'none',
                       border: 'none',
                       cursor: 'pointer',
-                      color: active || isServicesOpen ? 'var(--color-primary)' : 'var(--color-white)',
+                      color: active || isServicesOpen ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
                       fontFamily: 'var(--font-family)',
-                      fontSize: '0.9rem',
-                      fontWeight: active || isServicesOpen ? 600 : 400,
+                      fontSize: '0.82rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
                       padding: '10px 18px',
                       borderRadius: 'var(--border-radius-pill)',
                       transition: 'background 0.2s ease, color 0.2s ease',
@@ -272,8 +278,8 @@ export default function Navbar() {
                         }}
                         onMouseEnter={e => {
                           const el = e.currentTarget as HTMLElement;
-                          el.style.background = 'rgba(255, 255, 255, 0.08)';
-                          el.style.color = 'var(--color-primary)';
+                          el.style.background = 'rgba(255, 255, 255, 0.12)';
+                          el.style.color = '#ffffff';
                         }}
                         onMouseLeave={e => {
                           const el = e.currentTarget as HTMLElement;
@@ -294,13 +300,15 @@ export default function Navbar() {
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
                 style={{
-                  background: active ? 'var(--color-primary)' : 'transparent',
+                  background: active ? '#ffffff' : 'transparent',
                   border: 'none',
                   cursor: 'pointer',
-                  color: '#ffffff',
+                  color: active ? '#0F172A' : '#ffffff',
                   fontFamily: 'var(--font-family)',
-                  fontSize: '0.92rem',
-                  fontWeight: active ? 700 : 500,
+                  fontSize: '0.82rem',
+                  fontWeight: active ? 700 : 600,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
                   padding: '9px 20px',
                   borderRadius: 'var(--border-radius-pill)',
                   boxShadow: active ? '0 2px 12px rgba(0, 0, 0, 0.25)' : 'none',
@@ -328,27 +336,34 @@ export default function Navbar() {
 
         {/* Right side */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0 }}>
-          <div className="phone-link-wrapper" style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              margin: '0 4px',
+              paddingLeft: '12px',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.15)',
+            }}
+          >
             <a
-              href="tel:0768899716"
-              className="phone-link"
+              href="tel:0737718617"
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '5px',
+                gap: '6px',
                 color: 'var(--color-white)',
                 textDecoration: 'none',
                 fontFamily: 'var(--font-family)',
                 fontSize: '0.85rem',
-                fontWeight: 500,
-                transition: 'color 0.2s ease',
+                fontWeight: 600,
+                transition: 'opacity 0.2s ease',
                 cursor: 'pointer',
               }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-primary)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-white)')}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.75')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
             >
-              <Phone size={14} color="var(--color-primary)" />
-              <span>076-889 97 16</span>
+              <Phone size={14} color="#ffffff" />
+              <span>073-771 86 17</span>
             </a>
           </div>
 
@@ -356,8 +371,8 @@ export default function Navbar() {
             to="/offert"
             className="offert-btn"
             style={{
-              background: 'var(--color-primary)',
-              color: '#ffffff',
+              background: '#ffffff',
+              color: '#0F172A',
               fontFamily: 'var(--font-family)',
               fontWeight: 700,
               borderRadius: 'var(--border-radius-pill)',
@@ -367,19 +382,19 @@ export default function Navbar() {
               transition: 'all 0.3s ease',
               display: 'inline-block',
               cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(194, 132, 71, 0.35)',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.25)',
             }}
             onMouseEnter={e => {
               const el = e.currentTarget as HTMLElement;
-              el.style.background = 'var(--color-primary-hover)';
+              el.style.background = '#f1f5f9';
               el.style.transform = 'translateY(-2px)';
-              el.style.boxShadow = '0 8px 24px rgba(194, 132, 71, 0.5)';
+              el.style.boxShadow = '0 8px 24px rgba(255, 255, 255, 0.25)';
             }}
             onMouseLeave={e => {
               const el = e.currentTarget as HTMLElement;
-              el.style.background = 'var(--color-primary)';
+              el.style.background = '#ffffff';
               el.style.transform = 'translateY(0)';
-              el.style.boxShadow = '0 4px 16px rgba(194, 132, 71, 0.35)';
+              el.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.25)';
             }}
           >
             <span className="offert-full">Begär offert</span>
@@ -389,7 +404,7 @@ export default function Navbar() {
           {/* Phone icon — shown on mobile only */}
           <div className="mobile-phone-btn" style={{ position: 'relative' }}>
             <a
-              href="tel:0768899716"
+              href="tel:0737718617"
               aria-label="Ring oss"
               style={{
                 display: 'flex',
@@ -485,20 +500,21 @@ export default function Navbar() {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                color: active ? 'var(--color-primary)' : 'var(--color-white)',
+                color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.75)',
                 fontFamily: 'var(--font-family)',
-                fontSize: '1.3rem',
+                fontSize: '1.2rem',
                 fontWeight: active ? 700 : 500,
                 padding: '8px 32px',
                 borderRadius: 'var(--border-radius-pill)',
-                letterSpacing: '-0.01em',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
                 opacity: mobileOpen ? 1 : 0,
                 transform: mobileOpen ? 'translateX(0)' : 'translateX(20px)',
                 transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease',
                 transitionDelay: mobileOpen ? `${delay}ms, ${delay}ms, 0ms` : '0ms',
               }}
-              onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = 'var(--color-primary)'; }}
-              onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = 'var(--color-white)'; }}
+              onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = '#ffffff'; }}
+              onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = 'rgba(255, 255, 255, 0.75)'; }}
             >
               {link.label}
             </button>
@@ -510,10 +526,12 @@ export default function Navbar() {
           onClick={() => setMobileOpen(false)}
           style={{
             marginTop: '12px',
-            background: 'var(--color-primary)',
-            color: '#ffffff',
-            fontFamily: 'var(--font-family)',
+            background: '#ffffff',
+            color: '#0F172A',
+            fontFamily: 'var(--font-heading)',
             fontWeight: 700,
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
             borderRadius: 'var(--border-radius-pill)',
             padding: '14px 48px',
             textDecoration: 'none',
@@ -543,8 +561,8 @@ export default function Navbar() {
             Ring oss direkt:
           </span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
-            <a href="tel:0768899716" style={{ color: 'var(--color-white)', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              <Phone size={14} color="var(--color-primary)" /> 076-889 97 16
+            <a href="tel:0737718617" style={{ color: 'var(--color-white)', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <Phone size={14} color="#ffffff" /> 073-771 86 17
             </a>
           </div>
         </div>
@@ -560,8 +578,8 @@ export default function Navbar() {
           height: 15px;
         }
         .nav-logo {
-          height: 185px;
-          max-height: 26vh;
+          height: 48px;
+          max-height: 48px;
           width: auto;
           display: block;
           object-fit: contain;
@@ -569,11 +587,12 @@ export default function Navbar() {
           padding: 0;
           border-radius: 0;
           box-shadow: none;
-          filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.55));
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.45));
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-logo.scrolled {
-          height: 120px;
+          height: 40px;
+          max-height: 40px;
           background-color: transparent;
           padding: 0;
           border-radius: 0;
@@ -590,14 +609,16 @@ export default function Navbar() {
           .hamburger { display: flex !important; }
           .offert-btn { display: none !important; }
           .mobile-phone-btn { display: flex !important; }
-          nav.navbar-el { padding: 12px 18px !important; }
-          nav.navbar-el.scrolled { padding: 8px 18px !important; }
+          nav.navbar-el { padding: 10px 16px !important; min-height: 56px !important; }
+          nav.navbar-el.scrolled { padding: 8px 16px !important; min-height: 50px !important; }
           .nav-logo {
-            height: 90px;
+            height: 38px;
+            max-height: 38px;
             padding: 0;
           }
           .nav-logo.scrolled {
-            height: 72px;
+            height: 32px;
+            max-height: 32px;
             padding: 0;
           }
         }

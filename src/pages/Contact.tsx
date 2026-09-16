@@ -13,20 +13,20 @@ const container: React.CSSProperties = {
 
 const faqItems = [
   {
-    question: 'Arbetar ni med ROT avdrag?',
-    answer: 'Ja! Som privatperson får du 30 % avdrag på arbetskostnaden direkt på fakturan upp till 50 000 kr per person och år. Vi sköter all administration mot Skatteverket.',
+    question: 'Hur snabbt kan vi få en offert på vägmarkering?',
+    answer: 'Vi återkopplar vanligtvis inom 24 timmar och tar fram en specificerad offert baserad på era underlag, ritningar eller en genomgång av ytan.',
   },
   {
-    question: 'Hur lång tid tar det att få ett prisförslag?',
-    answer: 'Vi återkopplar vanligtvis inom 24 timmar och lämnar en tydlig, specificerad offert inom 1–2 arbetsdagar efter genomgång eller platsbesök.',
+    question: 'Vilka geografiska områden är ni verksamma i?',
+    answer: 'TMT Vägmarkeringar AB utför uppdrag över hela Sverige åt både privata företag, kommuner, bostadsrättsföreningar och vägsamfälligheter.',
   },
   {
-    question: 'Vilka områden är ert huvudsakliga upptagningsområde?',
-    answer: 'Vi har vår bas i Åhus och utför uppdrag i Åhus, Kristianstad, Yngsjö, Degeberga, Bromölla och närområdet.',
+    question: 'Klarar era markeringar nordiskt vinterklimat och plogning?',
+    answer: 'Ja, vi använder certifierad termoplast och slitstarka tvåkomponentsfärger utvecklade för att klara tuffa väderförhållanden, saltning och snöröjning.',
   },
   {
-    question: 'Kan jag boka ett kostnadsfritt platsbesök?',
-    answer: 'Självklart! Kontakta oss via formuläret eller ring 076-889 97 16 så bokar vi in en tid som passar dig.',
+    question: 'Kan ni utföra arbetet under nätter eller helger?',
+    answer: 'Absolut! För att minimera trafikstörningar och inte blockera parkeringsytor under dagtid arbetar vi flexibelt dygnet runt efter överenskommelse.',
   },
 ];
 
@@ -48,7 +48,7 @@ const inputStyle: React.CSSProperties = {
 
 function focusInput(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
   e.currentTarget.style.borderColor = 'var(--color-primary)';
-  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(194, 132, 71, 0.15)';
+  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255, 255, 255, 0.15)';
 }
 function blurInput(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
   e.currentTarget.style.borderColor = '#e5e7eb';
@@ -57,8 +57,8 @@ function blurInput(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) 
 
 export default function Contact() {
   usePageTitle(
-    'Kontakta J Måleri Åhus | Åhus & Kristianstad',
-    'Kontakta J Måleri Åhus. Vi utför allt inom invändigt och utvändigt måleri, tapetsering, spackling och fasadmålning i Åhus/Kristianstad med omnejd. Ring 076-889 97 16.'
+    'Kontakta TMT Vägmarkeringar | Hela Sverige',
+    'Kontakta TMT Vägmarkeringar AB för professionell vägmarkering, linjemålning, parkeringslinjer och industrimålning i hela Sverige. Ring 073-771 86 17.'
   );
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -71,31 +71,30 @@ export default function Contact() {
       {/* ── SECTION A: HERO ───────────────────────────────────── */}
       <section style={{
         position: 'relative',
-        backgroundImage: 'url(https://cdn.midjourney.com/6e079fd3-e098-4621-94e1-2dca52b0df2a/0_0.png)',
+        backgroundImage: 'url(/about.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center 40%',
         paddingTop: '150px',
         paddingBottom: '70px',
         textAlign: 'center',
       }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.72) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.76) 100%)' }} />
         <div style={{ ...container, position: 'relative', zIndex: 1 }}>
           <div>
             <ScrollReveal animation="blur-in">
               <h1 style={{
                 color: 'var(--color-white)',
-                fontWeight: 800,
+                fontWeight: 700,
                 fontSize: 'clamp(2rem, 4vw, 3.2rem)',
                 margin: '0 0 16px 0',
                 lineHeight: 1.15,
-                letterSpacing: '-0.02em',
               }}>
                 Kontakta oss
               </h1>
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={150}>
-              <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.08rem', margin: 0, maxWidth: '600px', marginInline: 'auto', lineHeight: 1.6 }}>
-                Vi återkopplar vanligtvis inom 24 timmar. Kostnadsfritt platsbesök & färgrådgivning ingår alltid.
+              <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '1.08rem', margin: 0, maxWidth: '620px', marginInline: 'auto', lineHeight: 1.6 }}>
+                Vi återkopplar vanligtvis inom 24 timmar. Kostnadsfri offert och professionell rådgivning ingår alltid.
               </p>
             </ScrollReveal>
           </div>
@@ -116,7 +115,7 @@ export default function Contact() {
             <ScrollReveal animation="fade-right" duration={0.8}>
               <h2 style={{
                 color: 'var(--color-text-dark)',
-                fontWeight: 800,
+                fontWeight: 700,
                 fontSize: 'clamp(1.6rem, 2.5vw, 2rem)',
                 margin: '0 0 20px 0',
                 lineHeight: 1.2,
@@ -124,7 +123,7 @@ export default function Contact() {
                 Så når du oss
               </h2>
               <p style={{ color: 'var(--color-gray-600)', fontSize: '1rem', lineHeight: 1.8, margin: 0 }}>
-                Du kan nå oss via formuläret, telefon eller e-post. Oavsett om det gäller inomhusmålning, tapetsering eller fasadmålning hjälper vi dig gärna.
+                Kontakta oss via telefon, e-post eller formuläret. Oavsett om det gäller parkeringsmarkering, väglinjer, truckgångar eller symboler hjälper vi er gärna.
               </p>
 
               <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -133,13 +132,14 @@ export default function Contact() {
                     width: '48px',
                     height: '48px',
                     minWidth: '48px',
-                    background: 'rgba(194, 132, 71, 0.1)',
-                    borderRadius: '12px',
+                    background: '#0F172A',
+                    borderRadius: '14px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(15, 23, 42, 0.15)',
                   }}>
-                    <Phone size={22} color="var(--color-primary)" />
+                    <Phone size={22} color="#ffffff" />
                   </div>
                   <div>
                     <p style={{ margin: '0 0 4px 0', fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-text-dark)' }}>
@@ -147,12 +147,12 @@ export default function Contact() {
                     </p>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                       <a
-                        href="tel:0768899716"
+                        href="tel:0737718617"
                         style={{ color: 'var(--color-gray-600)', fontSize: '0.95rem', textDecoration: 'none', lineHeight: 1.5, transition: 'color 0.2s ease' }}
-                        onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-primary)')}
+                        onMouseEnter={e => (e.currentTarget.style.color = '#0F172A')}
                         onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-gray-600)')}
                       >
-                        076-889 97 16
+                        073-771 86 17
                       </a>
                     </div>
                   </div>
@@ -163,20 +163,21 @@ export default function Contact() {
                     width: '48px',
                     height: '48px',
                     minWidth: '48px',
-                    background: 'rgba(194, 132, 71, 0.1)',
-                    borderRadius: '12px',
+                    background: '#0F172A',
+                    borderRadius: '14px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(15, 23, 42, 0.15)',
                   }}>
-                    <MapPin size={22} color="var(--color-primary)" />
+                    <MapPin size={22} color="#ffffff" />
                   </div>
                   <div>
                     <p style={{ margin: '0 0 4px 0', fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-text-dark)' }}>
-                      Plats & Område
+                      Verksamhetsområde
                     </p>
                     <p style={{ margin: 0, color: 'var(--color-gray-600)', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                      Bas i Åhus • Åhus/Kristianstad med omnejd
+                      Hela Sverige • Rikstäckande etablering
                     </p>
                   </div>
                 </div>
@@ -186,25 +187,26 @@ export default function Contact() {
                     width: '48px',
                     height: '48px',
                     minWidth: '48px',
-                    background: 'rgba(194, 132, 71, 0.1)',
-                    borderRadius: '12px',
+                    background: '#0F172A',
+                    borderRadius: '14px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(15, 23, 42, 0.15)',
                   }}>
-                    <Mail size={22} color="var(--color-primary)" />
+                    <Mail size={22} color="#ffffff" />
                   </div>
                   <div>
                     <p style={{ margin: '0 0 4px 0', fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-text-dark)' }}>
                       E-post
                     </p>
                     <a
-                      href="mailto:Info@jmaleri.se"
+                      href="mailto:info@tmtab.com"
                       style={{ color: 'var(--color-gray-600)', fontSize: '0.95rem', textDecoration: 'none', lineHeight: 1.5, transition: 'color 0.2s ease' }}
-                      onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-primary)')}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#0F172A')}
                       onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-gray-600)')}
                     >
-                      Info@jmaleri.se
+                      info@tmtab.com
                     </a>
                   </div>
                 </div>
@@ -214,20 +216,21 @@ export default function Contact() {
                     width: '48px',
                     height: '48px',
                     minWidth: '48px',
-                    background: 'rgba(194, 132, 71, 0.1)',
-                    borderRadius: '12px',
+                    background: '#0F172A',
+                    borderRadius: '14px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(15, 23, 42, 0.15)',
                   }}>
-                    <ShieldCheck size={22} color="var(--color-primary)" />
+                    <ShieldCheck size={22} color="#ffffff" />
                   </div>
                   <div>
                     <p style={{ margin: '0 0 4px 0', fontWeight: 700, fontSize: '0.9rem', color: 'var(--color-text-dark)' }}>
-                      Företagsinformation
+                      Företagsuppgifter
                     </p>
                     <p style={{ margin: 0, color: 'var(--color-gray-600)', fontSize: '0.95rem', lineHeight: 1.5 }}>
-                      J Måleri Åhus • Org.nr: 559546-9049 • Godkänd för F-skatt
+                      TMT Vägmarkeringar AB • Org.nr: 559221-0099 • Godkänd för F-skatt
                     </p>
                   </div>
                 </div>
@@ -245,43 +248,73 @@ export default function Contact() {
               }}>
                 <h2 style={{
                   color: 'var(--color-text-dark)',
-                  fontWeight: 800,
+                  fontWeight: 700,
                   fontSize: 'clamp(1.6rem, 2.5vw, 2rem)',
                   margin: '0 0 24px 0',
                 }}>
-                  Skicka ett meddelande
+                  Skicka en förfrågan
                 </h2>
 
                 <form onSubmit={(e) => {
                   e.preventDefault();
-                  alert('Tack för ditt meddelande! Vi återkommer inom kort.');
+                  alert('Tack för din förfrågan! Vi återkommer inom kort.');
                 }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="contact-form-row">
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '8px' }}>
-                        Namn *
+                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
+                        Ditt namn / Kontaktperson
                       </label>
                       <input
                         type="text"
-                        required
-                        placeholder="Ditt för- och efternamn"
+                        placeholder="För- och efternamn"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                         style={inputStyle}
                         onFocus={focusInput}
                         onBlur={blurInput}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '8px' }}>
-                        Telefonnummer *
+                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
+                        Företag / BRF / Kommun (valfritt)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Företagsnamn eller BRF"
+                        style={inputStyle}
+                        onFocus={focusInput}
+                        onBlur={blurInput}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="contact-form-row">
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
+                        E-postadress
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="din.epost@foretag.se"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        style={inputStyle}
+                        onFocus={focusInput}
+                        onBlur={blurInput}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
+                        Telefonnummer
                       </label>
                       <input
                         type="tel"
-                        required
-                        placeholder="070-000 00 00"
+                        placeholder="070-123 45 67"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
+                        required
                         style={inputStyle}
                         onFocus={focusInput}
                         onBlur={blurInput}
@@ -290,15 +323,12 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '8px' }}>
-                      E-postadress *
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
+                      Plats / Ort för projektet
                     </label>
                     <input
-                      type="email"
-                      required
-                      placeholder="din.epost@exempel.se"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      type="text"
+                      placeholder="Ort eller kommun"
                       style={inputStyle}
                       onFocus={focusInput}
                       onBlur={blurInput}
@@ -306,15 +336,15 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '8px' }}>
-                      Meddelande *
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
+                      Beskriv ert projekt eller behov
                     </label>
                     <textarea
-                      required
-                      rows={5}
-                      placeholder="Beskriv kort vad du önskar hjälp med (t.ex. målning av vardagsrum, fasadmålning villa etc.)..."
+                      rows={4}
+                      placeholder="Berätta om typ av markering, yta (ca m² eller antal p-platser) samt önskad tidsplan..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
+                      required
                       style={{ ...inputStyle, resize: 'vertical' }}
                       onFocus={focusInput}
                       onBlur={blurInput}
@@ -324,23 +354,28 @@ export default function Contact() {
                   <button
                     type="submit"
                     style={{
-                      background: 'var(--color-primary)',
+                      width: '100%',
+                      padding: '16px',
+                      background: '#0F172A',
                       color: '#ffffff',
                       border: 'none',
-                      padding: '16px 36px',
-                      borderRadius: 'var(--border-radius-pill)',
+                      borderRadius: '12px',
                       fontSize: '1rem',
                       fontWeight: 700,
                       cursor: 'pointer',
-                      width: '100%',
-                      fontFamily: 'var(--font-family)',
-                      boxShadow: '0 4px 16px rgba(194, 132, 71, 0.35)',
-                      transition: 'all 0.3s ease',
+                      transition: 'all 0.25s ease',
+                      boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLElement).style.background = '#1E293B';
+                      (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLElement).style.background = '#0F172A';
+                      (e.currentTarget as HTMLElement).style.transform = 'none';
+                    }}
                   >
-                    Skicka meddelande
+                    Skicka förfrågan
                   </button>
                 </form>
               </div>
@@ -350,18 +385,19 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── SECTION C: FAQ ────────────────────────────────────── */}
+      {/* ── SECTION C: FAQ ─────────────────────────────────────── */}
       <section style={{ background: '#ffffff', padding: '80px 0', borderTop: '1px solid #e2e8f0' }}>
         <div style={container}>
           <FAQAccordion
             items={faqItems}
-            title="Frågor & svar inför kontakt"
-            subtitle="Här hittar du svar på de vanligaste funderingarna innan du anlitar oss."
+            title="Vanliga frågor om våra tjänster"
+            subtitle="Här har vi samlat svar på återkommande frågor kring offerter, etablering och vägmarkeringsarbeten."
+            dark={false}
           />
         </div>
       </section>
 
-      {/* ── SECTION D: CTA BANNER ──────────────────────────────── */}
+      {/* ── SECTION D: CTA ────────────────────────────────────────── */}
       <CTABanner />
 
       <style>{`
