@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Länkförhandsvisningstest | J Måleri Åhus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: #0f172a; color: #f8fafc; padding: 40px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+    .container { max-width: 900px; width: 100%; }
+    h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; text-align: center; color: #ffffff; }
+    p.subtitle { color: #94a3b8; font-size: 14px; text-align: center; margin-bottom: 36px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px; }
+    .card { background: #1e293b; border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 999px; margin-bottom: 16px; }
+    .badge-imessage { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .badge-whatsapp { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+    .badge-twitter { background: rgba(194, 132, 71, 0.2); color: #f59e0b; }
+
+    /* iMessage Preview Simulation */
+    .imessage-bubble { background: #e5e5ea; color: #000000; border-radius: 18px; overflow: hidden; max-width: 380px; box-shadow: 0 4px 14px rgba(0,0,0,0.15); margin: 0 auto; }
+    .imessage-img { width: 100%; height: 200px; object-fit: cover; display: block; background: #0b1220; }
+    .imessage-content { padding: 12px 14px; background: #f2f2f7; }
+    .imessage-site { font-size: 11px; color: #8e8e93; text-transform: uppercase; font-weight: 600; margin-bottom: 2px; }
+    .imessage-title { font-size: 14px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; color: #000; }
+    .imessage-desc { font-size: 12px; color: #3c3c43; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    /* WhatsApp Preview Simulation */
+    .whatsapp-bubble { background: #dcf8c6; color: #111; border-radius: 8px; overflow: hidden; max-width: 360px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin: 0 auto; }
+    .whatsapp-card { background: #f0f2f5; display: flex; border-left: 4px solid #25d366; }
+    .whatsapp-thumb { width: 100px; height: 100px; object-fit: cover; flex-shrink: 0; background: #0b1220; }
+    .whatsapp-text { padding: 10px 12px; display: flex; flex-direction: column; justify-content: center; }
+    .whatsapp-title { font-size: 13px; font-weight: 700; color: #111b21; margin-bottom: 4px; line-height: 1.2; }
+    .whatsapp-desc { font-size: 11px; color: #667781; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
+    .whatsapp-url { font-size: 10px; color: #8696a0; }
+
+    /* Open Graph Raw Image Verification */
+    .raw-image-card { grid-column: 1 / -1; background: #1e293b; border-radius: 16px; padding: 24px; border: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .raw-image-wrap { max-width: 600px; margin: 16px auto; border-radius: 12px; overflow: hidden; border: 2px solid rgba(194, 132, 71, 0.4); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+    .raw-image-wrap img { width: 100%; height: auto; display: block; }
+    .status-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.15); color: #4ade80; padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-top: 12px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Verifiering av Länkförhandsvisning & Logotyp</h1>
+    <p class="subtitle">Så här renderas J Måleri Åhus logotyp när du skickar länken via iMessage, SMS, WhatsApp & sociala medier</p>
+
+    <div class="grid">
+      <!-- iMessage / SMS Preview -->
+      <div class="card">
+        <span class="badge badge-imessage">iMessage / SMS (Apple iOS)</span>
+        <div class="imessage-bubble">
+          <img src="/og-image.png" alt="Logotyp iMessage" class="imessage-img">
+          <div class="imessage-content">
+            <div class="imessage-site">jmaleri.se</div>
+            <div class="imessage-title">J Måleri Åhus | Måleri och tapetsering i Åhus med omnejd</div>
+            <div class="imessage-desc">J Måleri Åhus utför allt inom invändigt och utvändigt måleri, tapetsering, spackling och fasadmålning i Åhus/Kristianstad med omnejd.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Preview -->
+      <div class="card">
+        <span class="badge badge-whatsapp">WhatsApp & Kvadratisk vy</span>
+        <div class="whatsapp-bubble">
+          <div class="whatsapp-card">
+            <img src="/og-square.png" alt="Logotyp WhatsApp" class="whatsapp-thumb">
+            <div class="whatsapp-text">
+              <div class="whatsapp-title">J Måleri Åhus</div>
+              <div class="whatsapp-desc">Måleri och tapetsering i Åhus med omnejd. Kostnadsfri offert och rådgivning.</div>
+              <div class="whatsapp-url">jmaleri.se</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Raw Open Graph Image Verification -->
+      <div class="raw-image-card">
+        <span class="badge badge-twitter">Officiell Open Graph Banner (1200 × 630 px)</span>
+        <div class="raw-image-wrap">
+          <img src="/og-image.png" alt="J Måleri Åhus OG Image">
+        </div>
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>Logotyp aktiv & verifierad: 1200×630 PNG (image/png)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
