@@ -135,9 +135,9 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 1000,
-          minHeight: scrolled ? '62px' : '72px',
+          minHeight: scrolled ? '78px' : '72px',
           padding: scrolled
-            ? '10px clamp(16px, 3.5vw, 36px)'
+            ? '8px clamp(16px, 3.5vw, 36px)'
             : '14px clamp(16px, 3.5vw, 36px)',
           display: 'flex',
           alignItems: 'center',
@@ -401,31 +401,6 @@ export default function Navbar() {
             <span className="offert-short">Offert</span>
           </Link>
 
-          {/* Phone icon — shown on mobile only */}
-          <div className="mobile-phone-btn" style={{ position: 'relative' }}>
-            <a
-              href="tel:0737718617"
-              aria-label="Ring oss"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                color: '#ffffff',
-                cursor: 'pointer',
-                flexShrink: 0,
-                textDecoration: 'none',
-                transition: 'all 0.2s ease',
-              }}
-            >
-              <Phone size={20} color="#ffffff" />
-            </a>
-          </div>
-
           {/* Hamburger — shown on mobile only */}
           <button
             className="hamburger"
@@ -591,34 +566,38 @@ export default function Navbar() {
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-logo.scrolled {
-          height: 40px;
-          max-height: 40px;
+          height: 64px;
+          max-height: 64px;
           background-color: transparent;
           padding: 0;
           border-radius: 0;
           box-shadow: none;
         }
-        .mobile-phone-btn {
-          display: none;
-        }
-        @media (max-width: 1024px) {
-          .phone-link { display: none !important; }
-        }
         @media (max-width: 768px) {
           .nav-pill { display: none !important; }
           .hamburger { display: flex !important; }
           .offert-btn { display: none !important; }
-          .mobile-phone-btn { display: flex !important; }
+          .phone-link {
+            display: flex !important;
+            border-left: none !important;
+            padding-left: 0 !important;
+            margin: 0 !important;
+          }
+          .phone-link a {
+            font-size: 0.82rem !important;
+            white-space: nowrap !important;
+            gap: 5px !important;
+          }
           nav.navbar-el { padding: 10px 16px !important; min-height: 56px !important; }
-          nav.navbar-el.scrolled { padding: 8px 16px !important; min-height: 50px !important; }
+          nav.navbar-el.scrolled { padding: 7px 16px !important; min-height: 62px !important; }
           .nav-logo {
             height: 38px;
             max-height: 38px;
             padding: 0;
           }
           .nav-logo.scrolled {
-            height: 32px;
-            max-height: 32px;
+            height: 48px;
+            max-height: 48px;
             padding: 0;
           }
         }
