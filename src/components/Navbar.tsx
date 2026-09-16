@@ -464,6 +464,34 @@ export default function Navbar() {
           <X size={24} />
         </button>
 
+        {/* Mobile Menu Logo */}
+        <Link
+          to="/"
+          onClick={handleLogoClick}
+          style={{
+            marginBottom: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            opacity: mobileOpen ? 1 : 0,
+            transform: mobileOpen ? 'scale(1)' : 'scale(0.9)',
+            transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            textDecoration: 'none',
+          }}
+        >
+          <img
+            src={images.logo.url}
+            alt={images.logo.alt}
+            style={{
+              height: '70px',
+              maxWidth: '210px',
+              width: 'auto',
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6))',
+            }}
+          />
+        </Link>
+
         {navLinks.map((link, idx) => {
           const active = isActive(link.href, location.pathname, activeSection);
           const delay = idx * 60;

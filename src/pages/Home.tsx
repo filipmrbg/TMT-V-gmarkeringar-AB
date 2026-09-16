@@ -580,45 +580,35 @@ export default function Home() {
                 logo: '/id06.png',
                 alt: 'ID06 - Auktoriserad och certifierad personalliggare',
                 title: 'ID06',
-                maxH: '145px',
-                maxW: '160px',
+                maxH: '95px',
+                maxW: '130px',
               },
               {
                 logo: '/heta-arbeten.png',
                 alt: 'Heta Arbeten - Brandskyddsföreningen certifierad',
                 title: 'Heta Arbeten - Brandskyddsföreningen',
-                maxH: '135px',
-                maxW: '280px',
+                maxH: '80px',
+                maxW: '180px',
               },
               {
                 logo: '/trafikverket-clean.png',
                 alt: 'Trafikverket Arbete på väg 1+2 certifierad',
                 title: 'Trafikverket - Arbete på väg 1+2',
-                maxH: '125px',
-                maxW: '280px',
+                maxH: '58px',
+                maxW: '200px',
               },
               {
                 logo: '/ssg.png',
                 alt: 'SSG Entre - Industrisäkerhet certifierad',
                 title: 'SSG - Standard Solutions Group',
-                maxH: '105px',
-                maxW: '310px',
+                maxH: '58px',
+                maxW: '190px',
               },
             ].map((cert, i) => (
               <ScrollReveal key={cert.title} animation="fade-up" delay={i * 90}>
                 <div
                   className="cert-logo-item"
                   title={cert.title}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '100%',
-                    height: 'clamp(110px, 13vw, 155px)',
-                    padding: '10px 16px',
-                    transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-                    cursor: 'default',
-                  }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-6px) scale(1.06)';
                   }}
@@ -627,18 +617,13 @@ export default function Home() {
                   }}
                 >
                   <img
+                    className="cert-logo-img"
                     src={cert.logo}
                     alt={cert.alt}
                     loading="lazy"
                     style={{
                       maxHeight: cert.maxH,
                       maxWidth: cert.maxW,
-                      width: 'auto',
-                      height: 'auto',
-                      objectFit: 'contain',
-                      display: 'block',
-                      filter: 'drop-shadow(0 4px 12px rgba(15, 23, 42, 0.05))',
-                      transition: 'filter 0.35s ease',
                     }}
                   />
                 </div>
@@ -706,20 +691,52 @@ export default function Home() {
           grid-template-columns: repeat(4, 1fr);
           align-items: center;
           justify-items: center;
-          gap: clamp(32px, 5vw, 64px);
-          max-width: 1200px;
+          gap: clamp(28px, 4vw, 56px);
+          max-width: 1100px;
           margin: 0 auto;
+        }
+        .cert-logo-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 95px;
+          padding: 8px 12px;
+          box-sizing: border-box;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cert-logo-img {
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+          filter: drop-shadow(0 4px 12px rgba(15, 23, 42, 0.05));
+          transition: filter 0.35s ease, transform 0.35s ease;
         }
         @media (max-width: 960px) {
           .cert-logos-showcase {
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px 24px;
+            gap: 32px;
+            max-width: 480px;
+          }
+          .cert-logo-item {
+            height: 75px;
+            padding: 4px 8px;
           }
         }
-        @media (max-width: 520px) {
+        @media (max-width: 640px) {
           .cert-logos-showcase {
             grid-template-columns: 1fr;
-            gap: 36px;
+            gap: 32px;
+            max-width: 260px;
+          }
+          .cert-logo-item {
+            height: auto !important;
+            padding: 0 !important;
+          }
+          .cert-logo-img {
+            max-height: 52px !important;
+            max-width: 170px !important;
           }
         }
         @media (max-width: 1024px) {
