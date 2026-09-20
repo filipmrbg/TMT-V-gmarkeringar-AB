@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import { Phone, MapPin, Mail, ShieldCheck } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import FAQAccordion from '../components/FAQAccordion';
 import CTABanner from '../components/CTABanner';
+import QuoteForm from '../components/QuoteForm';
 import { usePageTitle } from '../hooks/usePageTitle';
 
 const container: React.CSSProperties = {
@@ -30,40 +30,11 @@ const faqItems = [
   },
 ];
 
-const inputStyle: React.CSSProperties = {
-  width: '100%',
-  padding: '14px 16px',
-  border: '1px solid #e5e7eb',
-  borderRadius: '12px',
-  background: '#fafafa',
-  fontSize: '0.95rem',
-  fontFamily: 'var(--font-family)',
-  color: 'var(--color-text-dark)',
-  outline: 'none',
-  boxSizing: 'border-box',
-  marginBottom: '16px',
-  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-  display: 'block',
-};
-
-function focusInput(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
-  e.currentTarget.style.borderColor = 'var(--color-primary)';
-  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(255, 255, 255, 0.15)';
-}
-function blurInput(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
-  e.currentTarget.style.borderColor = '#e5e7eb';
-  e.currentTarget.style.boxShadow = 'none';
-}
-
 export default function Contact() {
   usePageTitle(
     'Kontakta TMT Vägmarkeringar | Hela Sverige',
     'Kontakta TMT Vägmarkeringar AB för professionell vägmarkering, linjemålning, parkeringslinjer och industrimålning i hela Sverige. Ring 073-771 86 17.'
   );
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState('');
 
   return (
     <main style={{ fontFamily: 'var(--font-family)' }}>
@@ -246,138 +217,11 @@ export default function Contact() {
                 boxShadow: '0 4px 30px rgba(0,0,0,0.06)',
                 border: '1px solid #e2e8f0',
               }}>
-                <h2 style={{
-                  color: 'var(--color-text-dark)',
-                  fontWeight: 700,
-                  fontSize: 'clamp(1.6rem, 2.5vw, 2rem)',
-                  margin: '0 0 24px 0',
-                }}>
-                  Skicka en förfrågan
-                </h2>
-
-                <form onSubmit={(e) => {
-                  e.preventDefault();
-                  alert('Tack för din förfrågan! Vi återkommer inom kort.');
-                }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="contact-form-row">
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                        Ditt namn / Kontaktperson
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="För- och efternamn"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        style={inputStyle}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      />
-                    </div>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                        Företag / BRF / Kommun (valfritt)
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Företagsnamn eller BRF"
-                        style={inputStyle}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      />
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="contact-form-row">
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                        E-postadress
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="din.epost@foretag.se"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        style={inputStyle}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      />
-                    </div>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                        Telefonnummer
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="070-123 45 67"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        required
-                        style={inputStyle}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                      Plats / Ort för projektet
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Ort eller kommun"
-                      style={inputStyle}
-                      onFocus={focusInput}
-                      onBlur={blurInput}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                      Beskriv ert projekt eller behov
-                    </label>
-                    <textarea
-                      rows={4}
-                      placeholder="Berätta om typ av markering, yta (ca m² eller antal p-platser) samt önskad tidsplan..."
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      required
-                      style={{ ...inputStyle, resize: 'vertical' }}
-                      onFocus={focusInput}
-                      onBlur={blurInput}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    style={{
-                      width: '100%',
-                      padding: '16px',
-                      background: '#0F172A',
-                      color: '#ffffff',
-                      border: 'none',
-                      borderRadius: '12px',
-                      fontSize: '1rem',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      transition: 'all 0.25s ease',
-                      boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
-                    }}
-                    onMouseEnter={e => {
-                      (e.currentTarget as HTMLElement).style.background = '#1E293B';
-                      (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={e => {
-                      (e.currentTarget as HTMLElement).style.background = '#0F172A';
-                      (e.currentTarget as HTMLElement).style.transform = 'none';
-                    }}
-                  >
-                    Skicka förfrågan
-                  </button>
-                </form>
+                <QuoteForm
+                  title="Beskriv ert projekt"
+                  subtitle="Vi återkopplar vanligtvis samma eller nästkommande arbetsdag."
+                  buttonText="Skicka offertförfrågan"
+                />
               </div>
             </ScrollReveal>
 
@@ -405,10 +249,6 @@ export default function Contact() {
           .contact-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
-          }
-          .contact-form-row {
-            grid-template-columns: 1fr !important;
-            gap: 0 !important;
           }
         }
       `}</style>

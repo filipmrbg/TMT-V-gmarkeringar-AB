@@ -63,47 +63,47 @@ const images: SiteImages = {
   services: {
     // Rad 1: Markering, linjer och vägmiljö
     'vagmarkering': {
-      url: '/services-hero.jpg',
-      alt: 'Vägmarkering och linjemålning i hela Sverige',
+      url: '/services/vagmarkering.jpg',
+      alt: 'Vägmarkering och linjemålning med termoplast på motorväg och landsväg',
     },
     'parkeringsplatser': {
-      url: '/gallery/gallery-1.jpg',
-      alt: 'Parkeringsmarkering, uppmätning och linjemålning av p-rutor',
+      url: '/services/parkeringsplatser.jpg',
+      alt: 'Parkeringsmarkering, uppmätning och linjemålning av p-rutor i garage och utomhus',
     },
     'laddplatser-symboler': {
-      url: '/gallery/gallery-3.jpg',
-      alt: 'Laddplatsmarkering, elbilssymboler och specialmarkeringar',
+      url: '/services/laddplatser-symboler.jpg',
+      alt: 'Laddplatsmarkering med laddsymboler vid elbilsladdstationer',
     },
     'overgangsstallen': {
-      url: '/gallery/gallery-2.jpg',
+      url: '/services/overgangsstallen.jpg',
       alt: 'Övergångsställen, zebralinjer och gångpassager',
     },
 
     // Rad 2: Underhåll, industri och säsongsentreprenad
     'frasning-borttagning': {
-      url: '/gallery/gallery-5.jpg',
-      alt: 'Linjefräsning och borttagning av gamla linjer på asfalt och betong',
+      url: '/services/frasning-borttagning.jpg',
+      alt: 'Linjefräsning och borttagning av gamla väglinjer och symboler',
     },
     'industrimalning': {
-      url: '/gallery/gallery-4.jpg',
-      alt: 'Industrimålning och truckgångar i lagerlokaler och industrier',
+      url: '/services/industrimalning.webp',
+      alt: 'Industrimålning och varningszoner i verkstad och lagerlokaler',
     },
     'snorojning-snoplogning': {
-      url: '/gallery/gallery-6.jpg',
-      alt: 'Snöröjning, snöplogning och vinterväghållning',
+      url: '/services/snorojning-snoplogning.webp',
+      alt: 'Snöröjning, snöplogning och vinterväghållning med hjullastare och vikplog',
     },
     'tma-vagsakerhet': {
-      url: '/cta-banner-bg.jpg',
+      url: '/about.jpg',
       alt: 'TMA-körning, påkörningsskydd och vägsäkerhet vid vägarbete',
     },
 
     // Bakåtkompatibla alias
     'parkeringsmarkering': {
-      url: '/gallery/gallery-1.jpg',
+      url: '/services/parkeringsplatser.jpg',
       alt: 'Parkeringsmarkering och linjer',
     },
     'symbolmalning': {
-      url: '/gallery/gallery-3.jpg',
+      url: '/services/laddplatser-symboler.jpg',
       alt: 'Symbolmålning och specialmarkeringar',
     },
   },
@@ -141,8 +141,8 @@ const images: SiteImages = {
       alt: 'TMT Vägmarkeringar lastbil och vägmarkeringsutrustning',
     },
     midSection: {
-      url: '/cta-mid-section.webp',
-      alt: 'TMT Vägmarkeringar linjemålning',
+      url: '/services/vagmarkering.jpg',
+      alt: 'TMT Vägmarkeringar professionell vägmarkering och linjemålning',
     },
   },
 
@@ -166,51 +166,51 @@ const images: SiteImages = {
   portfolio: [
     {
       image: {
-        url: '/gallery/gallery-1.jpg',
-        alt: 'Parkeringsmarkering och linjemålning för företag och BRF',
+        url: '/services/vagmarkering.jpg',
+        alt: 'Professionell vägmarkering och linjemålning på motorväg med termoplast',
       },
-      title: 'Parkeringsmarkering & Linjer',
+      title: 'Vägmarkering och Motorvägslinjer',
+      category: 'Vägmarkering',
+    },
+    {
+      image: {
+        url: '/services/parkeringsplatser.jpg',
+        alt: 'Parkeringsmarkering och uppmätning i garage och p-hus',
+      },
+      title: 'Parkeringsplatser och P-hus',
       category: 'Parkeringsplatser',
     },
     {
       image: {
-        url: '/gallery/gallery-2.jpg',
-        alt: 'Vägmarkering och övergångsställe för kommun och samfällighet',
+        url: '/services/laddplatser-symboler.jpg',
+        alt: 'Laddplatsmarkering med blixtsymboler vid snabbladdningshubb',
       },
-      title: 'Vägmarkering & Övergångsställe',
-      category: 'Vägmarkering',
-    },
-    {
-      image: {
-        url: '/gallery/gallery-3.jpg',
-        alt: 'Laddplatsmarkering och elbilssymboler',
-      },
-      title: 'Laddplatser & Symboler',
+      title: 'Laddplatser och Elbilssymboler',
       category: 'Laddplatsmarkering',
     },
     {
       image: {
-        url: '/gallery/gallery-4.jpg',
-        alt: 'Industrimarkering av truckgångar och skyddszoner i lager',
+        url: '/services/overgangsstallen.jpg',
+        alt: 'Övergångsställe och zebraränder med hög retroreflektion',
       },
-      title: 'Industrilinjer & Truckgångar',
+      title: 'Övergångsställen och Gångpassager',
+      category: 'Övergångsställen',
+    },
+    {
+      image: {
+        url: '/services/frasning-borttagning.jpg',
+        alt: 'Mekanisk linjefräsning av gamla vägmarkeringar och pilar',
+      },
+      title: 'Linjefräsning och Demarkering',
+      category: 'Linjeborttagning',
+    },
+    {
+      image: {
+        url: '/services/industrimalning.webp',
+        alt: 'Industrimålning av varningszoner och säkerhetsfält på verkstadsgolv',
+      },
+      title: 'Industrimålning och Skyddszoner',
       category: 'Industrimarkering',
-    },
-    {
-      image: {
-        url: '/gallery/gallery-5.jpg',
-        alt: 'Linjemålning för ökad trafiksäkerhet',
-      },
-      title: 'Linjemålning & Trafiksäkerhet',
-      category: 'Vägmarkering',
-    },
-    {
-      image: {
-        url: '/gallery/gallery-6.jpg',
-        alt: 'Symboler, pilar och stopplinjer med termoplast',
-      },
-      title: 'Symboler, Pilar & Stopplinjer',
-      category: 'Specialmarkering',
     },
   ],
 };

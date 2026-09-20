@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { ShieldCheck, Clock, Award, Send } from 'lucide-react';
+import React from 'react';
+import { ShieldCheck, Clock, Award } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import FAQAccordion from '../components/FAQAccordion';
 import CTABanner from '../components/CTABanner';
+import QuoteForm from '../components/QuoteForm';
 import { usePageTitle } from '../hooks/usePageTitle';
 
 const container: React.CSSProperties = {
@@ -27,42 +27,11 @@ const faqItems = [
   },
 ];
 
-const inputStyle: React.CSSProperties = {
-  width: '100%',
-  padding: '14px 16px',
-  border: '1px solid #e5e7eb',
-  borderRadius: '12px',
-  background: '#fafafa',
-  fontSize: '0.95rem',
-  fontFamily: 'var(--font-family)',
-  color: 'var(--color-text-dark)',
-  outline: 'none',
-  boxSizing: 'border-box',
-  marginBottom: '16px',
-  transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-  display: 'block',
-};
-
-function focusInput(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-  e.currentTarget.style.borderColor = '#0F172A';
-  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(15, 23, 42, 0.1)';
-}
-function blurInput(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
-  e.currentTarget.style.borderColor = '#e5e7eb';
-  e.currentTarget.style.boxShadow = 'none';
-}
-
 export default function Quote() {
   usePageTitle(
     'Begär offert | TMT Vägmarkeringar',
     'Beskriv ert projekt och begär en kostnadsfri offert för vägmarkering, linjemålning, parkeringsrutor eller industrimålning i hela Sverige.'
   );
-  const [searchParams]        = useSearchParams();
-  const [name, setName]       = useState('');
-  const [email, setEmail]     = useState('');
-  const [phone, setPhone]     = useState('');
-  const [service, setService] = useState(() => searchParams.get('service') || '');
-  const [message, setMessage] = useState('');
 
   return (
     <main style={{ fontFamily: 'var(--font-family)' }}>
@@ -128,143 +97,11 @@ export default function Quote() {
                 boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
                 border: '1px solid #f0ede8',
               }}>
-                <h2 style={{
-                  color: 'var(--color-text-dark)',
-                  fontWeight: 700,
-                  fontSize: 'clamp(1.4rem, 2.2vw, 1.8rem)',
-                  margin: '0 0 8px 0',
-                }}>
-                  Beskriv ert markeringsprojekt
-                </h2>
-                <p style={{ color: 'var(--color-gray-600)', fontSize: '0.92rem', margin: '0 0 28px 0', lineHeight: 1.6 }}>
-                  Vi återkopplar vanligtvis samma eller nästkommande arbetsdag.
-                </p>
-
-                <form onSubmit={(e) => { e.preventDefault(); alert('Tack för din förfrågan! Vi kontaktar dig inom 24 timmar.'); }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="quote-form-row">
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                        Ditt namn / Kontaktperson *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="För- och efternamn"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        style={inputStyle}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                        Telefonnummer *
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="070-000 00 00"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        style={inputStyle}
-                        onFocus={focusInput}
-                        onBlur={blurInput}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                      E-postadress *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="din.epost@foretag.se"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      style={inputStyle}
-                      onFocus={focusInput}
-                      onBlur={blurInput}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                      Typ av tjänst *
-                    </label>
-                    <select
-                      required
-                      value={service}
-                      onChange={(e) => setService(e.target.value)}
-                      style={{ ...inputStyle, cursor: 'pointer' }}
-                      onFocus={focusInput}
-                      onBlur={blurInput}
-                    >
-                      <option value="">Välj tjänst...</option>
-                      <option value="vagmarkering">Vägmarkering</option>
-                      <option value="parkeringsplatser">Parkeringsplatser</option>
-                      <option value="laddplatser-symboler">Laddplatser och symboler</option>
-                      <option value="overgangsstallen">Övergångsställen</option>
-                      <option value="frasning-borttagning">Linjefräsning</option>
-                      <option value="industrimalning">Industrimålning</option>
-                      <option value="snorojning-snoplogning">Snöröjning</option>
-                      <option value="tma-vagsakerhet">TMA-körning</option>
-                      <option value="annat">Annat markerings- eller entreprenadarbete</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 600, color: 'var(--color-text-dark)', marginBottom: '6px' }}>
-                      Projektbeskrivning *
-                    </label>
-                    <textarea
-                      required
-                      rows={5}
-                      placeholder="Berätta om ytan, antal p-platser, vägsträcka, plats/ort och önskad tidsram..."
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      style={{ ...inputStyle, resize: 'vertical' }}
-                      onFocus={focusInput}
-                      onBlur={blurInput}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    style={{
-                      background: '#0F172A',
-                      color: '#ffffff',
-                      border: 'none',
-                      padding: '16px 36px',
-                      borderRadius: 'var(--border-radius-pill)',
-                      fontSize: '1rem',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      width: '100%',
-                      fontFamily: 'var(--font-family)',
-                      boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.background = '#1E293B';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.background = '#0F172A';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    <Send size={18} />
-                    Skicka offertförfrågan
-                  </button>
-                </form>
+                <QuoteForm
+                  title="Beskriv ert projekt"
+                  subtitle="Vi återkopplar vanligtvis samma eller nästkommande arbetsdag."
+                  buttonText="Skicka offertförfrågan"
+                />
               </div>
             </ScrollReveal>
 
@@ -365,10 +202,6 @@ export default function Quote() {
           .quote-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
-          }
-          .quote-form-row {
-            grid-template-columns: 1fr !important;
-            gap: 0 !important;
           }
         }
       `}</style>

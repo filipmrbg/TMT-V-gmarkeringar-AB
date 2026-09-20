@@ -42,8 +42,8 @@ export const services: ServiceItem[] = [
     detailedDescription: `TMT Vägmarkeringar AB är specialister på alla former av vägmarkering för kommuner, samfälligheter, enskilda vägar och entreprenader. Med modern maskinpark och godkända material applicerar vi kantlinjer, mittlinjer, spärrområden och cykelbanor med högsta precision och slitstyrka.
 
 Alla våra vägmarkeringar uppfyller Trafikverkets krav på friktion och retroreflektion, vilket säkerställer maximal synbarhet i både mörker och nederbörd.`,
-    heroImage: '/services-hero.jpg',
-    image: '/services-hero.jpg',
+    heroImage: '/services/vagmarkering.jpg',
+    image: '/services/vagmarkering.jpg',
     href: '/tjanster/vagmarkering',
     tag: 'Vägmarkering',
     badge: 'Trafikverket-standard',
@@ -78,8 +78,8 @@ Alla våra vägmarkeringar uppfyller Trafikverkets krav på friktion och retrore
     detailedDescription: `En genomtänkt parkeringsmarkering maximerar antalet platser, minskar risken för parkeringsskador och skapar ett prydligt och välorganiserat intryck för boende och besökare. TMT Vägmarkeringar AB hjälper bostadsrättsföreningar, fastighetsbolag och handelsplatser över hela Sverige att linjera parkeringsytor, handikapplatser, MC-platser och reserverade zoner enligt gällande standarder.
 
 Vi bistår även med rådgivning kring flödesoptimering och linjelayout så att fordon och fotgängare kan röra sig smidigt och säkert på området.`,
-    heroImage: '/gallery/gallery-1.jpg',
-    image: '/gallery/gallery-1.jpg',
+    heroImage: '/services/parkeringsplatser.jpg',
+    image: '/services/parkeringsplatser.jpg',
     href: '/tjanster/parkeringsplatser',
     tag: 'Parkeringslinjer',
     badge: 'Optimerad layout',
@@ -114,8 +114,8 @@ Vi bistår även med rådgivning kring flödesoptimering och linjelayout så att
     detailedDescription: `I takt med att elfordon ökar ställs högre krav på tydligt utmärkta laddplatser. Vi målar elbilssymboler, laddstolpszoner och kontrastrika gröna bakgrunder som gör det kristallklart vilka platser som är reserverade för laddning.
 
 Dessutom utför vi alla typer av specialsymboler med prefabricerad termoplast och schabloner – inklusive cykelbanor, gångstråk, hastighetsbegränsningar och skräddarsydda mönster.`,
-    heroImage: '/gallery/gallery-3.jpg',
-    image: '/gallery/gallery-3.jpg',
+    heroImage: '/services/laddplatser-symboler.jpg',
+    image: '/services/laddplatser-symboler.jpg',
     href: '/tjanster/laddplatser-symboler',
     tag: 'Laddplatser',
     badge: 'Elbilsmarkering',
@@ -150,8 +150,8 @@ Dessutom utför vi alla typer av specialsymboler med prefabricerad termoplast oc
     detailedDescription: `Övergångsställen och gångpassager ställer de allra högsta kraven på synbarhet, friktion och slitstyrka. Vi applicerar zebralinjer och varningsmarkeringar med godkänd termoplast och glaspärlor för optimal retroreflektion i regn och mörker.
 
 Oavsett om det rör sig om kommunala gator, skolområden, köpcentrum eller samfällighetsvägar säkerställer vi att markeringarna uppfyller alla gällande standarder och ger fotgängare trygg passage.`,
-    heroImage: '/gallery/gallery-2.jpg',
-    image: '/gallery/gallery-2.jpg',
+    heroImage: '/services/overgangsstallen.jpg',
+    image: '/services/overgangsstallen.jpg',
     href: '/tjanster/overgangsstallen',
     tag: 'Trafiksäkerhet',
     badge: 'Hög reflexförmåga',
@@ -188,8 +188,8 @@ Oavsett om det rör sig om kommunala gator, skolområden, köpcentrum eller samf
     detailedDescription: `Vid omdisponering av parkeringsytor, ändrade trafikflöden eller felmålade linjer krävs professionell borttagning. Med moderna linjefräsar och mekanisk utrustning avlägsnar vi gammal termoplast och vägmarkeringsfärg effektivt.
 
 Vi anpassar fräsdjup och metod efter underlaget – vare sig det gäller slät betong i parkeringshus eller grov asfalt utomhus – så att ytan blir ren och redo för ny applicering utan onödig påverkan.`,
-    heroImage: '/gallery/gallery-5.jpg',
-    image: '/gallery/gallery-5.jpg',
+    heroImage: '/services/frasning-borttagning.jpg',
+    image: '/services/frasning-borttagning.jpg',
     href: '/tjanster/frasning-borttagning',
     tag: 'Linjeborttagning',
     badge: 'Skonsam metod',
@@ -224,8 +224,8 @@ Vi anpassar fräsdjup och metod efter underlaget – vare sig det gäller slät 
     detailedDescription: `I industri- och lagermiljöer är tydlig uppmärkning avgörande för en säker arbetsmiljö. Genom att separera gående från trucktrafik och tydligt markera nödutgångar, brandutrustning och pallplatser minskar risken för arbetsplatsolyckor samtidigt som logistiken löper smidigare.
 
 TMT Vägmarkeringar AB använder slitstarka tvåkomponentsfärger och specialtermoplast anpassade för hårt slitage, frekvent truckkörning och maskinell städning på betong- och asfaltsgolv.`,
-    heroImage: '/gallery/gallery-4.jpg',
-    image: '/gallery/gallery-4.jpg',
+    heroImage: '/services/industrimalning.webp',
+    image: '/services/industrimalning.webp',
     href: '/tjanster/industrimalning',
     tag: 'Industrimarkering',
     badge: 'Arbetsmiljö och säkerhet',
@@ -260,8 +260,8 @@ TMT Vägmarkeringar AB använder slitstarka tvåkomponentsfärger och specialter
     detailedDescription: `När vintern slår till är snabb och pålitlig snöröjning avgörande för att hålla verksamheter rullande och minimera halkolyckor. Vi erbjuder snöröjning, snöplogning, sandning och saltning för kommersiella fastigheter, industriområden, bostadsrättsföreningar och samfälligheter.
 
 Med flexibel maskinpark och hög beredskap rycker vi ut vid snöfall för att säkerställa trygg framkomlighet för både bilar och fotgängare.`,
-    heroImage: '/gallery/gallery-6.jpg',
-    image: '/gallery/gallery-6.jpg',
+    heroImage: '/services/snorojning-snoplogning.webp',
+    image: '/services/snorojning-snoplogning.webp',
     href: '/tjanster/snorojning-snoplogning',
     tag: 'Vinterväghållning',
     badge: 'Beredskap dygnet runt',

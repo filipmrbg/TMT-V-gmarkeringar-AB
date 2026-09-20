@@ -492,11 +492,11 @@ export default function Home() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `url(/cta-mid-section.webp)`,
+          backgroundImage: `url(${images.cta?.midSection?.url || '/services/vagmarkering.jpg'})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundPosition: 'center 50%',
         }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(15, 23, 42, 0.88)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.90) 0%, rgba(15, 23, 42, 0.84) 100%)' }} />
         <div style={{ ...container, position: 'relative', zIndex: 1 }}>
           <ScrollReveal animation="scale-in">
             <h2 style={{

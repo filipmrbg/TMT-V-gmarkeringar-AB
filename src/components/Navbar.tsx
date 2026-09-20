@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, ChevronDown } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
 import images from '../data/images';
 import services from '../data/services';
 
@@ -24,6 +24,7 @@ function isActive(href: string, pathname: string, activeSection: string | null):
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -401,175 +402,421 @@ export default function Navbar() {
             <span className="offert-short">Offert</span>
           </Link>
 
-          {/* Hamburger — shown on mobile only */}
+          {/* Hamburger — modern frosted pill button with animated lines */}
           <button
             className="hamburger"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Öppna meny"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Stäng meny' : 'Öppna meny'}
+            aria-expanded={mobileOpen}
             style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              color: 'var(--color-white)',
               display: 'none',
-              padding: '4px',
-              lineHeight: 0,
+              alignItems: 'center',
+              gap: '8px',
+              background: mobileOpen ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              borderRadius: '999px',
+              padding: '7px 14px',
+              cursor: 'pointer',
+              color: '#ffffff',
+              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.25)',
+              transition: 'all 0.25s ease',
             }}
           >
-            <Menu size={26} />
+            <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+              {mobileOpen ? 'Stäng' : 'Meny'}
+            </span>
+            <div
+              style={{
+                width: '16px',
+                height: '12px',
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span
+                style={{
+                  display: 'block',
+                  height: '2px',
+                  width: '100%',
+                  background: '#ffffff',
+                  borderRadius: '2px',
+                  transformOrigin: 'center',
+                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transform: mobileOpen ? 'translateY(5px) rotate(45deg)' : 'none',
+                }}
+              />
+              <span
+                style={{
+                  display: 'block',
+                  height: '2px',
+                  width: mobileOpen ? '100%' : '75%',
+                  marginLeft: 'auto',
+                  background: '#ffffff',
+                  borderRadius: '2px',
+                  transition: 'opacity 0.2s ease, transform 0.2s ease',
+                  opacity: mobileOpen ? 0 : 1,
+                  transform: mobileOpen ? 'scaleX(0)' : 'none',
+                }}
+              />
+              <span
+                style={{
+                  display: 'block',
+                  height: '2px',
+                  width: '100%',
+                  background: '#ffffff',
+                  borderRadius: '2px',
+                  transformOrigin: 'center',
+                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transform: mobileOpen ? 'translateY(-5px) rotate(-45deg)' : 'none',
+                }}
+              />
+            </div>
           </button>
         </div>
       </nav>
 
-      {/* Mobile fullscreen overlay */}
+      {/* Mobile Backdrop Overlay */}
       <div
+        onClick={() => setMobileOpen(false)}
         style={{
           position: 'fixed',
           inset: 0,
           zIndex: 2000,
-          background: 'rgba(20,24,33,0.98)',
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '20px',
+          background: 'rgba(2, 6, 23, 0.72)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
           opacity: mobileOpen ? 1 : 0,
           pointerEvents: mobileOpen ? 'all' : 'none',
-          transition: 'opacity 0.3s ease',
-          overflowY: 'auto',
-          padding: '40px 20px',
+          transition: 'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
-      >
-        <button
-          onClick={() => setMobileOpen(false)}
-          aria-label="Stäng meny"
-          style={{
-            position: 'absolute',
-            top: '24px',
-            right: '24px',
-            background: 'rgba(255,255,255,0.08)',
-            border: 'none',
-            cursor: 'pointer',
-            color: 'var(--color-white)',
-            padding: '10px',
-            borderRadius: '50%',
-            lineHeight: 0,
-            transition: 'background 0.2s ease',
-          }}
-          onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.15)')}
-          onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.08)')}
-        >
-          <X size={24} />
-        </button>
+      />
 
-        {/* Mobile Menu Logo */}
-        <Link
-          to="/"
-          onClick={handleLogoClick}
-          style={{
-            marginBottom: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            opacity: mobileOpen ? 1 : 0,
-            transform: mobileOpen ? 'scale(1)' : 'scale(0.9)',
-            transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-            textDecoration: 'none',
-          }}
-        >
-          <img
-            src={images.logo.url}
-            alt={images.logo.alt}
-            style={{
-              height: '70px',
-              maxWidth: '210px',
-              width: 'auto',
-              objectFit: 'contain',
-              filter: 'drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6))',
-            }}
-          />
-        </Link>
-
-        {navLinks.map((link, idx) => {
-          const active = isActive(link.href, location.pathname, activeSection);
-          const delay = idx * 60;
-          return (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.75)',
-                fontFamily: 'var(--font-family)',
-                fontSize: '1.2rem',
-                fontWeight: active ? 700 : 500,
-                padding: '8px 32px',
-                borderRadius: 'var(--border-radius-pill)',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                opacity: mobileOpen ? 1 : 0,
-                transform: mobileOpen ? 'translateX(0)' : 'translateX(20px)',
-                transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease',
-                transitionDelay: mobileOpen ? `${delay}ms, ${delay}ms, 0ms` : '0ms',
-              }}
-              onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = '#ffffff'; }}
-              onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = 'rgba(255, 255, 255, 0.75)'; }}
-            >
-              {link.label}
-            </button>
-          );
-        })}
-
-        <Link
-          to="/offert"
-          onClick={() => setMobileOpen(false)}
-          style={{
-            marginTop: '12px',
-            background: '#ffffff',
-            color: '#0F172A',
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 700,
-            letterSpacing: '0.06em',
-            textTransform: 'uppercase',
-            borderRadius: 'var(--border-radius-pill)',
-            padding: '14px 48px',
-            textDecoration: 'none',
-            fontSize: '1rem',
-            opacity: mobileOpen ? 1 : 0,
-            transform: mobileOpen ? 'translateX(0)' : 'translateX(20px)',
-            transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease',
-            transitionDelay: mobileOpen ? `${navLinks.length * 60 + 100}ms, ${navLinks.length * 60 + 100}ms, 0ms, 0ms` : '0ms',
-          }}
-        >
-          Begär offert
-        </Link>
-
-        {/* Mobile Contact Information */}
-        <div style={{
-          marginTop: '12px',
+      {/* Mobile Slide-Over Drawer */}
+      <aside
+        aria-label="Mobilmeny"
+        style={{
+          position: 'fixed',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          width: 'min(380px, 86vw)',
+          zIndex: 2001,
+          background: 'linear-gradient(180deg, #0f172a 0%, #090d16 100%)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.12)',
+          boxShadow: '-10px 0 45px rgba(0, 0, 0, 0.65)',
+          transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
+          transition: 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1)',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
-          opacity: mobileOpen ? 1 : 0,
-          transform: mobileOpen ? 'translateY(0)' : 'translateY(10px)',
-          transition: 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-          transitionDelay: mobileOpen ? `${navLinks.length * 60 + 150}ms` : '0ms',
-        }}>
-          <span style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-            Ring oss direkt:
-          </span>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
-            <a href="tel:0737718617" style={{ color: 'var(--color-white)', fontWeight: 600, fontSize: '0.95rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-              <Phone size={14} color="#ffffff" /> 073-771 86 17
-            </a>
+          justifyContent: 'space-between',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          padding: '24px 20px 28px',
+          boxSizing: 'border-box',
+        }}
+      >
+        {/* Drawer Top Header: Logo + Close Pill */}
+        <div>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingBottom: '20px',
+              marginBottom: '16px',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            }}
+          >
+            <Link to="/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                src={images.logo.url}
+                alt={images.logo.alt}
+                style={{
+                  height: '42px',
+                  maxWidth: '150px',
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5))',
+                }}
+              />
+            </Link>
+
+            <button
+              onClick={() => setMobileOpen(false)}
+              aria-label="Stäng meny"
+              style={{
+                width: '38px',
+                height: '38px',
+                borderRadius: '50%',
+                background: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#ffffff',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          {/* Drawer Nav Links */}
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+            {navLinks.map((link) => {
+              const active = isActive(link.href, location.pathname, activeSection);
+
+              if (link.hasDropdown) {
+                return (
+                  <div key={link.href} style={{ borderRadius: '14px', overflow: 'hidden' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        background: active ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                        borderRadius: '12px',
+                        padding: '4px 6px 4px 14px',
+                      }}
+                    >
+                      <button
+                        onClick={() => handleNavClick('/tjanster')}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
+                          fontFamily: 'var(--font-family)',
+                          fontSize: '1.05rem',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          padding: '8px 0',
+                          textAlign: 'left',
+                          flex: 1,
+                        }}
+                      >
+                        {link.label}
+                      </button>
+                      <button
+                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                        aria-label="Visa alla tjänster"
+                        style={{
+                          background: mobileServicesOpen ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+                          border: 'none',
+                          borderRadius: '8px',
+                          width: '36px',
+                          height: '36px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: '#ffffff',
+                          cursor: 'pointer',
+                          transition: 'transform 0.25s ease, background 0.2s ease',
+                        }}
+                      >
+                        <ChevronDown
+                          size={18}
+                          style={{
+                            transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                            transition: 'transform 0.25s ease',
+                          }}
+                        />
+                      </button>
+                    </div>
+
+                    {/* Collapsible Services List */}
+                    {mobileServicesOpen && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '4px',
+                          padding: '8px 0 8px 12px',
+                          marginTop: '4px',
+                          borderLeft: '2px solid rgba(255, 255, 255, 0.15)',
+                          marginLeft: '8px',
+                        }}
+                      >
+                        {services.map((srv) => (
+                          <Link
+                            key={srv.slug}
+                            to={srv.href}
+                            onClick={() => {
+                              setMobileOpen(false);
+                              setMobileServicesOpen(false);
+                            }}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              padding: '8px 12px',
+                              borderRadius: '8px',
+                              color: location.pathname === srv.href ? '#ffffff' : 'rgba(255, 255, 255, 0.72)',
+                              background: location.pathname === srv.href ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                              textDecoration: 'none',
+                              fontSize: '0.88rem',
+                              fontWeight: location.pathname === srv.href ? 700 : 500,
+                              transition: 'all 0.2s ease',
+                            }}
+                          >
+                            <span>{srv.title}</span>
+                            <ChevronRight size={14} color="rgba(255, 255, 255, 0.4)" />
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  style={{
+                    background: active ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                    border: '1px solid',
+                    borderColor: active ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
+                    fontFamily: 'var(--font-family)',
+                    fontSize: '1.05rem',
+                    fontWeight: active ? 700 : 600,
+                    padding: '12px 14px',
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!active) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!active) e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  <span>{link.label}</span>
+                  <ArrowRight size={15} color="rgba(255, 255, 255, 0.35)" />
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* Drawer Bottom Actions */}
+        <div
+          style={{
+            marginTop: '28px',
+            paddingTop: '20px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+          }}
+        >
+          {/* CTA Quote Button */}
+          <Link
+            to="/offert"
+            onClick={() => setMobileOpen(false)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              background: '#ffffff',
+              color: '#0F172A',
+              fontFamily: 'var(--font-heading)',
+              fontWeight: 700,
+              fontSize: '0.95rem',
+              letterSpacing: '0.04em',
+              borderRadius: '999px',
+              padding: '14px 20px',
+              textDecoration: 'none',
+              boxShadow: '0 4px 18px rgba(0, 0, 0, 0.3)',
+              transition: 'transform 0.2s ease, background 0.2s ease',
+            }}
+          >
+            Begär offert <ArrowRight size={16} />
+          </Link>
+
+          {/* Direct Phone Action Card */}
+          <a
+            href="tel:0737718617"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '14px',
+              padding: '12px 16px',
+              textDecoration: 'none',
+              color: '#ffffff',
+              transition: 'background 0.2s ease',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  background: 'rgba(34, 197, 94, 0.15)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#4ade80',
+                }}
+              >
+                <Phone size={15} />
+              </div>
+              <div>
+                <span
+                  style={{
+                    display: 'block',
+                    fontSize: '0.72rem',
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                  }}
+                >
+                  Ring direkt
+                </span>
+                <span style={{ fontSize: '0.92rem', fontWeight: 700 }}>073-771 86 17</span>
+              </div>
+            </div>
+            <div
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: '#22c55e',
+                boxShadow: '0 0 8px #22c55e',
+              }}
+            />
+          </a>
+
+          <div style={{ textAlign: 'center', marginTop: '4px' }}>
+            <span style={{ fontSize: '0.72rem', color: 'rgba(255, 255, 255, 0.4)', letterSpacing: '0.02em' }}>
+              TMT Vägmarkeringar AB • Hela Sverige
+            </span>
           </div>
         </div>
-      </div>
+      </aside>
 
       <style>{`
         .nav-dropdown-wrapper::after {

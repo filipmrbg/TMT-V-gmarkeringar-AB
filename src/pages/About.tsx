@@ -23,7 +23,7 @@ export default function About() {
       {/* ── SECTION A: HERO HEADER ────────────────────────────── */}
       <section style={{
         position: 'relative',
-        backgroundImage: 'url("/about.jpg")',
+        backgroundImage: 'url("/gallery/gallery-1.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center 40%',
         paddingTop: '150px',
@@ -98,7 +98,7 @@ export default function About() {
                   padding: '4px 14px',
                   borderRadius: '999px',
                 }}>
-                  Vår Bakgrund & Erfarenhet
+                  Vår Bakgrund och Erfarenhet
                 </span>
                 <h2 style={{
                   color: 'var(--color-text-dark)',
@@ -172,12 +172,12 @@ export default function About() {
                       fontSize: '0.9rem',
                       display: 'block',
                     }}>
-                      Dan Wååg, VD & Grundare TMT Vägmarkeringar AB
+                      Dan Wååg, VD och Grundare TMT Vägmarkeringar AB
                     </span>
                   </div>
 
                   <Button variant="primary" size="lg" href="/kontakt">
-                    Kontakta oss för offert & rådgivning
+                    Kontakta oss för offert och rådgivning
                   </Button>
                 </div>
               </ScrollReveal>
@@ -199,7 +199,7 @@ export default function About() {
             {[
               {
                 icon: ShieldCheck,
-                title: 'Kvalitet & Standard',
+                title: 'Kvalitet och Standard',
                 desc: 'Alla våra vägmarkeringar och material uppfyller Trafikverkets standarder och krav på friktion och reflexförmåga.',
               },
               {

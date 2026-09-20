@@ -189,7 +189,7 @@ export default function ServiceDetail() {
       <section
         style={{
           position: 'relative',
-          backgroundImage: `url("${service.heroImage || service.image || '/services-hero.jpg'}")`,
+          backgroundImage: `url("${service.heroImage || service.image || '/services/vagmarkering.jpg'}")`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 45%',
           paddingTop: 'clamp(140px, 16vw, 170px)',
@@ -396,28 +396,6 @@ export default function ServiceDetail() {
                       display: 'block',
                     }}
                   />
-                  {/* Floating Guarantee Badge */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '16px',
-                      left: '16px',
-                      background: 'rgba(15, 23, 42, 0.88)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(255, 255, 255, 0.15)',
-                      color: '#ffffff',
-                      padding: '8px 16px',
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      fontSize: '0.85rem',
-                      fontWeight: 600,
-                    }}
-                  >
-                    <ShieldCheck size={18} color="#38bdf8" />
-                    <span>Godkända material och garanti</span>
-                  </div>
                 </div>
 
                 {/* Trust Key Points Box */}

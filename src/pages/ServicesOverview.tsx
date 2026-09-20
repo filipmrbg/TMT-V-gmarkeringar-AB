@@ -64,9 +64,9 @@ export default function ServicesOverview() {
       {/* ── HERO HEADER ──────────── */}
       <section style={{
         position: 'relative',
-        backgroundImage: 'url("/services-hero.jpg")',
+        backgroundImage: 'url("/services/vagmarkering.jpg")',
         backgroundSize: 'cover',
-        backgroundPosition: 'center 45%',
+        backgroundPosition: 'center 55%',
         paddingTop: '140px',
         paddingBottom: '46px',
         textAlign: 'center',
