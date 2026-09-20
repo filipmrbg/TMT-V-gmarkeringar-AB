@@ -321,7 +321,7 @@ export default function Home() {
                   lineHeight: 1.65,
                   margin: '0 0 12px 0',
                 }}>
-                  Från kompletta vägmarkeringar och parkeringsrutor till industrigolv och specialsymboler över hela Sverige.
+                  Från parkeringsrutor och laddplatser till industrigolv, snöröjning och TMA-säkerhet över hela Sverige.
                 </p>
                 <Link
                   to="/tjanster"

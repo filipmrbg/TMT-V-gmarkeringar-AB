@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 const LOGO_ABSOLUTE_URL = 'https://raw.githubusercontent.com/filipmrbg/TMT-V-gmarkeringar-AB/main/public/og-image.png';
 
-export function usePageTitle(title: string, description?: string) {
+export function usePageTitle(title: string, description?: string, image?: string) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -43,7 +43,10 @@ export function usePageTitle(title: string, description?: string) {
       ? window.location.origin
       : 'https://tmtvagmarkeringar.se';
     const absoluteUrl = `${origin}${pathname === '/' ? '' : pathname}`;
-    const absoluteOgImage = LOGO_ABSOLUTE_URL;
+    
+    const activeImage = image
+      ? (image.startsWith('http') ? image : `${origin}${image}`)
+      : LOGO_ABSOLUTE_URL;
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
@@ -61,17 +64,17 @@ export function usePageTitle(title: string, description?: string) {
 
     let ogImage = document.querySelector('meta[property="og:image"]');
     if (ogImage) {
-      ogImage.setAttribute('content', absoluteOgImage);
+      ogImage.setAttribute('content', activeImage);
     } else {
       ogImage = document.createElement('meta');
       ogImage.setAttribute('property', 'og:image');
-      ogImage.setAttribute('content', absoluteOgImage);
+      ogImage.setAttribute('content', activeImage);
       document.head.appendChild(ogImage);
     }
     let twitterImage = document.querySelector('meta[name="twitter:image"]');
     if (twitterImage) {
-      twitterImage.setAttribute('content', absoluteOgImage);
+      twitterImage.setAttribute('content', activeImage);
     }
 
-  }, [title, description, pathname]);
+  }, [title, description, image, pathname]);
 }

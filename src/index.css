@@ -302,14 +302,20 @@ button, .btn, a.offert-btn {
   transform: translateX(6px);
 }
 
-/* ── Icon-Centric Service Showcase (Clean Modern White Cards 4 on a row) ── */
+/* ── Icon-Centric Service Showcase (8 Services in Balanced 4x2 Grid) ── */
 .services-showcase-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
-@media (max-width: 1024px) {
+.services-showcase-grid > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+@media (max-width: 1120px) and (min-width: 641px) {
   .services-showcase-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;

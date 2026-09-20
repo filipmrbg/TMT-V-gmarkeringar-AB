@@ -93,7 +93,7 @@ export default function ServicesOverview() {
               margin: '0 auto',
               lineHeight: 1.65,
             }}>
-              TMT Vägmarkeringar AB erbjuder professionella lösningar inom vägmarkering, linjemålning och parkeringsmarkering i hela Sverige.
+              TMT Vägmarkeringar AB erbjuder professionella lösningar inom parkeringsplatser, väg- och industrimålning, snöröjning och TMA-säkerhet i hela Sverige.
             </p>
           </ScrollReveal>
         </div>
@@ -259,34 +259,64 @@ export default function ServicesOverview() {
                         </div>
                       )}
 
-                      {/* Action Button */}
-                      <Link
-                        to="/offert"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          background: '#0F172A',
-                          color: '#ffffff',
-                          fontWeight: 700,
-                          fontSize: '0.95rem',
-                          padding: '14px 28px',
-                          borderRadius: 'var(--border-radius-pill)',
-                          textDecoration: 'none',
-                          boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
-                          transition: 'all 0.25s ease',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = '#1E293B';
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = '#0F172A';
-                          e.currentTarget.style.transform = 'translateY(0)';
-                        }}
-                      >
-                        Begär offert för {svc.title} <ArrowRight size={16} />
-                      </Link>
+                      {/* Action Buttons */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+                        <Link
+                          to={`/offert?service=${svc.slug}`}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            background: '#0F172A',
+                            color: '#ffffff',
+                            fontWeight: 700,
+                            fontSize: '0.95rem',
+                            padding: '14px 28px',
+                            borderRadius: 'var(--border-radius-pill)',
+                            textDecoration: 'none',
+                            boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
+                            transition: 'all 0.25s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#1E293B';
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#0F172A';
+                            e.currentTarget.style.transform = 'translateY(0)';
+                          }}
+                        >
+                          Begär offert för {svc.title} <ArrowRight size={16} />
+                        </Link>
+
+                        <Link
+                          to={`/tjanster/${svc.slug}`}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            background: '#ffffff',
+                            border: '1.5px solid #cbd5e1',
+                            color: '#0f172a',
+                            fontWeight: 700,
+                            fontSize: '0.92rem',
+                            padding: '12px 22px',
+                            borderRadius: 'var(--border-radius-pill)',
+                            textDecoration: 'none',
+                            transition: 'all 0.2s ease',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.borderColor = '#0f172a';
+                            e.currentTarget.style.background = '#f8fafc';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.borderColor = '#cbd5e1';
+                            e.currentTarget.style.background = '#ffffff';
+                          }}
+                        >
+                          Läs mer & fördjupning <ArrowRight size={15} />
+                        </Link>
+                      </div>
                     </ScrollReveal>
                   </div>
 

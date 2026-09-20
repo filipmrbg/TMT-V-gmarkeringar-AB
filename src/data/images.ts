@@ -61,21 +61,50 @@ const images: SiteImages = {
   },
 
   services: {
+    // Rad 1: Markering, linjer och vägmiljö
     'vagmarkering': {
-      url: '/gallery/gallery-2.jpg',
+      url: '/services-hero.jpg',
       alt: 'Vägmarkering och linjemålning i hela Sverige',
     },
-    'parkeringsmarkering': {
+    'parkeringsplatser': {
       url: '/gallery/gallery-1.jpg',
-      alt: 'Parkeringsmarkering och laddplatser',
+      alt: 'Parkeringsmarkering, uppmätning och linjemålning av p-rutor',
+    },
+    'laddplatser-symboler': {
+      url: '/gallery/gallery-3.jpg',
+      alt: 'Laddplatsmarkering, elbilssymboler och specialmarkeringar',
+    },
+    'overgangsstallen': {
+      url: '/gallery/gallery-2.jpg',
+      alt: 'Övergångsställen, zebralinjer och gångpassager',
+    },
+
+    // Rad 2: Underhåll, industri och säsongsentreprenad
+    'frasning-borttagning': {
+      url: '/gallery/gallery-5.jpg',
+      alt: 'Linjefräsning och borttagning av gamla linjer på asfalt och betong',
     },
     'industrimalning': {
       url: '/gallery/gallery-4.jpg',
-      alt: 'Industrimålning och truckgångar i lagerlokaler',
+      alt: 'Industrimålning och truckgångar i lagerlokaler och industrier',
+    },
+    'snorojning-snoplogning': {
+      url: '/gallery/gallery-6.jpg',
+      alt: 'Snöröjning, snöplogning och vinterväghållning',
+    },
+    'tma-vagsakerhet': {
+      url: '/cta-banner-bg.jpg',
+      alt: 'TMA-körning, påkörningsskydd och vägsäkerhet vid vägarbete',
+    },
+
+    // Bakåtkompatibla alias
+    'parkeringsmarkering': {
+      url: '/gallery/gallery-1.jpg',
+      alt: 'Parkeringsmarkering och linjer',
     },
     'symbolmalning': {
       url: '/gallery/gallery-3.jpg',
-      alt: 'Symbolmålning, pilar och övergångsställen',
+      alt: 'Symbolmålning och specialmarkeringar',
     },
   },
 

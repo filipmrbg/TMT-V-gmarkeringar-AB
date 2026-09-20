@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { ShieldCheck, Clock, Award, Send } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
 import FAQAccordion from '../components/FAQAccordion';
@@ -56,10 +57,11 @@ export default function Quote() {
     'Begär offert | TMT Vägmarkeringar',
     'Beskriv ert projekt och begär en kostnadsfri offert för vägmarkering, linjemålning, parkeringsrutor eller industrimålning i hela Sverige.'
   );
+  const [searchParams]        = useSearchParams();
   const [name, setName]       = useState('');
   const [email, setEmail]     = useState('');
   const [phone, setPhone]     = useState('');
-  const [service, setService] = useState('');
+  const [service, setService] = useState(() => searchParams.get('service') || '');
   const [message, setMessage] = useState('');
 
   return (
@@ -202,11 +204,15 @@ export default function Quote() {
                       onBlur={blurInput}
                     >
                       <option value="">Välj tjänst...</option>
-                      <option value="vagmarkering">Vägmarkering & Trafik</option>
-                      <option value="parkeringsmarkering">Parkeringsmarkering & Laddplatser</option>
-                      <option value="industrimalning">Industrimålning & Lagerlinjer</option>
-                      <option value="symbolmalning">Symbolmålning & Specialmarkering</option>
-                      <option value="annat">Annat markeringsarbete</option>
+                      <option value="vagmarkering">Vägmarkering</option>
+                      <option value="parkeringsplatser">Parkeringsplatser</option>
+                      <option value="laddplatser-symboler">Laddplatser och symboler</option>
+                      <option value="overgangsstallen">Övergångsställen</option>
+                      <option value="frasning-borttagning">Linjefräsning</option>
+                      <option value="industrimalning">Industrimålning</option>
+                      <option value="snorojning-snoplogning">Snöröjning</option>
+                      <option value="tma-vagsakerhet">TMA-körning</option>
+                      <option value="annat">Annat markerings- eller entreprenadarbete</option>
                     </select>
                   </div>
 
