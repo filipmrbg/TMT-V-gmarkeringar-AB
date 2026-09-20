@@ -150,8 +150,8 @@ export default function ServicesOverview() {
         </div>
       </div>
 
-      {/* ── DETAILED SERVICE SECTIONS (ALTERNATING LAYOUT) ──────────── */}
-      <div style={{ padding: '60px 0 100px 0' }}>
+      {/* ── DETAILED SERVICE SECTIONS (ALTERNATING LAYOUT ON DESKTOP, CONSISTENT ON MOBILE) ──────────── */}
+      <div style={{ padding: '40px 0 80px 0' }}>
         {services.map((svc: ServiceItem, index: number) => {
           const isEven = index % 2 === 0;
 
@@ -159,6 +159,7 @@ export default function ServicesOverview() {
             <section
               key={svc.slug}
               id={svc.slug}
+              className="service-section-wrap"
               style={{
                 padding: '80px 0',
                 background: isEven ? '#ffffff' : '#f8fafc',
@@ -166,15 +167,18 @@ export default function ServicesOverview() {
               }}
             >
               <div style={container}>
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                  gap: '50px',
-                  alignItems: 'center',
-                }}>
+                <div
+                  className="service-overview-grid"
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                    gap: '50px',
+                    alignItems: 'center',
+                  }}
+                >
 
-                  {/* Image Column */}
-                  <div style={{ order: isEven ? 1 : 2 }}>
+                  {/* Image Column: order 1 on mobile, alternating on desktop */}
+                  <div className={`service-overview-image ${isEven ? 'is-even' : 'is-odd'}`}>
                     <ScrollReveal animation={isEven ? 'fade-right' : 'fade-left'}>
                       <div style={{
                         position: 'relative',
@@ -202,8 +206,8 @@ export default function ServicesOverview() {
                     </ScrollReveal>
                   </div>
 
-                  {/* Content Column */}
-                  <div style={{ order: isEven ? 2 : 1 }}>
+                  {/* Content Column: order 2 on mobile, alternating on desktop */}
+                  <div className={`service-overview-content ${isEven ? 'is-even' : 'is-odd'}`}>
                     <ScrollReveal animation={isEven ? 'fade-left' : 'fade-right'}>
                       {svc.tag && (
                         <span style={{
@@ -314,7 +318,7 @@ export default function ServicesOverview() {
                             e.currentTarget.style.background = '#ffffff';
                           }}
                         >
-                          Läs mer & fördjupning <ArrowRight size={15} />
+                          Läs mer och fördjupning <ArrowRight size={15} />
                         </Link>
                       </div>
                     </ScrollReveal>
@@ -326,6 +330,41 @@ export default function ServicesOverview() {
           );
         })}
       </div>
+
+      <style>{`
+        /* Desktop: Varannan bild vänster, varannan höger */
+        @media (min-width: 860px) {
+          .service-overview-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 50px !important;
+          }
+          .service-overview-image.is-even { order: 1; }
+          .service-overview-content.is-even { order: 2; }
+          .service-overview-image.is-odd { order: 2; }
+          .service-overview-content.is-odd { order: 1; }
+        }
+
+        /* Mobil & mindre skärmar: Alltid Bild (1) och Beskrivning (2) */
+        @media (max-width: 859px) {
+          .service-overview-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 28px !important;
+          }
+          .service-overview-image {
+            order: 1 !important;
+            width: 100% !important;
+          }
+          .service-overview-content {
+            order: 2 !important;
+            width: 100% !important;
+          }
+          .service-section-wrap {
+            padding: 50px 0 !important;
+          }
+        }
+      `}</style>
 
       {/* ── CTA BANNER ────────────────────────────────────────── */}
       <CTABanner />

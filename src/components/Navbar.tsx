@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Phone, Menu, X, ChevronDown, ChevronRight, ArrowRight } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 import images from '../data/images';
 import services from '../data/services';
 
@@ -62,10 +62,22 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [location.pathname]);
 
+  // Lock scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
+
+  // Auto-close on resize to desktop
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth > 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   // Close mobile menu & dropdown on route change
   useEffect(() => {
@@ -123,12 +135,12 @@ export default function Navbar() {
   }
 
   const isHome = location.pathname === '/';
-  const showNavbarLogo = !isHome || scrolled;
+  const showNavbarLogo = !isHome || scrolled || mobileOpen;
 
   return (
     <>
       <nav
-        className={`navbar-el ${scrolled ? 'scrolled' : ''}`}
+        className={`navbar-el ${scrolled || mobileOpen ? 'scrolled' : ''}`}
         style={{
           position: 'fixed',
           top: 0,
@@ -142,16 +154,17 @@ export default function Navbar() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          background: scrolled
-            ? 'rgba(15, 23, 42, 0.95)'
+          background: (scrolled || mobileOpen)
+            ? 'rgba(15, 23, 42, 0.98)'
             : 'linear-gradient(180deg, rgba(15, 23, 42, 0.65) 0%, rgba(15, 23, 42, 0.12) 70%, transparent 100%)',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-          boxShadow: scrolled ? '0 2px 24px rgba(0,0,0,0.3)' : 'none',
-          transition: 'background 0.35s ease, padding 0.35s ease, min-height 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease',
+          backdropFilter: (scrolled || mobileOpen) ? 'blur(16px)' : 'none',
+          WebkitBackdropFilter: (scrolled || mobileOpen) ? 'blur(16px)' : 'none',
+          boxShadow: (scrolled || mobileOpen) ? '0 2px 24px rgba(0,0,0,0.3)' : 'none',
+          borderBottom: mobileOpen ? '1px solid rgba(255, 255, 255, 0.08)' : 'none',
+          transition: 'background 0.3s ease, padding 0.3s ease, min-height 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease',
         }}
       >
-        {/* Logo — hidden at the very top of startsidan, smoothly fades in on scroll */}
+        {/* Logo */}
         <Link
           to="/"
           onClick={handleLogoClick}
@@ -175,7 +188,7 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Center nav pill — hidden on mobile */}
+        {/* Center nav pill — desktop only */}
         <div className="nav-pill" style={{
           position: 'absolute',
           left: '50%',
@@ -335,8 +348,10 @@ export default function Navbar() {
         </div>
 
         {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+          {/* Phone link — visible on both desktop & mobile */}
           <div
+            className="phone-link"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -367,6 +382,7 @@ export default function Navbar() {
             </a>
           </div>
 
+          {/* Offert CTA — desktop only */}
           <Link
             to="/offert"
             className="offert-btn"
@@ -401,133 +417,166 @@ export default function Navbar() {
             <span className="offert-short">Offert</span>
           </Link>
 
-          {/* Enkel och ren hamburgarikon */}
+          {/* Clean Hamburger Button: Toggles Menu <-> X directly in place */}
           <button
-            className="hamburger"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            className="hamburger-btn"
+            onClick={() => setMobileOpen(prev => !prev)}
             aria-label={mobileOpen ? 'Stäng meny' : 'Öppna meny'}
+            aria-expanded={mobileOpen}
             style={{
-              background: 'none',
+              background: mobileOpen ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
               border: 'none',
+              borderRadius: '8px',
               cursor: 'pointer',
               color: '#ffffff',
               display: 'none',
-              padding: '6px',
-              lineHeight: 0,
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '42px',
+              height: '42px',
+              padding: '0',
+              transition: 'background 0.2s ease, transform 0.2s ease',
             }}
           >
-            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+        </div>
+
+        {/* ── SIMPLE MOBILE DROPDOWN (Directly beneath the header) ── */}
+        <div
+          className="mobile-menu-container"
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            background: 'rgba(15, 23, 42, 0.98)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
+            padding: '16px 20px 24px',
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '8px',
+            transform: mobileOpen ? 'translateY(0)' : 'translateY(-12px)',
+            opacity: mobileOpen ? 1 : 0,
+            pointerEvents: mobileOpen ? 'auto' : 'none',
+            transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease',
+            maxHeight: 'calc(100vh - 72px)',
+            overflowY: 'auto',
+          }}
+        >
+          {/* Direct Nav Links */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            {navLinks.map(link => {
+              const active = isActive(link.href, location.pathname, activeSection);
+              return (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '12px 14px',
+                    borderRadius: '8px',
+                    background: active ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+                    border: 'none',
+                    color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.82)',
+                    fontFamily: 'var(--font-family)',
+                    fontSize: '1.05rem',
+                    fontWeight: active ? 700 : 500,
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    width: '100%',
+                    transition: 'background 0.15s ease',
+                  }}
+                >
+                  <span>{link.label}</span>
+                  {active && (
+                    <span
+                      style={{
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: '#ffffff',
+                      }}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Quick CTA and Call buttons */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              marginTop: '12px',
+              paddingTop: '16px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            }}
+          >
+            <Link
+              to="/offert"
+              onClick={() => setMobileOpen(false)}
+              style={{
+                background: '#ffffff',
+                color: '#0f172a',
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 700,
+                fontSize: '0.92rem',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                borderRadius: '999px',
+                padding: '13px 20px',
+                textAlign: 'center',
+                textDecoration: 'none',
+                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
+              }}
+            >
+              Begär offert
+            </Link>
+
+            <a
+              href="tel:0737718617"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                color: 'rgba(255, 255, 255, 0.8)',
+                fontSize: '0.92rem',
+                fontWeight: 600,
+                textDecoration: 'none',
+                padding: '8px 0',
+              }}
+            >
+              <Phone size={15} color="#ffffff" />
+              <span>073-771 86 17</span>
+            </a>
+          </div>
         </div>
       </nav>
 
-      {/* Enkel och ren mobilmeny overlay */}
+      {/* Dimmed backdrop when menu is open */}
       <div
+        onClick={() => setMobileOpen(false)}
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 1999,
-          background: 'rgba(15, 23, 42, 0.98)',
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '20px',
+          background: 'rgba(0, 0, 0, 0.55)',
+          zIndex: 998,
           opacity: mobileOpen ? 1 : 0,
-          pointerEvents: mobileOpen ? 'all' : 'none',
-          transition: 'opacity 0.25s ease',
-          padding: '40px 24px',
-          boxSizing: 'border-box',
+          pointerEvents: mobileOpen ? 'auto' : 'none',
+          transition: 'opacity 0.22s ease',
         }}
-      >
-        {/* Stängknapp */}
-        <button
-          onClick={() => setMobileOpen(false)}
-          aria-label="Stäng meny"
-          style={{
-            position: 'absolute',
-            top: '20px',
-            right: '20px',
-            background: 'rgba(255, 255, 255, 0.08)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '42px',
-            height: '42px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#ffffff',
-            cursor: 'pointer',
-          }}
-        >
-          <X size={24} />
-        </button>
-
-        {/* Länkar */}
-        {navLinks.map((link) => {
-          const active = isActive(link.href, location.pathname, activeSection);
-          return (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.75)',
-                fontFamily: 'var(--font-family)',
-                fontSize: '1.25rem',
-                fontWeight: active ? 700 : 500,
-                padding: '10px 24px',
-                letterSpacing: '0.04em',
-                transition: 'color 0.2s ease',
-              }}
-            >
-              {link.label}
-            </button>
-          );
-        })}
-
-        {/* Begär offert knapp */}
-        <Link
-          to="/offert"
-          onClick={() => setMobileOpen(false)}
-          style={{
-            marginTop: '12px',
-            background: '#ffffff',
-            color: '#0F172A',
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 700,
-            letterSpacing: '0.05em',
-            borderRadius: '999px',
-            padding: '14px 44px',
-            textDecoration: 'none',
-            fontSize: '1rem',
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-          }}
-        >
-          Begär offert
-        </Link>
-
-        {/* Telefonkontakt */}
-        <a
-          href="tel:0737718617"
-          style={{
-            marginTop: '8px',
-            color: 'rgba(255, 255, 255, 0.9)',
-            fontSize: '0.95rem',
-            fontWeight: 600,
-            textDecoration: 'none',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}
-        >
-          <Phone size={15} color="#ffffff" /> 073-771 86 17
-        </a>
-      </div>
+      />
 
       <style>{`
         .nav-dropdown-wrapper::after {
@@ -561,8 +610,9 @@ export default function Navbar() {
         }
         @media (max-width: 768px) {
           .nav-pill { display: none !important; }
-          .hamburger { display: flex !important; }
+          .hamburger-btn { display: flex !important; }
           .offert-btn { display: none !important; }
+          
           .phone-link {
             display: flex !important;
             border-left: none !important;
@@ -574,20 +624,23 @@ export default function Navbar() {
             white-space: nowrap !important;
             gap: 5px !important;
           }
-          nav.navbar-el { padding: 10px 16px !important; min-height: 56px !important; }
-          nav.navbar-el.scrolled { padding: 7px 16px !important; min-height: 62px !important; }
+          
+          nav.navbar-el { padding: 10px 16px !important; min-height: 58px !important; }
+          nav.navbar-el.scrolled { padding: 8px 16px !important; min-height: 58px !important; }
+          
           .nav-logo {
             height: 38px;
             max-height: 38px;
             padding: 0;
           }
           .nav-logo.scrolled {
-            height: 48px;
-            max-height: 48px;
+            height: 42px;
+            max-height: 42px;
             padding: 0;
           }
         }
         @media (min-width: 769px) {
+          .mobile-menu-container { display: none !important; }
           .offert-short { display: none; }
           .offert-full { display: inline; }
         }
@@ -595,4 +648,5 @@ export default function Navbar() {
     </>
   );
 }
+
 
