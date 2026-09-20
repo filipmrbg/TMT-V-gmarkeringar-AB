@@ -24,7 +24,6 @@ function isActive(href: string, pathname: string, activeSection: string | null):
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -402,7 +401,7 @@ export default function Navbar() {
             <span className="offert-short">Offert</span>
           </Link>
 
-          {/* Hamburger — modern frosted pill button with animated lines */}
+          {/* Hamburger — minimalist circular glass button with morphing 2-line icon */}
           <button
             className="hamburger"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -410,41 +409,40 @@ export default function Navbar() {
             aria-expanded={mobileOpen}
             style={{
               display: 'none',
-              alignItems: 'center',
-              gap: '8px',
-              background: mobileOpen ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.08)',
+              width: '42px',
+              height: '42px',
+              borderRadius: '50%',
+              background: mobileOpen ? 'rgba(255, 255, 255, 0.22)' : 'rgba(255, 255, 255, 0.08)',
               backdropFilter: 'blur(12px)',
               WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              borderRadius: '999px',
-              padding: '7px 14px',
+              border: '1px solid rgba(255, 255, 255, 0.22)',
               cursor: 'pointer',
               color: '#ffffff',
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.25)',
+              padding: 0,
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
               transition: 'all 0.25s ease',
             }}
           >
-            <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-              {mobileOpen ? 'Stäng' : 'Meny'}
-            </span>
             <div
               style={{
-                width: '16px',
+                width: '18px',
                 height: '12px',
                 position: 'relative',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
+                alignItems: 'center',
               }}
             >
               <span
                 style={{
                   display: 'block',
                   height: '2px',
-                  width: '100%',
+                  width: '18px',
                   background: '#ffffff',
                   borderRadius: '2px',
-                  transformOrigin: 'center',
                   transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                   transform: mobileOpen ? 'translateY(5px) rotate(45deg)' : 'none',
                 }}
@@ -453,24 +451,11 @@ export default function Navbar() {
                 style={{
                   display: 'block',
                   height: '2px',
-                  width: mobileOpen ? '100%' : '75%',
-                  marginLeft: 'auto',
+                  width: mobileOpen ? '18px' : '13px',
+                  alignSelf: mobileOpen ? 'center' : 'flex-end',
                   background: '#ffffff',
                   borderRadius: '2px',
-                  transition: 'opacity 0.2s ease, transform 0.2s ease',
-                  opacity: mobileOpen ? 0 : 1,
-                  transform: mobileOpen ? 'scaleX(0)' : 'none',
-                }}
-              />
-              <span
-                style={{
-                  display: 'block',
-                  height: '2px',
-                  width: '100%',
-                  background: '#ffffff',
-                  borderRadius: '2px',
-                  transformOrigin: 'center',
-                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.2s ease',
                   transform: mobileOpen ? 'translateY(-5px) rotate(-45deg)' : 'none',
                 }}
               />
@@ -485,250 +470,181 @@ export default function Navbar() {
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 2000,
-          background: 'rgba(2, 6, 23, 0.72)',
+          zIndex: 1998,
+          background: 'rgba(2, 6, 23, 0.65)',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
           opacity: mobileOpen ? 1 : 0,
           pointerEvents: mobileOpen ? 'all' : 'none',
-          transition: 'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'opacity 0.3s ease',
         }}
       />
 
-      {/* Mobile Slide-Over Drawer */}
-      <aside
+      {/* Floating Glass Island Sheet */}
+      <div
         aria-label="Mobilmeny"
         style={{
           position: 'fixed',
-          top: 0,
-          bottom: 0,
-          right: 0,
-          width: 'min(380px, 86vw)',
-          zIndex: 2001,
-          background: 'linear-gradient(180deg, #0f172a 0%, #090d16 100%)',
-          borderLeft: '1px solid rgba(255, 255, 255, 0.12)',
-          boxShadow: '-10px 0 45px rgba(0, 0, 0, 0.65)',
-          transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
-          transition: 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1)',
+          top: scrolled ? '64px' : '70px',
+          left: '12px',
+          right: '12px',
+          zIndex: 1999,
+          maxHeight: 'calc(100vh - 84px)',
+          background: 'rgba(15, 23, 42, 0.97)',
+          backdropFilter: 'blur(25px)',
+          WebkitBackdropFilter: 'blur(25px)',
+          border: '1px solid rgba(255, 255, 255, 0.16)',
+          borderRadius: '24px',
+          boxShadow: '0 25px 60px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08)',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
           overflowY: 'auto',
           WebkitOverflowScrolling: 'touch',
-          padding: '24px 20px 28px',
+          padding: '18px 16px 20px',
           boxSizing: 'border-box',
+          opacity: mobileOpen ? 1 : 0,
+          transform: mobileOpen ? 'translateY(0) scale(1)' : 'translateY(-14px) scale(0.96)',
+          pointerEvents: mobileOpen ? 'all' : 'none',
+          transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        {/* Drawer Top Header: Logo + Close Pill */}
-        <div>
+        {/* Quick Nav Chips: Hem, Om oss, Projekt, Kontakt */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: '6px',
+            paddingBottom: '16px',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          }}
+        >
+          {[
+            { label: 'Hem', href: '/' },
+            { label: 'Om oss', href: '/om-oss' },
+            { label: 'Projekt', href: '/#projekt' },
+            { label: 'Kontakt', href: '/kontakt' },
+          ].map((item) => {
+            const active = isActive(item.href, location.pathname, activeSection);
+            return (
+              <button
+                key={item.href}
+                onClick={() => handleNavClick(item.href)}
+                style={{
+                  background: active ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid',
+                  borderColor: active ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.08)',
+                  borderRadius: '12px',
+                  padding: '10px 4px',
+                  color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
+                  fontSize: '0.82rem',
+                  fontWeight: active ? 700 : 600,
+                  cursor: 'pointer',
+                  textAlign: 'center',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Services Bento Grid Section */}
+        <div style={{ padding: '16px 0 14px' }}>
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              paddingBottom: '20px',
-              marginBottom: '16px',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+              marginBottom: '12px',
+              padding: '0 4px',
             }}
           >
-            <Link to="/" onClick={handleLogoClick} style={{ display: 'flex', alignItems: 'center' }}>
-              <img
-                src={images.logo.url}
-                alt={images.logo.alt}
-                style={{
-                  height: '42px',
-                  maxWidth: '150px',
-                  objectFit: 'contain',
-                  filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5))',
-                }}
-              />
-            </Link>
-
-            <button
-              onClick={() => setMobileOpen(false)}
-              aria-label="Stäng meny"
+            <span
               style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '50%',
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#ffffff',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.16)';
-                e.currentTarget.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                e.currentTarget.style.transform = 'scale(1)';
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                color: 'rgba(255, 255, 255, 0.5)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
               }}
             >
-              <X size={20} />
+              Våra tjänster
+            </span>
+            <button
+              onClick={() => handleNavClick('/tjanster')}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#ffffff',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                padding: 0,
+              }}
+            >
+              Översikt <ChevronRight size={13} />
             </button>
           </div>
 
-          {/* Drawer Nav Links */}
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            {navLinks.map((link) => {
-              const active = isActive(link.href, location.pathname, activeSection);
-
-              if (link.hasDropdown) {
-                return (
-                  <div key={link.href} style={{ borderRadius: '14px', overflow: 'hidden' }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        background: active ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(255, 255, 255, 0.06)',
-                        borderRadius: '12px',
-                        padding: '4px 6px 4px 14px',
-                      }}
-                    >
-                      <button
-                        onClick={() => handleNavClick('/tjanster')}
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.9)',
-                          fontFamily: 'var(--font-family)',
-                          fontSize: '1.05rem',
-                          fontWeight: 700,
-                          cursor: 'pointer',
-                          padding: '8px 0',
-                          textAlign: 'left',
-                          flex: 1,
-                        }}
-                      >
-                        {link.label}
-                      </button>
-                      <button
-                        onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                        aria-label="Visa alla tjänster"
-                        style={{
-                          background: mobileServicesOpen ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
-                          border: 'none',
-                          borderRadius: '8px',
-                          width: '36px',
-                          height: '36px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#ffffff',
-                          cursor: 'pointer',
-                          transition: 'transform 0.25s ease, background 0.2s ease',
-                        }}
-                      >
-                        <ChevronDown
-                          size={18}
-                          style={{
-                            transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                            transition: 'transform 0.25s ease',
-                          }}
-                        />
-                      </button>
-                    </div>
-
-                    {/* Collapsible Services List */}
-                    {mobileServicesOpen && (
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '4px',
-                          padding: '8px 0 8px 12px',
-                          marginTop: '4px',
-                          borderLeft: '2px solid rgba(255, 255, 255, 0.15)',
-                          marginLeft: '8px',
-                        }}
-                      >
-                        {services.map((srv) => (
-                          <Link
-                            key={srv.slug}
-                            to={srv.href}
-                            onClick={() => {
-                              setMobileOpen(false);
-                              setMobileServicesOpen(false);
-                            }}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'space-between',
-                              padding: '8px 12px',
-                              borderRadius: '8px',
-                              color: location.pathname === srv.href ? '#ffffff' : 'rgba(255, 255, 255, 0.72)',
-                              background: location.pathname === srv.href ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
-                              textDecoration: 'none',
-                              fontSize: '0.88rem',
-                              fontWeight: location.pathname === srv.href ? 700 : 500,
-                              transition: 'all 0.2s ease',
-                            }}
-                          >
-                            <span>{srv.title}</span>
-                            <ChevronRight size={14} color="rgba(255, 255, 255, 0.4)" />
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
+          {/* 2-Column Bento Grid of Services */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '8px',
+            }}
+          >
+            {services.map((srv) => {
+              const isCurrent = location.pathname === srv.href;
               return (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
+                <Link
+                  key={srv.slug}
+                  to={srv.href}
+                  onClick={() => setMobileOpen(false)}
                   style={{
-                    background: active ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                    background: isCurrent ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.04)',
                     border: '1px solid',
-                    borderColor: active ? 'rgba(255, 255, 255, 0.12)' : 'transparent',
+                    borderColor: isCurrent ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.08)',
                     borderRadius: '12px',
-                    cursor: 'pointer',
-                    color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
-                    fontFamily: 'var(--font-family)',
-                    fontSize: '1.05rem',
-                    fontWeight: active ? 700 : 600,
-                    padding: '12px 14px',
-                    textAlign: 'left',
+                    padding: '10px 12px',
+                    textDecoration: 'none',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     transition: 'all 0.2s ease',
                   }}
-                  onMouseEnter={(e) => {
-                    if (!active) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!active) e.currentTarget.style.background = 'transparent';
-                  }}
                 >
-                  <span>{link.label}</span>
-                  <ArrowRight size={15} color="rgba(255, 255, 255, 0.35)" />
-                </button>
+                  <span
+                    style={{
+                      fontSize: '0.84rem',
+                      color: isCurrent ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
+                      fontWeight: isCurrent ? 700 : 500,
+                      lineHeight: 1.25,
+                    }}
+                  >
+                    {srv.title}
+                  </span>
+                  <ChevronRight size={13} color="rgba(255, 255, 255, 0.35)" style={{ flexShrink: 0, marginLeft: '6px' }} />
+                </Link>
               );
             })}
-          </nav>
+          </div>
         </div>
 
-        {/* Drawer Bottom Actions */}
+        {/* Bottom Actions: Call + Offert */}
         <div
           style={{
-            marginTop: '28px',
-            paddingTop: '20px',
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            paddingTop: '14px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '12px',
+            gap: '10px',
           }}
         >
-          {/* CTA Quote Button */}
           <Link
             to="/offert"
             onClick={() => setMobileOpen(false)}
@@ -741,82 +657,41 @@ export default function Navbar() {
               color: '#0F172A',
               fontFamily: 'var(--font-heading)',
               fontWeight: 700,
-              fontSize: '0.95rem',
+              fontSize: '0.92rem',
               letterSpacing: '0.04em',
               borderRadius: '999px',
-              padding: '14px 20px',
+              padding: '13px 20px',
               textDecoration: 'none',
               boxShadow: '0 4px 18px rgba(0, 0, 0, 0.3)',
-              transition: 'transform 0.2s ease, background 0.2s ease',
+              transition: 'all 0.2s ease',
             }}
           >
-            Begär offert <ArrowRight size={16} />
+            Begär offert <ArrowRight size={15} />
           </Link>
 
-          {/* Direct Phone Action Card */}
           <a
             href="tel:0737718617"
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
+              gap: '8px',
               background: 'rgba(255, 255, 255, 0.05)',
               border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '14px',
-              padding: '12px 16px',
+              borderRadius: '999px',
+              padding: '10px 16px',
               textDecoration: 'none',
               color: '#ffffff',
-              transition: 'background 0.2s ease',
+              fontSize: '0.85rem',
+              fontWeight: 600,
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '50%',
-                  background: 'rgba(34, 197, 94, 0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: '#4ade80',
-                }}
-              >
-                <Phone size={15} />
-              </div>
-              <div>
-                <span
-                  style={{
-                    display: 'block',
-                    fontSize: '0.72rem',
-                    color: 'rgba(255, 255, 255, 0.5)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  Ring direkt
-                </span>
-                <span style={{ fontSize: '0.92rem', fontWeight: 700 }}>073-771 86 17</span>
-              </div>
-            </div>
-            <div
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                background: '#22c55e',
-                boxShadow: '0 0 8px #22c55e',
-              }}
-            />
+            <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px #22c55e' }} />
+            <Phone size={13} color="#ffffff" />
+            <span>Ring direkt: 073-771 86 17</span>
           </a>
-
-          <div style={{ textAlign: 'center', marginTop: '4px' }}>
-            <span style={{ fontSize: '0.72rem', color: 'rgba(255, 255, 255, 0.4)', letterSpacing: '0.02em' }}>
-              TMT Vägmarkeringar AB • Hela Sverige
-            </span>
-          </div>
         </div>
-      </aside>
+      </div>
 
       <style>{`
         .nav-dropdown-wrapper::after {
