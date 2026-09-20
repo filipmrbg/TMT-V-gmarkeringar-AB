@@ -401,296 +401,132 @@ export default function Navbar() {
             <span className="offert-short">Offert</span>
           </Link>
 
-          {/* Hamburger — minimalist circular glass button with morphing 2-line icon */}
+          {/* Enkel och ren hamburgarikon */}
           <button
             className="hamburger"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? 'Stäng meny' : 'Öppna meny'}
-            aria-expanded={mobileOpen}
             style={{
-              display: 'none',
-              width: '42px',
-              height: '42px',
-              borderRadius: '50%',
-              background: mobileOpen ? 'rgba(255, 255, 255, 0.22)' : 'rgba(255, 255, 255, 0.08)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.22)',
+              background: 'none',
+              border: 'none',
               cursor: 'pointer',
               color: '#ffffff',
-              padding: 0,
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)',
-              transition: 'all 0.25s ease',
+              display: 'none',
+              padding: '6px',
+              lineHeight: 0,
             }}
           >
-            <div
-              style={{
-                width: '18px',
-                height: '12px',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <span
-                style={{
-                  display: 'block',
-                  height: '2px',
-                  width: '18px',
-                  background: '#ffffff',
-                  borderRadius: '2px',
-                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  transform: mobileOpen ? 'translateY(5px) rotate(45deg)' : 'none',
-                }}
-              />
-              <span
-                style={{
-                  display: 'block',
-                  height: '2px',
-                  width: mobileOpen ? '18px' : '13px',
-                  alignSelf: mobileOpen ? 'center' : 'flex-end',
-                  background: '#ffffff',
-                  borderRadius: '2px',
-                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.2s ease',
-                  transform: mobileOpen ? 'translateY(-5px) rotate(-45deg)' : 'none',
-                }}
-              />
-            </div>
+            {mobileOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Backdrop Overlay */}
+      {/* Enkel och ren mobilmeny overlay */}
       <div
-        onClick={() => setMobileOpen(false)}
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 1998,
-          background: 'rgba(2, 6, 23, 0.65)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          opacity: mobileOpen ? 1 : 0,
-          pointerEvents: mobileOpen ? 'all' : 'none',
-          transition: 'opacity 0.3s ease',
-        }}
-      />
-
-      {/* Floating Glass Island Sheet */}
-      <div
-        aria-label="Mobilmeny"
-        style={{
-          position: 'fixed',
-          top: scrolled ? '64px' : '70px',
-          left: '12px',
-          right: '12px',
           zIndex: 1999,
-          maxHeight: 'calc(100vh - 84px)',
-          background: 'rgba(15, 23, 42, 0.97)',
-          backdropFilter: 'blur(25px)',
-          WebkitBackdropFilter: 'blur(25px)',
-          border: '1px solid rgba(255, 255, 255, 0.16)',
-          borderRadius: '24px',
-          boxShadow: '0 25px 60px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08)',
+          background: 'rgba(15, 23, 42, 0.98)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
           display: 'flex',
           flexDirection: 'column',
-          overflowY: 'auto',
-          WebkitOverflowScrolling: 'touch',
-          padding: '18px 16px 20px',
-          boxSizing: 'border-box',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '20px',
           opacity: mobileOpen ? 1 : 0,
-          transform: mobileOpen ? 'translateY(0) scale(1)' : 'translateY(-14px) scale(0.96)',
           pointerEvents: mobileOpen ? 'all' : 'none',
-          transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'opacity 0.25s ease',
+          padding: '40px 24px',
+          boxSizing: 'border-box',
         }}
       >
-        {/* Quick Nav Chips: Hem, Om oss, Projekt, Kontakt */}
-        <div
+        {/* Stängknapp */}
+        <button
+          onClick={() => setMobileOpen(false)}
+          aria-label="Stäng meny"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '6px',
-            paddingBottom: '16px',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            background: 'rgba(255, 255, 255, 0.08)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '42px',
+            height: '42px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#ffffff',
+            cursor: 'pointer',
           }}
         >
-          {[
-            { label: 'Hem', href: '/' },
-            { label: 'Om oss', href: '/om-oss' },
-            { label: 'Projekt', href: '/#projekt' },
-            { label: 'Kontakt', href: '/kontakt' },
-          ].map((item) => {
-            const active = isActive(item.href, location.pathname, activeSection);
-            return (
-              <button
-                key={item.href}
-                onClick={() => handleNavClick(item.href)}
-                style={{
-                  background: active ? 'rgba(255, 255, 255, 0.18)' : 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid',
-                  borderColor: active ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.08)',
-                  borderRadius: '12px',
-                  padding: '10px 4px',
-                  color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
-                  fontSize: '0.82rem',
-                  fontWeight: active ? 700 : 600,
-                  cursor: 'pointer',
-                  textAlign: 'center',
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
+          <X size={24} />
+        </button>
 
-        {/* Services Bento Grid Section */}
-        <div style={{ padding: '16px 0 14px' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '12px',
-              padding: '0 4px',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                color: 'rgba(255, 255, 255, 0.5)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-              }}
-            >
-              Våra tjänster
-            </span>
+        {/* Länkar */}
+        {navLinks.map((link) => {
+          const active = isActive(link.href, location.pathname, activeSection);
+          return (
             <button
-              onClick={() => handleNavClick('/tjanster')}
+              key={link.href}
+              onClick={() => handleNavClick(link.href)}
               style={{
                 background: 'none',
                 border: 'none',
-                color: '#ffffff',
-                fontSize: '0.75rem',
-                fontWeight: 600,
                 cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-                padding: 0,
+                color: active ? '#ffffff' : 'rgba(255, 255, 255, 0.75)',
+                fontFamily: 'var(--font-family)',
+                fontSize: '1.25rem',
+                fontWeight: active ? 700 : 500,
+                padding: '10px 24px',
+                letterSpacing: '0.04em',
+                transition: 'color 0.2s ease',
               }}
             >
-              Översikt <ChevronRight size={13} />
+              {link.label}
             </button>
-          </div>
+          );
+        })}
 
-          {/* 2-Column Bento Grid of Services */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '8px',
-            }}
-          >
-            {services.map((srv) => {
-              const isCurrent = location.pathname === srv.href;
-              return (
-                <Link
-                  key={srv.slug}
-                  to={srv.href}
-                  onClick={() => setMobileOpen(false)}
-                  style={{
-                    background: isCurrent ? 'rgba(255, 255, 255, 0.14)' : 'rgba(255, 255, 255, 0.04)',
-                    border: '1px solid',
-                    borderColor: isCurrent ? 'rgba(255, 255, 255, 0.25)' : 'rgba(255, 255, 255, 0.08)',
-                    borderRadius: '12px',
-                    padding: '10px 12px',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: '0.84rem',
-                      color: isCurrent ? '#ffffff' : 'rgba(255, 255, 255, 0.85)',
-                      fontWeight: isCurrent ? 700 : 500,
-                      lineHeight: 1.25,
-                    }}
-                  >
-                    {srv.title}
-                  </span>
-                  <ChevronRight size={13} color="rgba(255, 255, 255, 0.35)" style={{ flexShrink: 0, marginLeft: '6px' }} />
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Bottom Actions: Call + Offert */}
-        <div
+        {/* Begär offert knapp */}
+        <Link
+          to="/offert"
+          onClick={() => setMobileOpen(false)}
           style={{
-            paddingTop: '14px',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px',
+            marginTop: '12px',
+            background: '#ffffff',
+            color: '#0F172A',
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 700,
+            letterSpacing: '0.05em',
+            borderRadius: '999px',
+            padding: '14px 44px',
+            textDecoration: 'none',
+            fontSize: '1rem',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
           }}
         >
-          <Link
-            to="/offert"
-            onClick={() => setMobileOpen(false)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              background: '#ffffff',
-              color: '#0F172A',
-              fontFamily: 'var(--font-heading)',
-              fontWeight: 700,
-              fontSize: '0.92rem',
-              letterSpacing: '0.04em',
-              borderRadius: '999px',
-              padding: '13px 20px',
-              textDecoration: 'none',
-              boxShadow: '0 4px 18px rgba(0, 0, 0, 0.3)',
-              transition: 'all 0.2s ease',
-            }}
-          >
-            Begär offert <ArrowRight size={15} />
-          </Link>
+          Begär offert
+        </Link>
 
-          <a
-            href="tel:0737718617"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '999px',
-              padding: '10px 16px',
-              textDecoration: 'none',
-              color: '#ffffff',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-            }}
-          >
-            <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 6px #22c55e' }} />
-            <Phone size={13} color="#ffffff" />
-            <span>Ring direkt: 073-771 86 17</span>
-          </a>
-        </div>
+        {/* Telefonkontakt */}
+        <a
+          href="tel:0737718617"
+          style={{
+            marginTop: '8px',
+            color: 'rgba(255, 255, 255, 0.9)',
+            fontSize: '0.95rem',
+            fontWeight: 600,
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
+        >
+          <Phone size={15} color="#ffffff" /> 073-771 86 17
+        </a>
       </div>
 
       <style>{`
