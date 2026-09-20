@@ -255,14 +255,15 @@ export default function ServiceDetail() {
               {service.badge && (
                 <span
                   style={{
-                    background: 'var(--color-primary, #f59e0b)',
+                    background: '#ffffff',
                     color: '#0f172a',
                     fontSize: '0.78rem',
-                    fontWeight: 800,
+                    fontWeight: 700,
                     letterSpacing: '0.04em',
                     textTransform: 'uppercase',
-                    padding: '4px 12px',
+                    padding: '4px 14px',
                     borderRadius: '999px',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
                   }}
                 >
                   {service.badge}
@@ -308,23 +309,25 @@ export default function ServiceDetail() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '10px',
-                  background: 'var(--color-primary, #f59e0b)',
+                  background: '#ffffff',
                   color: '#0f172a',
-                  fontWeight: 800,
+                  fontWeight: 700,
                   fontSize: '0.98rem',
-                  padding: '14px 28px',
+                  padding: '14px 30px',
                   borderRadius: '999px',
                   textDecoration: 'none',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)',
                   transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.filter = 'brightness(1.05)';
+                  e.currentTarget.style.background = '#f8fafc';
+                  e.currentTarget.style.boxShadow = '0 6px 24px rgba(255, 255, 255, 0.25)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.filter = 'none';
+                  e.currentTarget.style.background = '#ffffff';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.25)';
                 }}
               >
                 Begär kostnadsfri offert <ArrowRight size={17} />
@@ -336,22 +339,23 @@ export default function ServiceDetail() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(8px)',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  background: 'transparent',
+                  border: '2px solid rgba(255, 255, 255, 0.65)',
                   color: '#ffffff',
                   fontWeight: 600,
                   fontSize: '0.95rem',
-                  padding: '14px 24px',
+                  padding: '12px 24px',
                   borderRadius: '999px',
                   textDecoration: 'none',
                   transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                  e.currentTarget.style.borderColor = '#ffffff';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.65)';
                 }}
               >
                 <Phone size={16} /> 073-771 86 17
@@ -418,7 +422,7 @@ export default function ServiceDetail() {
                       fontWeight: 600,
                     }}
                   >
-                    <ShieldCheck size={18} color="var(--color-primary, #f59e0b)" />
+                    <ShieldCheck size={18} color="#38bdf8" />
                     <span>Godkända material & garanti</span>
                   </div>
                 </div>
@@ -573,18 +577,25 @@ export default function ServiceDetail() {
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '8px',
-                      background: 'var(--color-primary, #f59e0b)',
+                      background: '#ffffff',
                       color: '#0f172a',
-                      fontWeight: 800,
+                      fontWeight: 700,
                       fontSize: '0.95rem',
-                      padding: '12px 24px',
+                      padding: '12px 26px',
                       borderRadius: '999px',
                       textDecoration: 'none',
                       whiteSpace: 'nowrap',
-                      transition: 'transform 0.2s ease',
+                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
+                      transition: 'transform 0.2s ease, background 0.2s ease',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.background = '#f8fafc';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.background = '#ffffff';
+                    }}
                   >
                     Offertförfrågan <ArrowRight size={16} />
                   </Link>

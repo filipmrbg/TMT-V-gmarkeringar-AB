@@ -139,10 +139,10 @@ export default function Home() {
             paddingTop: '0',
             paddingBottom: '10px',
           }}>
-            {/* ── HERO LOGO: The dominant visual centrepiece ── */}
-            <ScrollReveal animation="fade-down" delay={0} duration={0.9}>
+            {/* ── Brand Emblem / Logo ── */}
+            <ScrollReveal animation="fade-up" duration={0.9}>
               <div style={{
-                marginBottom: '18px',
+                marginBottom: '24px',
                 display: 'flex',
                 justifyContent: 'center',
                 position: 'relative',
@@ -153,21 +153,21 @@ export default function Home() {
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  width: 'clamp(200px, 28vw, 300px)',
-                  height: 'clamp(200px, 28vw, 300px)',
-                  background: 'radial-gradient(circle, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.03) 45%, transparent 70%)',
+                  width: 'clamp(320px, 38vw, 480px)',
+                  height: 'clamp(320px, 38vw, 480px)',
+                  background: 'radial-gradient(circle, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 45%, transparent 70%)',
                   borderRadius: '50%',
                   pointerEvents: 'none',
-                  filter: 'blur(30px)',
+                  filter: 'blur(36px)',
                 }} />
                 <img
                   src={images.logo.url}
                   alt={images.logo.alt}
                   style={{
-                    width: 'clamp(160px, 18vw, 220px)',
+                    width: 'clamp(260px, 30vw, 380px)',
                     height: 'auto',
                     display: 'block',
-                    filter: 'drop-shadow(0 10px 36px rgba(0, 0, 0, 0.9)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7))',
+                    filter: 'drop-shadow(0 14px 42px rgba(0, 0, 0, 0.95)) drop-shadow(0 4px 16px rgba(0, 0, 0, 0.8))',
                     position: 'relative',
                     zIndex: 1,
                   }}
@@ -178,10 +178,10 @@ export default function Home() {
             {/* ── Thin silver accent divider ── */}
             <ScrollReveal animation="fade-up" delay={120} duration={0.6}>
               <div style={{
-                width: 'clamp(50px, 6vw, 80px)',
+                width: 'clamp(70px, 8vw, 110px)',
                 height: '1px',
                 background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
-                marginBottom: '16px',
+                marginBottom: '18px',
                 borderRadius: '1px',
               }} />
             </ScrollReveal>
@@ -199,7 +199,7 @@ export default function Home() {
                 margin: '0 0 12px 0',
                 textShadow: '0 4px 24px rgba(0, 0, 0, 0.85)',
               }}>
-                Professionell vägmarkering & linjemålning
+                Professionell vägmarkering och linjemålning
               </h1>
             </ScrollReveal>
 
