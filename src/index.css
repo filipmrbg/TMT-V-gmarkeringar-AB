@@ -416,3 +416,70 @@ button, .btn, a.offert-btn {
 .service-feature-card:hover .service-feature-link svg {
   transform: translateX(5px);
 }
+
+/* ── Service Detail Responsive Page Layout ── */
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.service-detail-sidebar {
+  position: static;
+  width: 100%;
+}
+
+.service-detail-main {
+  width: 100%;
+  min-width: 0;
+}
+
+.service-highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .service-highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .service-detail-grid {
+    grid-template-columns: 420px 1fr;
+    gap: 60px;
+  }
+
+  .service-detail-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+}
+
+/* ── About Content Grid Mobile Fix ── */
+.about-content-grid {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 36px !important;
+  align-items: start;
+}
+
+.about-sticky-sidebar {
+  position: static !important;
+}
+
+@media (min-width: 860px) {
+  .about-content-grid {
+    grid-template-columns: 320px 1fr !important;
+    gap: 50px !important;
+  }
+
+  .about-sticky-sidebar {
+    position: sticky !important;
+    top: 120px !important;
+  }
+}

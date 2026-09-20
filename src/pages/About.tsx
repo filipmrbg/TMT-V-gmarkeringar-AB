@@ -56,18 +56,11 @@ export default function About() {
       {/* ── SECTION B: ABOUT STORY & HISTORY ─────────────────────────── */}
       <section style={{ background: 'var(--color-light)', padding: '90px 0' }}>
         <div style={{ ...container, maxWidth: '1060px' }}>
-          <div className="about-content-grid" style={{
-            display: 'grid',
-            gridTemplateColumns: '320px 1fr',
-            gap: '50px',
-            alignItems: 'start',
-          }}>
+          <div className="about-content-grid">
 
             {/* Left: Company Image */}
             <ScrollReveal animation="scale-in" easing="spring">
-              <div style={{
-                position: 'sticky',
-                top: '120px',
+              <div className="about-sticky-sidebar" style={{
                 display: 'flex',
                 justifyContent: 'center',
               }}>

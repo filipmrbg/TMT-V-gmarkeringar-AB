@@ -366,19 +366,12 @@ export default function ServiceDetail() {
       </section>
 
       {/* ── 2. MAIN DETAIL SECTION ────────────────────────────── */}
-      <section style={{ padding: 'clamp(60px, 8vw, 100px) 0', background: '#ffffff' }}>
+      <section style={{ padding: 'clamp(50px, 7vw, 90px) 0', background: '#ffffff' }}>
         <div style={container}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: 'clamp(40px, 6vw, 70px)',
-              alignItems: 'start',
-            }}
-          >
-            {/* Left: Sticky Image & Fast Trust Badges */}
-            <div style={{ position: 'sticky', top: '100px' }}>
-              <ScrollReveal animation="fade-right">
+          <div className="service-detail-grid">
+            {/* Left: Sidebar (Sticky on Desktop, Natural Flow on Mobile) */}
+            <div className="service-detail-sidebar">
+              <ScrollReveal animation="fade-up">
                 <div
                   style={{
                     position: 'relative',
@@ -423,7 +416,7 @@ export default function ServiceDetail() {
                     }}
                   >
                     <ShieldCheck size={18} color="#38bdf8" />
-                    <span>Godkända material & garanti</span>
+                    <span>Godkända material och garanti</span>
                   </div>
                 </div>
 
@@ -449,7 +442,7 @@ export default function ServiceDetail() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <FileCheck2 size={18} color="#0f172a" style={{ flexShrink: 0 }} />
                       <span style={{ fontSize: '0.9rem', color: '#334155' }}>
-                        <strong>Standard:</strong> Trafikverkets krav & SS-EN 1436
+                        <strong>Standard:</strong> Trafikverkets krav och SS-EN 1436
                       </span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -470,8 +463,8 @@ export default function ServiceDetail() {
             </div>
 
             {/* Right: Detailed Description & Highlights */}
-            <div>
-              <ScrollReveal animation="fade-left">
+            <div className="service-detail-main">
+              <ScrollReveal animation="fade-up" delay={100}>
                 {/* Icon & Title Header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
                   <div
@@ -491,7 +484,7 @@ export default function ServiceDetail() {
                   </div>
                   <div>
                     <span style={{ fontSize: '0.85rem', color: '#64748b', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                      Omfattning & Utförande
+                      Omfattning och utförande
                     </span>
                     <h2 style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', margin: 0, color: '#0f172a', fontWeight: 700 }}>
                       Professionell {service.title.toLowerCase()}
@@ -518,13 +511,7 @@ export default function ServiceDetail() {
                     <h3 style={{ fontSize: '1.15rem', color: '#0f172a', fontWeight: 700, marginBottom: '16px' }}>
                       Vad som ingår i tjänsten:
                     </h3>
-                    <div
-                      style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                        gap: '12px 18px',
-                      }}
-                    >
+                    <div className="service-highlights-grid">
                       {service.highlights.map((item, idx) => (
                         <div
                           key={idx}
@@ -553,7 +540,7 @@ export default function ServiceDetail() {
                   style={{
                     background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
                     color: '#ffffff',
-                    padding: '28px 32px',
+                    padding: '24px clamp(20px, 4vw, 32px)',
                     borderRadius: '20px',
                     boxShadow: '0 12px 30px rgba(15, 23, 42, 0.15)',
                     display: 'flex',
@@ -670,13 +657,13 @@ export default function ServiceDetail() {
                 }}
               >
                 {[
-                  'Stockholm & Mälardalen',
-                  'Västra Götaland & Göteborg',
-                  'Skåne & Malmö',
-                  'Jönköping & Småland',
+                  'Stockholm och Mälardalen',
+                  'Västra Götaland och Göteborg',
+                  'Skåne och Malmö',
+                  'Jönköping och Småland',
                   'Östergötland',
-                  'Värmland & Örebro',
-                  'Norrland & regionala orter',
+                  'Värmland och Örebro',
+                  'Norrland och regionala orter',
                 ].map((region, idx) => (
                   <div
                     key={idx}
@@ -766,22 +753,22 @@ export default function ServiceDetail() {
             {[
               {
                 icon: <Building2 size={24} color="#0f172a" />,
-                title: 'BRF & Fastighetsbolag',
+                title: 'BRF och Fastighetsbolag',
                 desc: 'Tydliga p-rutor, gästplatser och laddzoner som skapar ordning och trygghet för de boende.',
               },
               {
                 icon: <Truck size={24} color="#0f172a" />,
-                title: 'Logistik & Industri',
+                title: 'Logistik och Industri',
                 desc: 'Slitstarka golvmarkeringar, gångstråk och säkerhetszoner som minimerar olycksrisker.',
               },
               {
                 icon: <MapPin size={24} color="#0f172a" />,
-                title: 'Kommuner & Samfälligheter',
+                title: 'Kommuner och Samfälligheter',
                 desc: 'Väg- och linjemålning enligt Trafikverkets föreskrifter för allmänna och enskilda vägar.',
               },
               {
                 icon: <ShieldCheck size={24} color="#0f172a" />,
-                title: 'Bygg & Anläggning',
+                title: 'Bygg och Anläggning',
                 desc: 'Pålitlig underentreprenör med modern utrustning för nyetableringar och ombyggnationer.',
               },
             ].map((persona, idx) => (
