@@ -14,7 +14,7 @@ const container: React.CSSProperties = {
 const faqItems = [
   {
     question: 'Hur snabbt kan vi få en offert på vägmarkering?',
-    answer: 'Vi återkopplar vanligtvis inom 24 timmar och tar fram en specificerad offert baserad på era underlag, ritningar eller en genomgång av ytan.',
+    answer: 'Vi återkopplar så snart som möjligt med ett specificerat prisförslag baserat på era underlag och önskemål.',
   },
   {
     question: 'Vilka geografiska områden är ni verksamma i?',
@@ -65,7 +65,7 @@ export default function Contact() {
             </ScrollReveal>
             <ScrollReveal animation="fade-up" delay={150}>
               <p style={{ color: 'rgba(255,255,255,0.92)', fontSize: '1.08rem', margin: 0, maxWidth: '620px', marginInline: 'auto', lineHeight: 1.6 }}>
-                Vi återkopplar vanligtvis inom 24 timmar. Kostnadsfri offert och professionell rådgivning ingår alltid.
+                Vi återkopplar så snart som möjligt med rådgivning och prisförslag anpassat efter ert projekt.
               </p>
             </ScrollReveal>
           </div>

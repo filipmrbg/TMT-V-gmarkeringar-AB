@@ -8,11 +8,11 @@ interface Props {
   checkItems?: string[];
 }
 
-const defaultHeading = 'Begär en kostnadsfri offert';
+const defaultHeading = 'Begär offert för ert projekt';
 const defaultCheckItems = [
-  'Kostnadsfri rådgivning och offert',
-  'Snabb återkoppling inom 24 timmar',
-  'Rikstäckande service i hela Sverige',
+  'Professionell rådgivning och offert',
+  'Snabb återkoppling så snart som möjligt',
+  'Rikstäckande verksamhet i hela Sverige',
 ];
 
 export default function CTABanner({ heading = defaultHeading, checkItems = defaultCheckItems }: Props) {

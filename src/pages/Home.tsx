@@ -26,7 +26,7 @@ const container: React.CSSProperties = {
 const homeFaqItems = [
   {
     question: 'Kostar det något att få en offert?',
-    answer: 'Nej, vi erbjuder alltid kostnadsfria offerter och teknisk rådgivning helt utan förbindelser för alla typer av väg- och linjemålningsprojekt.',
+    answer: 'Nej, att begära offert och teknisk rådgivning förbinder er inte till något. Vi lämnar ett tydligt prisförslag anpassat för ert projekt.',
   },
   {
     question: 'Utför ni vägmarkeringar över hela Sverige?',
@@ -49,7 +49,7 @@ const homeFaqItems = [
 export default function Home() {
   usePageTitle(
     'TMT Vägmarkeringar | Professionell vägmarkering & linjemålning i hela Sverige',
-    'TMT Vägmarkeringar AB utför professionell vägmarkering, linjemålning, parkeringsrutor och industrimålning för företag, kommuner och BRF:er i hela Sverige. Kontakta oss för fri offert!'
+    'TMT Vägmarkeringar AB utför professionell vägmarkering, linjemålning, parkeringsrutor och industrimålning för företag, kommuner och BRF:er i hela Sverige. Kontakta oss för offert!'
   );
 
   const heroBgRef = useRef<HTMLDivElement>(null);
@@ -321,7 +321,7 @@ export default function Home() {
                   lineHeight: 1.65,
                   margin: '0 0 12px 0',
                 }}>
-                  Från parkeringsrutor och laddplatser till industrigolv, snöröjning och TMA-säkerhet över hela Sverige.
+                  Från kompletta vägmarkeringar och linjefräsning till snöröjning och TMA-säkerhet i hela Sverige.
                 </p>
                 <Link
                   to="/tjanster"
@@ -513,7 +513,7 @@ export default function Home() {
               margin: '0 0 32px 0',
               lineHeight: 1.7,
             }}>
-              Vi återkopplar med en kostnadsfri offert och rådgivning inom 24 timmar.
+              Vi återkopplar med rådgivning och prisförslag så snart som möjligt.
             </p>
             <Button variant="white" size="lg" href="/offert">
               Begär offert

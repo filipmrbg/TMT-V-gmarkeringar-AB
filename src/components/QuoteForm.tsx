@@ -37,7 +37,7 @@ export interface QuoteFormProps {
 
 export default function QuoteForm({
   title = 'Beskriv ert projekt',
-  subtitle = 'Vi återkopplar vanligtvis samma eller nästkommande arbetsdag.',
+  subtitle = 'Vi återkopplar så snart som möjligt med rådgivning och prisförslag.',
   buttonText = 'Skicka offertförfrågan',
   defaultService,
 }: QuoteFormProps) {
@@ -101,7 +101,7 @@ export default function QuoteForm({
             margin: '0 auto 28px',
           }}
         >
-          Vi har tagit emot era uppgifter och återkommer med rådgivning och en kostnadsfri offert inom 24 timmar.
+          Vi har tagit emot era uppgifter och återkommer med rådgivning och prisförslag så snart som möjligt.
         </p>
         <button
           type="button"

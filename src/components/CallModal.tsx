@@ -107,7 +107,7 @@ export default function CallModal({ isOpen, onClose }: CallModalProps) {
             Ring TMT Vägmarkeringar
           </h2>
           <p style={{ fontSize: '0.9rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
-            Kontakta oss direkt för rådgivning, frågor och kostnadsfri offert.
+            Kontakta oss direkt för rådgivning, frågor och offert.
           </p>
         </div>
 

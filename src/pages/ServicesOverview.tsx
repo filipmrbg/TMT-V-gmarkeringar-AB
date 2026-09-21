@@ -15,7 +15,7 @@ const container: React.CSSProperties = {
 export default function ServicesOverview() {
   usePageTitle(
     'Våra Tjänster | TMT Vägmarkeringar',
-    'Utforska våra tjänster inom vägmarkering, linjemålning, parkeringsmarkering och industrimålning i hela Sverige.'
+    'Utforska våra tjänster inom vägmarkeringar, linjefräsning, snöröjning och TMA-körning i hela Sverige.'
   );
 
   const { hash } = useLocation();
@@ -93,7 +93,7 @@ export default function ServicesOverview() {
               margin: '0 auto',
               lineHeight: 1.65,
             }}>
-              TMT Vägmarkeringar AB erbjuder professionella lösningar inom parkeringsplatser, väg- och industrimålning, snöröjning och TMA-säkerhet i hela Sverige.
+              TMT Vägmarkeringar AB erbjuder professionella helhetslösningar inom vägmarkeringar, linjefräsning, snöröjning och TMA-säkerhet i hela Sverige.
             </p>
           </ScrollReveal>
         </div>

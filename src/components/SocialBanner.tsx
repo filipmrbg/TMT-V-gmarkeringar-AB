@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Instagram, Facebook, ArrowUpRight } from 'lucide-react';
+import { Instagram, ArrowUpRight } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 const instagramPosts = [
@@ -106,8 +106,8 @@ export default function SocialBanner() {
         <ScrollReveal animation="fade-up" duration={0.6} delay={160}>
           <div className="social-hub-bar">
             <div className="social-hub-text">
-              <span className="social-hub-title">Följ TMT Vägmarkeringar på sociala medier</span>
-              <span className="social-hub-sub">Se våra senaste projekt och uppdrag på Instagram och Facebook</span>
+              <span className="social-hub-title">Följ TMT Vägmarkeringar på Instagram</span>
+              <span className="social-hub-sub">Se våra senaste projekt, filmer och uppdrag</span>
             </div>
 
             <div className="social-hub-actions">
@@ -119,17 +119,6 @@ export default function SocialBanner() {
               >
                 <Instagram size={18} />
                 <span>@tmt.vagmarkeringar</span>
-                <ArrowUpRight size={14} className="social-hub-arrow" />
-              </a>
-
-              <a
-                href="https://www.facebook.com/p/TMT-AB-100045809239067/?locale=sv_SE"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-hub-btn facebook"
-              >
-                <Facebook size={18} />
-                <span>TMT AB på Facebook</span>
                 <ArrowUpRight size={14} className="social-hub-arrow" />
               </a>
             </div>
@@ -203,15 +192,6 @@ export default function SocialBanner() {
         }
         .social-hub-btn.instagram:hover {
           background: #fce7f3;
-          transform: translateY(-1px);
-        }
-        .social-hub-btn.facebook {
-          background: #eff6ff;
-          color: #2563eb;
-          border: 1px solid #bfdbfe;
-        }
-        .social-hub-btn.facebook:hover {
-          background: #dbeafe;
           transform: translateY(-1px);
         }
         .social-hub-arrow {

@@ -11,7 +11,7 @@ export function usePageTitle(title: string, description?: string, image?: string
     document.title = title;
 
     // 2. Update Description
-    const defaultDesc = "TMT Vägmarkeringar AB utför professionell vägmarkering, linjemålning, parkeringsrutor och industrimålning för företag, kommuner och BRF:er i hela Sverige. Kontakta oss för fri offert!";
+    const defaultDesc = "TMT Vägmarkeringar AB utför professionell vägmarkering, linjemålning, parkeringsrutor och industrimålning för företag, kommuner och BRF:er i hela Sverige. Kontakta oss för offert!";
     const activeDesc = description || defaultDesc;
     
     let metaDescription = document.querySelector('meta[name="description"]');

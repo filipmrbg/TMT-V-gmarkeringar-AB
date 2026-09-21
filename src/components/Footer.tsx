@@ -1,11 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import images from '../data/images';
 import services from '../data/services';
 
 const socialIcons = [
   { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/tmt.vagmarkeringar/' },
-  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/p/TMT-AB-100045809239067/?locale=sv_SE' },
 ];
 
 export default function Footer() {
@@ -162,18 +161,53 @@ export default function Footer() {
             borderTop: '1px solid #e5e7eb',
             paddingTop: '20px',
             marginTop: '40px',
-            paddingBottom: '20px',
+            paddingBottom: '24px',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
             flexWrap: 'wrap',
-            gap: '8px',
+            gap: '16px',
           }}
         >
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', color: 'var(--color-gray-600)', fontSize: '0.875rem', flexWrap: 'wrap' }}>
             <span>© 2026 - TMT Vägmarkeringar AB</span>
             <span>Org.nr: 559221-0099</span>
             <span>Godkänd för F-skatt</span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <a
+              href="https://www.uc.se/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="UC Sigill - Kreditvärdigt företag (TMT Vägmarkeringar AB)"
+              aria-label="UC Sigill Kreditvärdighet för TMT Vägmarkeringar AB"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                textDecoration: 'none',
+                transition: 'transform 0.2s ease, opacity 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.opacity = '0.9';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.opacity = '1';
+              }}
+            >
+              <img
+                src="https://www.uc.se/ucsigill2/sigill?org=5592210099&language=swe&product=lsa&type=svg"
+                alt="UC Sigill - Hög kreditvärdighet"
+                style={{
+                  height: 'clamp(52px, 5vw, 62px)',
+                  width: 'auto',
+                  display: 'block',
+                }}
+                loading="lazy"
+              />
+            </a>
           </div>
         </div>
       </div>

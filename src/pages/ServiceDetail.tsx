@@ -26,13 +26,31 @@ const container: React.CSSProperties = {
   padding: '0 clamp(20px, 5vw, 40px)',
 };
 
+const SLUG_ALIASES: Record<string, string> = {
+  'parkeringsplatser': 'vagmarkering',
+  'parkeringsmarkering': 'vagmarkering',
+  'laddplatser-symboler': 'vagmarkering',
+  'laddplatser': 'vagmarkering',
+  'overgangsstallen': 'vagmarkering',
+  'industrimalning': 'vagmarkering',
+  'vagmarkeringar': 'vagmarkering',
+};
+
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
+  const resolvedSlug = (slug && SLUG_ALIASES[slug]) || slug;
+
+  useEffect(() => {
+    if (slug && SLUG_ALIASES[slug]) {
+      navigate(`/tjanster/${SLUG_ALIASES[slug]}`, { replace: true });
+    }
+  }, [slug, navigate]);
+
   const service = useMemo(() => {
-    return services.find((s) => s.slug === slug);
-  }, [slug]);
+    return services.find((s) => s.slug === resolvedSlug);
+  }, [resolvedSlug]);
 
   // SEO Page Title & Description
   const pageTitle = service?.seoTitle || (service
@@ -40,7 +58,7 @@ export default function ServiceDetail() {
     : 'Tjänst | TMT Vägmarkeringar');
 
   const pageDescription = service?.seoDescription || (service
-    ? `${service.title}: ${service.shortDescription} Vi utför arbeten i Stockholm, Göteborg, Malmö och över hela Sverige. Kontakta oss för fri offert!`
+    ? `${service.title}: ${service.shortDescription} Vi utför arbeten i Stockholm, Göteborg, Malmö och över hela Sverige. Kontakta oss för offert!`
     : 'Professionella tjänster inom vägmarkering, linjemålning och trafiksäkerhet över hela Sverige.');
 
   usePageTitle(pageTitle, pageDescription, service?.image);
@@ -330,7 +348,7 @@ export default function ServiceDetail() {
                   e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.25)';
                 }}
               >
-                Begär kostnadsfri offert <ArrowRight size={17} />
+                Begär offert <ArrowRight size={17} />
               </Link>
 
               <a
@@ -533,7 +551,7 @@ export default function ServiceDetail() {
                       Behöver ni hjälp med {service.title.toLowerCase()}?
                     </h4>
                     <p style={{ margin: 0, fontSize: '0.92rem', color: 'rgba(255, 255, 255, 0.8)' }}>
-                      Vi återkopplar snabbt med rådgivning och en kostnadsfri offert.
+                      Vi återkopplar så snart som möjligt med rådgivning och prisförslag.
                     </p>
                   </div>
                   <Link
@@ -687,10 +705,10 @@ export default function ServiceDetail() {
                 </div>
                 <div>
                   <h4 style={{ margin: '0 0 6px 0', fontSize: '0.95rem', fontWeight: 700, color: '#0f172a' }}>
-                    Fria platsbesök
+                    Offert & rådgivning
                   </h4>
                   <p style={{ margin: 0, fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5 }}>
-                    Vi hjälper gärna till med rådgivning, uppmätning och förslag på bästa layout före start.
+                    Vi går igenom era underlag och återkommer så snart som möjligt med ett specificerat prisförslag anpassat för ert projekt.
                   </p>
                 </div>
                 <div>

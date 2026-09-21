@@ -15,7 +15,7 @@ const container: React.CSSProperties = {
 const faqItems = [
   {
     question: 'Kostar offerten något?',
-    answer: 'Nej, offert och rådgivning är alltid helt kostnadsfritt. Vi går igenom era ritningar, ytor och förutsättningar och tar fram ett tydligt prisförslag helt utan förbindelser.',
+    answer: 'Nej, att få en offert och rådgivning förbinder er inte till något. Vi går igenom era ritningar, ytor och förutsättningar och tar fram ett tydligt prisförslag.',
   },
   {
     question: 'Hur snabbt kan ni påbörja markeringsarbetet?',
@@ -30,7 +30,7 @@ const faqItems = [
 export default function Quote() {
   usePageTitle(
     'Begär offert | TMT Vägmarkeringar',
-    'Beskriv ert projekt och begär en kostnadsfri offert för vägmarkering, linjemålning, parkeringsrutor eller industrimålning i hela Sverige.'
+    'Beskriv ert projekt och begär offert för vägmarkering, linjefräsning, snöröjning eller TMA-körning i hela Sverige.'
   );
 
   return (
@@ -57,7 +57,7 @@ export default function Quote() {
                 margin: '0 0 16px 0',
                 lineHeight: 1.15,
               }}>
-                Begär kostnadsfri offert
+                Begär offert
               </h1>
             </ScrollReveal>
             <ScrollReveal animation="scale-x-center" delay={150} duration={0.6}>
@@ -71,7 +71,7 @@ export default function Quote() {
                 margin: '20px auto 0',
                 lineHeight: 1.6,
               }}>
-                Fyll i formuläret nedan och beskriv vad ni behöver hjälp med så återkommer vi med en specificerad offert inom 24 timmar.
+                Fyll i formuläret nedan och beskriv vad ni behöver hjälp med så återkommer vi med en specificerad offert så snart som möjligt.
               </p>
             </ScrollReveal>
           </div>
@@ -132,7 +132,7 @@ export default function Quote() {
                     {
                       icon: Clock,
                       title: 'Snabba besked & tidsplan',
-                      desc: 'Specificerad offert inom 24 timmar och punktlig leverans enligt överenskommelse med minimal trafikstörning.',
+                      desc: 'Snabb återkoppling med specificerad offert och punktlig leverans enligt överenskommelse med minimal trafikstörning.',
                     },
                     {
                       icon: Award,
