@@ -197,7 +197,7 @@ export default function ProjectsGallery() {
               Begär offert för ditt projekt
             </Button>
             <span style={{ fontSize: '0.85rem', color: 'var(--color-gray-600)' }}>
-              Snabb offert & rådgivning utifrån era underlag
+              Snabb offert och rådgivning utifrån era underlag
             </span>
           </div>
         </ScrollReveal>

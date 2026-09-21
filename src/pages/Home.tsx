@@ -48,7 +48,7 @@ const homeFaqItems = [
 
 export default function Home() {
   usePageTitle(
-    'TMT Vägmarkeringar | Professionell vägmarkering & linjemålning i hela Sverige',
+    'TMT Vägmarkeringar | Professionell vägmarkering och linjemålning i hela Sverige',
     'TMT Vägmarkeringar AB utför professionell vägmarkering, linjemålning, parkeringsrutor och industrimålning för företag, kommuner och BRF:er i hela Sverige. Kontakta oss för offert!'
   );
 
@@ -549,7 +549,7 @@ export default function Home() {
                 padding: '5px 16px',
                 borderRadius: '999px',
               }}>
-                Auktoriserad & Certifierad
+                Auktoriserad och certifierad
               </span>
               <h2 style={{
                 fontFamily: 'var(--font-heading)',
@@ -559,7 +559,7 @@ export default function Home() {
                 margin: '0 0 12px 0',
                 textTransform: 'uppercase',
               }}>
-                Certifieringar & behörigheter
+                Certifieringar och behörigheter
               </h2>
               <p style={{
                 color: 'var(--color-gray-600)',

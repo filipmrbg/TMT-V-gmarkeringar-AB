@@ -42,17 +42,17 @@ export const services: ServiceItem[] = [
 
 Vårt erbjudande inom vägmarkeringar omfattar bland annat:
 • Vägar och gator: Kantlinjer, mittlinjer, varningslinjer, spärrområden och cykelbanor enligt Trafikverkets standarder.
-• Parkeringsplatser & garage: Uppmätning och linjemålning av p-rutor, handikapplatser, MC-platser och pilar för BRF, köpcentrum och företag.
-• Laddplatser & symboler: Tydliga elbilsladdplatser med gröna kontrastfält, laddsymboler, numrering och specialschabloner.
-• Övergångsställen & passager: Högreflekterande zebralinjer och varningsmarkeringar med termoplast och glaspärlor för trygg passage dygnet runt.
-• Industrimålning & lager: Truckgångar, gångstråk, 5S-zoner och pallplatsrutor med slitstarka 2K-färger för maximal säkerhet i logistikmiljöer.`,
+• Parkeringsplatser: Uppmätning och linjemålning av p-rutor, garage, handikapplatser, MC-platser och pilar för BRF, köpcentrum och företag.
+• Laddplatser och symboler: Tydliga elbilsladdplatser med gröna kontrastfält, laddsymboler, numrering och specialschabloner.
+• Övergångsställen: Högreflekterande zebralinjer och varningsmarkeringar med termoplast och glaspärlor för trygg passage dygnet runt.
+• Industrimålning: Truckgångar, gångstråk, 5S-zoner och pallplatsrutor med slitstarka 2K-färger för maximal säkerhet i lager och industrilokaler.`,
     heroImage: '/services/vagmarkering.jpg',
     image: '/services/vagmarkering.jpg',
     href: '/tjanster/vagmarkering',
-    tag: 'Vägmarkering & Linjer',
+    tag: 'Vägmarkering',
     badge: 'Trafikverket-standard',
     highlights: [
-      'Kantlinjer, mittlinjer & cykelbanor enligt Trafikverkets krav',
+      'Kantlinjer, mittlinjer och cykelbanor enligt Trafikverkets krav',
       'Målning och uppmätning av p-rutor och handikapplatser',
       'Gröna laddplatser och kundanpassade vägsymboler',
       'Övergångsställen med hög retroreflektion och friktion',

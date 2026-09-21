@@ -705,7 +705,7 @@ export default function ServiceDetail() {
                 </div>
                 <div>
                   <h4 style={{ margin: '0 0 6px 0', fontSize: '0.95rem', fontWeight: 700, color: '#0f172a' }}>
-                    Offert & rådgivning
+                    Offert och rådgivning
                   </h4>
                   <p style={{ margin: 0, fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5 }}>
                     Vi går igenom era underlag och återkommer så snart som möjligt med ett specificerat prisförslag anpassat för ert projekt.

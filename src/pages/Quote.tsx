@@ -131,7 +131,7 @@ export default function Quote() {
                     },
                     {
                       icon: Clock,
-                      title: 'Snabba besked & tidsplan',
+                      title: 'Snabba besked och tidsplan',
                       desc: 'Snabb återkoppling med specificerad offert och punktlig leverans enligt överenskommelse med minimal trafikstörning.',
                     },
                     {
