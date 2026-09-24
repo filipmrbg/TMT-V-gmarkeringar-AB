@@ -11,7 +11,7 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 const FROM_EMAIL = "Kontaktformulär <info@contact.bgbygger.se>";
-const TO_EMAIL = "f.bjorgaas@gmail.com";
+const TO_EMAIL = "info@tmtab.com";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
@@ -154,7 +154,7 @@ Deno.serve(async (req: Request) => {
       body: JSON.stringify({
         from: FROM_EMAIL,
         to: [TO_EMAIL],
-        subject: `Ny kontaktförfrågan från ${subjectName}`,
+        subject: `"Ny kontaktförfrågan" från ${subjectName}`,
         html: emailHtml,
         reply_to: body.email,
       }),
