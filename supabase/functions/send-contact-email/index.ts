@@ -23,14 +23,6 @@ const EMAIL_TEMPLATE = `<!DOCTYPE html>
 
               <table role="presentation" style="width: 100%; background-color: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
 
-                <!-- TJÄNST -->
-                <tr>
-                  <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                    <span style="font-weight: 600; color: #374151; display: block; margin-bottom: 4px;">Vald tjänst:</span>
-                    <span style="color: #1f2937;">{{TJANST}}</span>
-                  </td>
-                </tr>
-
                 <!-- NAMN -->
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
@@ -52,6 +44,14 @@ const EMAIL_TEMPLATE = `<!DOCTYPE html>
                   <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
                     <span style="font-weight: 600; color: #374151; display: block; margin-bottom: 4px;">Telefon:</span>
                     <a href="tel:{{TELEFON}}" style="color: #2563eb; text-decoration: none;">{{TELEFON}}</a>
+                  </td>
+                </tr>
+
+                <!-- TJÄNST -->
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
+                    <span style="font-weight: 600; color: #374151; display: block; margin-bottom: 4px;">Vald tjänst:</span>
+                    <span style="color: #1f2937;">{{TJANST}}</span>
                   </td>
                 </tr>
 
