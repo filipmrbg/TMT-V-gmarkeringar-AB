@@ -50,10 +50,35 @@ export default function QuoteForm({
   const [service, setService] = useState(initialService);
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`;
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, phone, service, message }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Något gick fel vid sändning.');
+      }
+
+      setSubmitted(true);
+    } catch {
+      setSubmitError('Tyvärr kunde inte ditt meddelande skickas just nu. Försök igen eller ring oss på 073-771 86 17.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -265,11 +290,11 @@ export default function QuoteForm({
           >
             <option value="">Välj tjänst...</option>
             {services.map((s) => (
-              <option key={s.slug} value={s.slug}>
+              <option key={s.slug} value={s.title}>
                 {s.title}
               </option>
             ))}
-            <option value="annat">Annat markerings- eller entreprenadarbete</option>
+            <option value="Annat markerings- eller entreprenadarbete">Annat markerings- eller entreprenadarbete</option>
           </select>
         </div>
 
@@ -297,8 +322,23 @@ export default function QuoteForm({
           />
         </div>
 
+        {submitError && (
+          <p style={{
+            color: '#dc2626',
+            fontSize: '0.9rem',
+            margin: '0 0 16px 0',
+            padding: '12px 16px',
+            background: '#fef2f2',
+            borderRadius: '12px',
+            border: '1px solid #fecaca',
+          }}>
+            {submitError}
+          </p>
+        )}
+
         <button
           type="submit"
+          disabled={submitting}
           className="quote-submit-btn"
           style={{
             background: '#0F172A',
@@ -308,7 +348,7 @@ export default function QuoteForm({
             borderRadius: 'var(--border-radius-pill)',
             fontSize: '1rem',
             fontWeight: 700,
-            cursor: 'pointer',
+            cursor: submitting ? 'not-allowed' : 'pointer',
             width: '100%',
             fontFamily: 'var(--font-family)',
             boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
@@ -319,18 +359,23 @@ export default function QuoteForm({
             gap: '8px',
             textTransform: 'none',
             letterSpacing: 'normal',
+            opacity: submitting ? 0.6 : 1,
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#1E293B';
-            e.currentTarget.style.transform = 'translateY(-2px)';
+            if (!submitting) {
+              e.currentTarget.style.background = '#1E293B';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#0F172A';
-            e.currentTarget.style.transform = 'translateY(0)';
+            if (!submitting) {
+              e.currentTarget.style.background = '#0F172A';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }
           }}
         >
           <Send size={18} />
-          {buttonText}
+          {submitting ? 'Skickar…' : buttonText}
         </button>
       </form>
 
