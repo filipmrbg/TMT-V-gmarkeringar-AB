@@ -23,6 +23,14 @@ const EMAIL_TEMPLATE = `<!DOCTYPE html>
 
               <table role="presentation" style="width: 100%; background-color: #f8f9fa; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
 
+                <!-- TJÄNST -->
+                <tr>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
+                    <span style="font-weight: 600; color: #374151; display: block; margin-bottom: 4px;">Vald tjänst:</span>
+                    <span style="color: #1f2937;">{{TJANST}}</span>
+                  </td>
+                </tr>
+
                 <!-- NAMN -->
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
@@ -134,19 +142,16 @@ Deno.serve(async (req: Request) => {
     const now = new Date();
     const dateStr = formatSwedishDateTime(now);
 
-    const fullMessage = service
-      ? `Vald tjänst: ${service}\n\n${message}`
-      : message;
-
     let html = EMAIL_TEMPLATE
+      .replace(/{{TJANST}}/g, escapeHtml(service || "Ej angiven"))
       .replace(/{{NAMN}}/g, escapeHtml(name))
       .replace(/{{EPOST}}/g, escapeHtml(email))
       .replace(/{{TELEFON}}/g, escapeHtml(phone))
-      .replace(/{{MEDDELANDE}}/g, escapeHtml(fullMessage))
+      .replace(/{{MEDDELANDE}}/g, escapeHtml(message))
       .replace(/{{DATUM_OCH_TID}}/g, escapeHtml(dateStr))
       .replace(/{{SUBMISSION_ID}}/g, escapeHtml(submissionId));
 
-    const RECIPIENT = Deno.env.get("CONTACT_EMAIL") || "info@tmtab.com";
+    const RECIPIENT = Deno.env.get("CONTACT_EMAIL") || "f.bjorgaas@gmail.com";
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
     if (!RESEND_API_KEY) {
@@ -163,7 +168,7 @@ Deno.serve(async (req: Request) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Kontaktformulär <onboarding@resend.dev>",
+        from: "Kontaktformulär <info@contact.bgbygger.se>",
         to: [RECIPIENT],
         reply_to: email,
         subject: `"Ny kontaktförfrågan" från ${name}`,

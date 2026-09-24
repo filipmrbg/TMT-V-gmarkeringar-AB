@@ -60,6 +60,10 @@ export default function QuoteForm({
     setStatus('sending');
     setErrorMsg('');
 
+    const serviceTitle = service === 'annat'
+      ? 'Annat markerings- eller entreprenadarbete'
+      : services.find((s) => s.slug === service)?.title || service || '';
+
     try {
       const response = await fetch(`${SUPABASE_URL}/functions/v1/send-contact-email`, {
         method: 'POST',
@@ -67,7 +71,7 @@ export default function QuoteForm({
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
         },
-        body: JSON.stringify({ name, email, phone, message, service }),
+        body: JSON.stringify({ name, email, phone, message, service: serviceTitle }),
       });
 
       if (!response.ok) {
