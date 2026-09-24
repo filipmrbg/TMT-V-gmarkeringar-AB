@@ -154,7 +154,7 @@ Deno.serve(async (req: Request) => {
       body: JSON.stringify({
         from: FROM_EMAIL,
         to: [TO_EMAIL],
-        subject: `"Ny kontaktförfrågan" från ${subjectName}`,
+        subject: `Ny kontaktförfrågan från ${subjectName}`,
         html: emailHtml,
         reply_to: body.email,
       }),
