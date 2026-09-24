@@ -171,7 +171,7 @@ Deno.serve(async (req: Request) => {
         from: "Kontaktformulär <info@contact.bgbygger.se>",
         to: [RECIPIENT],
         reply_to: email,
-        subject: `"Ny kontaktförfrågan" från ${name}`,
+        subject: `Ny kontaktförfrågan från ${name}`,
         html,
       }),
     });
