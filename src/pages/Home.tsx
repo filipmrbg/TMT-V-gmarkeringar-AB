@@ -103,7 +103,8 @@ export default function Home() {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster={images.hero.background.url}
             style={{
               width: '100%',
               height: '100%',
@@ -111,10 +112,6 @@ export default function Home() {
               objectPosition: 'center',
             }}
           >
-            <source
-              src={images.hero.videoUrl || 'https://d8j0ntlcm91z4.cloudfront.net/user_3G5LlmMYORSdAk8SxzXrK2S0Is5/hf_20260916_120304_b6e22521-4e42-4364-9c14-ebed64144e92.mp4'}
-              type="video/mp4"
-            />
             <source src="/hero-video.mp4" type="video/mp4" />
           </video>
         </div>
