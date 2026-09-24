@@ -290,11 +290,11 @@ export default function QuoteForm({
           >
             <option value="">Välj tjänst...</option>
             {services.map((s) => (
-              <option key={s.slug} value={s.slug}>
+              <option key={s.slug} value={s.title}>
                 {s.title}
               </option>
             ))}
-            <option value="annat">Annat markerings- eller entreprenadarbete</option>
+            <option value="Annat markerings- eller entreprenadarbete">Annat markerings- eller entreprenadarbete</option>
           </select>
         </div>
 
