@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import services from '../data/services';
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 const inputStyle: React.CSSProperties = {
   width: '100%',
@@ -49,14 +52,37 @@ export default function QuoteForm({
   const [email, setEmail] = useState('');
   const [service, setService] = useState(initialService);
   const [message, setMessage] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus('sending');
+    setErrorMsg('');
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/functions/v1/send-contact-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+        body: JSON.stringify({ name, email, phone, message, service }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        throw new Error(data?.error || 'Något gick fel vid sändning av formuläret.');
+      }
+
+      setStatus('success');
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg(err instanceof Error ? err.message : 'Ett oväntat fel uppstod.');
+    }
   };
 
-  if (submitted) {
+  if (status === 'success') {
     return (
       <div
         style={{
@@ -107,7 +133,7 @@ export default function QuoteForm({
           type="button"
           className="quote-submit-btn"
           onClick={() => {
-            setSubmitted(false);
+            setStatus('idle');
             setName('');
             setPhone('');
             setEmail('');
@@ -163,6 +189,24 @@ export default function QuoteForm({
         >
           {subtitle}
         </p>
+      )}
+
+      {status === 'error' && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          padding: '14px 16px',
+          background: '#fef2f2',
+          border: '1px solid #fecaca',
+          borderRadius: '12px',
+          marginBottom: '16px',
+        }}>
+          <AlertCircle size={20} color="#dc2626" />
+          <p style={{ margin: 0, fontSize: '0.9rem', color: '#991b1b', lineHeight: 1.5 }}>
+            {errorMsg || 'Ett fel uppstod. Försök igen eller ring oss på 073-771 86 17.'}
+          </p>
+        </div>
       )}
 
       <form onSubmit={handleSubmit}>
@@ -300,6 +344,7 @@ export default function QuoteForm({
         <button
           type="submit"
           className="quote-submit-btn"
+          disabled={status === 'sending'}
           style={{
             background: '#0F172A',
             color: '#ffffff',
@@ -308,7 +353,8 @@ export default function QuoteForm({
             borderRadius: 'var(--border-radius-pill)',
             fontSize: '1rem',
             fontWeight: 700,
-            cursor: 'pointer',
+            cursor: status === 'sending' ? 'not-allowed' : 'pointer',
+            opacity: status === 'sending' ? 0.7 : 1,
             width: '100%',
             fontFamily: 'var(--font-family)',
             boxShadow: '0 4px 16px rgba(15, 23, 42, 0.2)',
@@ -321,8 +367,10 @@ export default function QuoteForm({
             letterSpacing: 'normal',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#1E293B';
-            e.currentTarget.style.transform = 'translateY(-2px)';
+            if (status !== 'sending') {
+              e.currentTarget.style.background = '#1E293B';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = '#0F172A';
@@ -330,7 +378,7 @@ export default function QuoteForm({
           }}
         >
           <Send size={18} />
-          {buttonText}
+          {status === 'sending' ? 'Skickar...' : buttonText}
         </button>
       </form>
 
