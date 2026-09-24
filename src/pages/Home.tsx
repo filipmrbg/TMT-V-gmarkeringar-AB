@@ -103,8 +103,7 @@ export default function Home() {
             muted
             loop
             playsInline
-            preload="metadata"
-            poster={images.hero.background.url}
+            preload="auto"
             style={{
               width: '100%',
               height: '100%',
