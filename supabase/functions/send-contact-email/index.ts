@@ -11,7 +11,7 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 const FROM_EMAIL = "Kontaktformulär <info@contact.bgbygger.se>";
-const TO_EMAIL = "info@tmtab.com";
+const TO_EMAIL = "min.f.bjorgaas@gmail.com";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
