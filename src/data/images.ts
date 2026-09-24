@@ -40,11 +40,11 @@ export interface SiteImages {
 
 const images: SiteImages = {
   logo: {
-    url: '/logo.png',
+    url: '/tmt-logo.png?v=2',
     alt: 'TMT Vägmarkeringar - Professionell vägmarkering och linjemålning i hela Sverige',
   },
   logoDark: {
-    url: '/logo-dark.png',
+    url: '/tmt-logo-dark.png?v=2',
     alt: 'TMT Vägmarkeringar AB',
   },
   ogImage: {

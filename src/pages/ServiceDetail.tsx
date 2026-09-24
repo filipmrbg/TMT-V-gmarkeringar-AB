@@ -14,7 +14,7 @@ import {
   Award,
   FileCheck2,
 } from 'lucide-react';
-import services, { ServiceItem } from '../data/services';
+import services from '../data/services';
 import ServiceIcon from '../components/ServiceIcons';
 import ScrollReveal from '../components/ScrollReveal';
 import CTABanner from '../components/CTABanner';

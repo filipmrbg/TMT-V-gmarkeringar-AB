@@ -36,7 +36,7 @@ export default function Footer() {
                   display: 'inline-block',
                 }}>
                   <img
-                    src={images.logoDark?.url || '/logo-dark.png'}
+                    src={images.logoDark?.url || '/tmt-logo-dark.png?v=2'}
                     alt={images.logoDark?.alt || images.logo.alt}
                     style={{
                       height: '70px',
