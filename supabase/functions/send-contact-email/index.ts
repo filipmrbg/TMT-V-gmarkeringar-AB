@@ -109,6 +109,8 @@ function escapeHtml(str: string): string {
     .replace(/'/g, "&#039;");
 }
 
+import { createClient } from "npm:@supabase/supabase-js@2";
+
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 200, headers: corsHeaders });
@@ -142,6 +144,27 @@ Deno.serve(async (req: Request) => {
     const now = new Date();
     const dateStr = formatSwedishDateTime(now);
 
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    );
+
+    const { error: dbError } = await supabase
+      .from("contact_submissions")
+      .insert({
+        id: submissionId,
+        name,
+        email,
+        phone,
+        service: service || null,
+        message,
+        email_sent: false,
+      });
+
+    if (dbError) {
+      console.error("Database insert error:", dbError);
+    }
+
     let html = EMAIL_TEMPLATE
       .replace(/{{TJANST}}/g, escapeHtml(service || "Ej angiven"))
       .replace(/{{NAMN}}/g, escapeHtml(name))
@@ -151,7 +174,7 @@ Deno.serve(async (req: Request) => {
       .replace(/{{DATUM_OCH_TID}}/g, escapeHtml(dateStr))
       .replace(/{{SUBMISSION_ID}}/g, escapeHtml(submissionId));
 
-    const RECIPIENT = Deno.env.get("CONTACT_EMAIL") || "f.bjorgaas@gmail.com";
+    const RECIPIENT = Deno.env.get("CONTACT_EMAIL") || "info@tmtab.com";
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
     if (!RESEND_API_KEY) {
@@ -184,6 +207,11 @@ Deno.serve(async (req: Request) => {
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
+
+    await supabase
+      .from("contact_submissions")
+      .update({ email_sent: true })
+      .eq("id", submissionId);
 
     return new Response(
       JSON.stringify({ success: true, submissionId }),
